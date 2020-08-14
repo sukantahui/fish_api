@@ -2,7 +2,10 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Model\CustomerCategory;
 use App\Model\PersonType;
+use App\Model\ProductCategory;
+use App\Model\Product;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,31 +22,70 @@ class DatabaseSeeder extends Seeder
 
 
         //person_types table data
-        PersonType::create(['person_type_name' => 'Owner']);
-        PersonType::create(['person_type_name' => 'Manager']);
-        PersonType::create(['person_type_name' => 'Manager Workshop']);
-        PersonType::create(['person_type_name' => 'Manager Sales']);
-        PersonType::create(['person_type_name' => 'Manager Accounts']);
-        PersonType::create(['person_type_name' => 'Office Staff']);
-        PersonType::create(['person_type_name' => 'Agent']);
-        PersonType::create(['person_type_name' => 'Worker']);
-        PersonType::create(['person_type_name' => 'Developer']);
-        PersonType::create(['person_type_name' => 'Customer']);
-        PersonType::create(['person_type_name' => 'Karigarh']);
+        PersonType::create(['person_type_name' => 'Owner']);                //1
+        PersonType::create(['person_type_name' => 'Manager']);              //2
+        PersonType::create(['person_type_name' => 'Manager Workshop']);     //3
+        PersonType::create(['person_type_name' => 'Manager Sales']);        //4
+        PersonType::create(['person_type_name' => 'Manager Accounts']);     //5
+        PersonType::create(['person_type_name' => 'Office Staff']);         //6
+        PersonType::create(['person_type_name' => 'Agent']);                //7
+        PersonType::create(['person_type_name' => 'Worker']);               //8
+        PersonType::create(['person_type_name' => 'Developer']);            //9
+        PersonType::create(['person_type_name' => 'Customer']);             //10
+        PersonType::create(['person_type_name' => 'Vendor']);               //11
+        PersonType::create(['person_type_name' => 'Customer Cum Vendor']);  //12
+
+        //customer_categories table data
+        CustomerCategory::create(['customer_category_name'=>'Not Applicable']);
+        CustomerCategory::create(['customer_category_name'=>'Base']);
+        CustomerCategory::create(['customer_category_name'=>'Base-50']);
+        CustomerCategory::create(['customer_category_name'=>'Base-100']);
+        CustomerCategory::create(['customer_category_name'=>'Base-150']);
 
         // user
-        User::create(['person_name'=>'Vivekananda Ghsoh','mobile1'=>'9836444999','mobile2'=>'','email'=>'bangle312@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>1]);
-        User::create(['person_name'=>'Abishek Basak','mobile1'=>'9836444451','mobile2'=>'','email'=>'bangle396@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>7]);
-        User::create(['person_name'=>'Pushpendu Pal','mobile1'=>'9836444568','mobile2'=>'','email'=>'bangle363@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>7]);
-        User::create(['person_name'=>'Pushpendu Roy','mobile1'=>'9836444426','mobile2'=>'','email'=>'bangle376@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>8]);
-        User::create(['person_name'=>'Pushpendu Ghosh','mobile1'=>'9836444785','mobile2'=>'','email'=>'bangle371@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>10]);
-        User::create(['person_name'=>'Abishek Ghosh','mobile1'=>'9836444972','mobile2'=>'','email'=>'bangle314@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>7]);
-        User::create(['person_name'=>'Joy Ghosh','mobile1'=>'9836444972','mobile2'=>'','email'=>'bangle322@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11]);
-        User::create(['person_name'=>'Erik Ghosh','mobile1'=>'9836444972','mobile2'=>'','email'=>'bangle333@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11]);
-        User::create(['person_name'=>'Tuhin Ghosh','mobile1'=>'9836444972','mobile2'=>'','email'=>'bangle344@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11]);
+        User::create(['person_name'=>'Vivekananda Ghsoh','mobile1'=>'9836444999','mobile2'=>'','email'=>'bangle312@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>1,'customer_category_id'=>1]);
+        User::create(['person_name'=>'Abishek Basak','mobile1'=>'9836444451','mobile2'=>'','email'=>'bangle396@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>7,'customer_category_id'=>1]);
+        User::create(['person_name'=>'Pushpendu Pal','mobile1'=>'9836444568','mobile2'=>'','email'=>'bangle363@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>7,'customer_category_id'=>1]);
+        User::create(['person_name'=>'Pushpendu Roy','mobile1'=>'9836444426','mobile2'=>'','email'=>'bangle376@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>8,'customer_category_id'=>1]);
+        User::create(['person_name'=>'Pushpendu Ghosh','mobile1'=>'9836444785','mobile2'=>'','email'=>'bangle371@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>10,'customer_category_id'=>1]);
+        User::create(['person_name'=>'Abishek Ghosh','mobile1'=>'9836444972','mobile2'=>'','email'=>'bangle314@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>7,'customer_category_id'=>1]);
+        User::create(['person_name'=>'Joy Ghosh','mobile1'=>'9836444972','mobile2'=>'','email'=>'bangle322@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1]);
+        User::create(['person_name'=>'Erik Ghosh','mobile1'=>'9836444972','mobile2'=>'','email'=>'erik@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1]);
+        User::create(['person_name'=>'Tuhin Ghosh','mobile1'=>'9836444972','mobile2'=>'','email'=>'tuhin@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1]);
 
 
+        //vendor
+        User::create(['person_name'=>'Ritaja Ghosh','mobile1'=>'9836444972','mobile2'=>'','email'=>'ritaja@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1]);
+        User::create(['person_name'=>'Supriya Sandhukhan','mobile1'=>'9836444972','mobile2'=>'','email'=>'supriya@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1]);
 
+        //customer cum vendor
+        User::create(['person_name'=>'Suparna Saha','mobile1'=>'9836444972','mobile2'=>'','email'=>'suparna@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>12,'customer_category_id'=>3]);
+
+
+        //creating Customers(Fake)
+        factory(User::class,100)->create();
+
+        //product_categories table data
+        ProductCategory::create(['category_name'=>'Ruhi']);
+        ProductCategory::create(['category_name'=>'Katla']);
+        ProductCategory::create(['category_name'=>'Hilsa']);
+        ProductCategory::create(['category_name'=>'Pabda']);
+        ProductCategory::create(['category_name'=>'Tangra']);
+        ProductCategory::create(['category_name'=>'Porn']);
+        ProductCategory::create(['category_name'=>'Lobster']);
+        ProductCategory::create(['category_name'=>'Pomfret']);
+        ProductCategory::create(['category_name'=>'Bata']);
+        ProductCategory::create(['category_name'=>'Parse']);
+        ProductCategory::create(['category_name'=>'Vetki']);
+        ProductCategory::create(['category_name'=>'Chital']);
+
+        //Product Katla
+        Product::insert([
+            ['product_code'=>'K1','product_name'=>'Katla Less than 1 KG','product_category_id'=>1],
+            ['product_code'=>'K2','product_name'=>'Katla Between 1 and half','product_category_id'=>1],
+            ['product_code'=>'K3','product_name'=>'Katla Greater than 1.5 and less than 2KG','product_category_id'=>1],
+            ['product_code'=>'K4','product_name'=>'Katla Greater than 2KG','product_category_id'=>1]
+        ]);
 
         //use following command for products in separate seeding products are not seeding here
        // php artisan db:seed --class=ProductSeeder
