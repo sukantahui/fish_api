@@ -79,12 +79,20 @@ class DatabaseSeeder extends Seeder
         ProductCategory::create(['category_name'=>'Vetki']);
         ProductCategory::create(['category_name'=>'Chital']);
 
+        //Product Ruhi
+        Product::insert([
+            ['product_code'=>'R1','product_name'=>'Ruhi Less than 1 KG','product_category_id'=>1],
+            ['product_code'=>'R2','product_name'=>'Ruhi Between 1 and half','product_category_id'=>1],
+            ['product_code'=>'R3','product_name'=>'Ruhi Greater than 1.5 and less than 2KG','product_category_id'=>1],
+            ['product_code'=>'R4','product_name'=>'Ruhi Greater than 2KG','product_category_id'=>1]
+        ]);
+
         //Product Katla
         Product::insert([
-            ['product_code'=>'K1','product_name'=>'Katla Less than 1 KG','product_category_id'=>1],
-            ['product_code'=>'K2','product_name'=>'Katla Between 1 and half','product_category_id'=>1],
-            ['product_code'=>'K3','product_name'=>'Katla Greater than 1.5 and less than 2KG','product_category_id'=>1],
-            ['product_code'=>'K4','product_name'=>'Katla Greater than 2KG','product_category_id'=>1]
+            ['product_code'=>'K1','product_name'=>'Katla Less than 1 KG','product_category_id'=>2],
+            ['product_code'=>'K2','product_name'=>'Katla Between 1 and half','product_category_id'=>2],
+            ['product_code'=>'K3','product_name'=>'Katla Greater than 1.5 and less than 2KG','product_category_id'=>2],
+            ['product_code'=>'K4','product_name'=>'Katla Greater than 2KG','product_category_id'=>2]
         ]);
 
         //use following command for products in separate seeding products are not seeding here
