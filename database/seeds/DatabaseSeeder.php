@@ -95,6 +95,22 @@ class DatabaseSeeder extends Seeder
             ['product_code'=>'K4','product_name'=>'Katla Greater than 2KG','product_category_id'=>2]
         ]);
 
+        //Product Hilsa
+        Product::insert([
+            ['product_code'=>'P1','product_name'=>'Hilsa Less than 300 Gram','product_category_id'=>3],
+            ['product_code'=>'P2','product_name'=>'Hilsa Between 300gm and 500gm','product_category_id'=>3],
+            ['product_code'=>'P3','product_name'=>'Hilsa Between 500gm and 700gm','product_category_id'=>3],
+            ['product_code'=>'P4','product_name'=>'Hilsa Greater than 1KG','product_category_id'=>3]
+        ]);
+
+        //Product Pabda
+        Product::insert([
+            ['product_code'=>'P1','product_name'=>'Pabda Less than 1 KG','product_category_id'=>4],
+            ['product_code'=>'P2','product_name'=>'Pabda Between 1 and half','product_category_id'=>4],
+            ['product_code'=>'P3','product_name'=>'Pabda Greater than 1.5 and less than 2KG','product_category_id'=>4],
+            ['product_code'=>'P4','product_name'=>'Pabda Greater than 2KG','product_category_id'=>4]
+        ]);
+
         //use following command for products in separate seeding products are not seeding here
        // php artisan db:seed --class=ProductSeeder
 
