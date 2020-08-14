@@ -24,8 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('mobile2',15)->nullable(true);
             $table->bigInteger('person_type_id')->unsigned();
             $table ->foreign('person_type_id')->references('id')->on('person_types');
-            $table->bigInteger('customer_category_id')->unsigned()->default(1);
-            $table ->foreign('customer_category_id')->references('id')->on('customer_categories');
+
             //Address
             $table->String('address1', 100)->nullable(true);
             $table->String('address2', 100)->nullable(true);
