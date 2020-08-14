@@ -97,10 +97,10 @@ class DatabaseSeeder extends Seeder
 
         //Product Hilsa
         Product::insert([
-            ['product_code'=>'P1','product_name'=>'Hilsa Less than 300 Gram','product_category_id'=>3],
-            ['product_code'=>'P2','product_name'=>'Hilsa Between 300gm and 500gm','product_category_id'=>3],
-            ['product_code'=>'P3','product_name'=>'Hilsa Between 500gm and 700gm','product_category_id'=>3],
-            ['product_code'=>'P4','product_name'=>'Hilsa Greater than 1KG','product_category_id'=>3]
+            ['product_code'=>'H1','product_name'=>'Hilsa Less than 300 Gram','product_category_id'=>3],
+            ['product_code'=>'H2','product_name'=>'Hilsa Between 300gm and 500gm','product_category_id'=>3],
+            ['product_code'=>'H3','product_name'=>'Hilsa Between 500gm and 700gm','product_category_id'=>3],
+            ['product_code'=>'H4','product_name'=>'Hilsa Greater than 1KG','product_category_id'=>3]
         ]);
 
         //Product Pabda
