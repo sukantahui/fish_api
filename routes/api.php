@@ -28,7 +28,7 @@ Route::delete('/customers/{id}', 'CustomerController@deleteCustomer');
 Route::get('/productCategories', 'ProductCategoryController@getProductCategories');
 Route::post('/productCategories', 'ProductCategoryController@saveProductCategory');
 Route::patch('/productCategories', 'ProductCategoryController@updateProductCategory');
-Route::patch('/productCategories/{id}', 'ProductCategoryController@updateProductCategoryByID');
+Route::patch('/productCategories/{id}', 'ProductCategoryController@updateProductCategoryBy');
 
 
 //products
