@@ -43,6 +43,7 @@ Route::get('/agents', 'AgentController@index');
 
 
 
+
 //secured links here
 Route::group(['middleware' => ['jwt.auth']], function() {
     Route::get('logout', 'AuthController@logout');
@@ -58,6 +59,7 @@ Route::group(['middleware' => ['jwt.auth']], function() {
     Route::get('/customers', 'CustomerController@index');
     Route::post('/customers', 'CustomerController@saveCustomer');
     Route::patch('/customers/{id}', 'CustomerController@updateCustomer');
+
 
     Route::delete('/ordersDetailsDelete/{id}', 'OrderDetailController@deleteOrder');
 

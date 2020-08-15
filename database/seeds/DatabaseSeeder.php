@@ -37,10 +37,10 @@ class DatabaseSeeder extends Seeder
 
         //customer_categories table data
         CustomerCategory::create(['customer_category_name'=>'Not Applicable']);
-        CustomerCategory::create(['customer_category_name'=>'Base']);
-        CustomerCategory::create(['customer_category_name'=>'Base-50']);
-        CustomerCategory::create(['customer_category_name'=>'Base-100']);
-        CustomerCategory::create(['customer_category_name'=>'Base-150']);
+        CustomerCategory::create(['customer_category_name'=>'Good']);
+        CustomerCategory::create(['customer_category_name'=>'Better']);
+        CustomerCategory::create(['customer_category_name'=>'Best']);
+        CustomerCategory::create(['customer_category_name'=>'Excellent']);
 
         // user
         User::create(['person_name'=>'Vivekananda Ghsoh','mobile1'=>'9836444999','mobile2'=>'','email'=>'bangle312@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>1,'customer_category_id'=>1]);
