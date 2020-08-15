@@ -41,11 +41,17 @@ Route::delete('/products/{id}', 'ProductController@deleteProduct');
 
 //customers
 Route::get('/customers', 'CustomerController@index');
+Route::get('/customers/{id}', 'CustomerController@getCustomerById');
 Route::post('/customers', 'CustomerController@saveCustomer');
 Route::patch('/customers', 'CustomerController@updateCustomer');
 Route::patch('/customers/{id}', 'CustomerController@updateCustomerByID');
 
-
+//vendor
+Route::get('/vendors', 'VendorController@index');
+Route::get('/vendors/{id}', 'VendorController@getVendorById');
+Route::post('/vendors', 'VendorController@saveVendor');
+Route::patch('/vendors', 'VendorController@updateVendor');
+Route::patch('/vendors/{id}', 'VendorController@updateVendorByID');
 
 
 

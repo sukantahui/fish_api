@@ -7,11 +7,11 @@ use App\User;
 use App\Model\PersonType;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-class CustomerController extends Controller
+class VendorController extends Controller
 {
     public function index()
     {
-//        $customers = PersonType::find(10)->people;
+//        $customers = PersonType::find(11)->people;
         $query = User::select('id',
             'person_name',
             'person_type_id',
@@ -25,7 +25,7 @@ class CustomerController extends Controller
             'city',
             'po',
             'area',
-            'pin')->where('person_type_id','=',10);
+            'pin')->where('person_type_id','=',11);
 
         //to bind the parameters, the above statement does not bind the parameters so we need to bind them
         // using following statement
@@ -36,9 +36,9 @@ class CustomerController extends Controller
         return response()->json(['success'=>1,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    public function getCustomerById($id)
+    public function getVendorById($id)
     {
-//        $customers = PersonType::find(10)->people;
+//        $customers = PersonType::find(11)->people;
         $result = User::select('id',
             'person_name',
             'person_type_id',
@@ -52,155 +52,155 @@ class CustomerController extends Controller
             'city',
             'po',
             'area',
-            'pin')->where('id',$id)->where('person_type_id','=',10)->first();
+            'pin')->where('id',$id)->where('person_type_id','=',11)->first();
 
         return response()->json(['success'=>1,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    public function saveCustomer(Request $request)
+    public function saveVendor(Request $request)
     {
-        $customer=new User();
+        $vendor=new User();
 
-        $customer->person_name=$request->input('person_name');
-        $customer->email=$request->input('email');
-        $customer->password="81dc9bdb52d04dc20036dbd8313ed055";
-        $customer->person_type_id=10;
-        $customer->customer_category_id=$request->input('customer_category_id');
-        $customer->mobile1=$request->input('mobile1');
-        $customer->mobile2=$request->input('mobile2');
-        $customer->address1=$request->input('address1');
-        $customer->address2=$request->input('address2');
-        $customer->state=$request->input('state');
-        $customer->po=$request->input('po');
-        $customer->area=$request->input('area');
-        $customer->city=$request->input('city');
-        $customer->pin=$request->input('pin');
+        $vendor->person_name=$request->input('person_name');
+        $vendor->email=$request->input('email');
+        $vendor->password="81dc9bdb52d04dc20036dbd8313ed055";
+        $vendor->person_type_id=11;
+        $vendor->customer_category_id=1;
+        $vendor->mobile1=$request->input('mobile1');
+        $vendor->mobile2=$request->input('mobile2');
+        $vendor->address1=$request->input('address1');
+        $vendor->address2=$request->input('address2');
+        $vendor->state=$request->input('state');
+        $vendor->po=$request->input('po');
+        $vendor->area=$request->input('area');
+        $vendor->city=$request->input('city');
+        $vendor->pin=$request->input('pin');
 
-        $customer->save();
-        return response()->json(['success'=>1,'data'=>$customer], 200);
+        $vendor->save();
+        return response()->json(['success'=>1,'data'=>$vendor], 200);
     }
 
-    public function updateCustomer(Request $request)
+    public function updateVendor(Request $request)
     {
-        $customer=User::find($request->input('id'));
+        $vendor=User::find($request->input('id'));
         if($request->input('person_name')){
-            $customer->person_name=$request->input('person_name');
+            $vendor->person_name=$request->input('person_name');
         }
         if($request->input('email')){
-            $customer->email=$request->input('email');
+            $vendor->email=$request->input('email');
         }
         if($request->input('password')){
-            $customer->password=$request->input('password');
+            $vendor->password=$request->input('password');
         }
 
         if($request->input('person_type_id')){
-            $customer->person_type_id=$request->input('person_type_id');
+            $vendor->person_type_id=$request->input('person_type_id');
         }
 
         if($request->input('customer_category_id')){
-            $customer->customer_category_id=$request->input('customer_category_id');
+            $vendor->customer_category_id=$request->input('customer_category_id');
         }
 
         if($request->input('mobile1')){
-            $customer->mobile1=$request->input('mobile1');
+            $vendor->mobile1=$request->input('mobile1');
         }
 
         if($request->input('mobile2')){
-            $customer->mobile2=$request->input('mobile2');
+            $vendor->mobile2=$request->input('mobile2');
         }
 
         if($request->input('address1')){
-            $customer->address1=$request->input('address1');
+            $vendor->address1=$request->input('address1');
         }
 
         if($request->input('address2')){
-            $customer->address2=$request->input('address2');
+            $vendor->address2=$request->input('address2');
         }
 
         if($request->input('state')){
-            $customer->state=$request->input('state');
+            $vendor->state=$request->input('state');
         }
 
         if($request->input('po')){
-            $customer->po=$request->input('po');
+            $vendor->po=$request->input('po');
         }
 
         if($request->input('area')){
-            $customer->area=$request->input('area');
+            $vendor->area=$request->input('area');
         }
 
         if($request->input('city')){
-            $customer->city=$request->input('city');
+            $vendor->city=$request->input('city');
         }
 
         if($request->input('pin')){
-            $customer->pin=$request->input('pin');
+            $vendor->pin=$request->input('pin');
         }
 
 
-        $customer->save();
-        return response()->json(['success'=>1,'data'=>$customer], 200,[],JSON_NUMERIC_CHECK);
+        $vendor->save();
+        return response()->json(['success'=>1,'data'=>$vendor], 200,[],JSON_NUMERIC_CHECK);
     }
-    public function updateCustomerByID($id,Request $request)
+    public function updateVendorByID($id,Request $request)
     {
-        $customer=User::find($id);
+        $vendor=User::find($id);
         if($request->input('person_name')){
-            $customer->person_name=$request->input('person_name');
+            $vendor->person_name=$request->input('person_name');
         }
         if($request->input('email')){
-            $customer->email=$request->input('email');
+            $vendor->email=$request->input('email');
         }
         if($request->input('password')){
-            $customer->password=$request->input('password');
+            $vendor->password=$request->input('password');
         }
 
         if($request->input('person_type_id')){
-            $customer->person_type_id=$request->input('person_type_id');
+            $vendor->person_type_id=$request->input('person_type_id');
         }
 
         if($request->input('customer_category_id')){
-            $customer->customer_category_id=$request->input('customer_category_id');
+            $vendor->customer_category_id=$request->input('customer_category_id');
         }
 
         if($request->input('mobile1')){
-            $customer->mobile1=$request->input('mobile1');
+            $vendor->mobile1=$request->input('mobile1');
         }
 
         if($request->input('mobile2')){
-            $customer->mobile2=$request->input('mobile2');
+            $vendor->mobile2=$request->input('mobile2');
         }
 
         if($request->input('address1')){
-            $customer->address1=$request->input('address1');
+            $vendor->address1=$request->input('address1');
         }
 
         if($request->input('address2')){
-            $customer->address2=$request->input('address2');
+            $vendor->address2=$request->input('address2');
         }
 
         if($request->input('state')){
-            $customer->state=$request->input('state');
+            $vendor->state=$request->input('state');
         }
 
         if($request->input('po')){
-            $customer->po=$request->input('po');
+            $vendor->po=$request->input('po');
         }
 
         if($request->input('area')){
-            $customer->area=$request->input('area');
+            $vendor->area=$request->input('area');
         }
 
         if($request->input('city')){
-            $customer->city=$request->input('city');
+            $vendor->city=$request->input('city');
         }
 
         if($request->input('pin')){
-            $customer->pin=$request->input('pin');
+            $vendor->pin=$request->input('pin');
         }
 
 
-        $customer->save();
-        return response()->json(['success'=>1,'data'=>$customer], 200,[],JSON_NUMERIC_CHECK);
+        $vendor->save();
+        return response()->json(['success'=>1,'data'=>$vendor], 200,[],JSON_NUMERIC_CHECK);
     }
     public function deleteCustomer($id)
     {
