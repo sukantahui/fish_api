@@ -80,6 +80,7 @@ class DatabaseSeeder extends Seeder
         ProductCategory::create(['category_name'=>'Vetki']);
         ProductCategory::create(['category_name'=>'Chital']);
 
+
         //Product Ruhi
         Product::insert([
             ['product_code'=>'R1','product_name'=>'Ruhi Less than 1 KG','product_category_id'=>1],
