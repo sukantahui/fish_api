@@ -34,7 +34,7 @@ $factory->define(User::class, function (Faker $faker) {
         'area'=>$faker->cityPrefix,
         'city'=>$faker->city,
         'pin'=>$faker->postcode,
-
+        'balance'=>$faker->randomNumber($nbDigits = 4, $strict = true),
 
         'customer_category_id'=>function(){
             return CustomerCategory::all()->where('id','>',1)->random();

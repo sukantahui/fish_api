@@ -37,6 +37,8 @@ class CreateUsersTable extends Migration
             $table->String('city', 50)->nullable(true);
             $table->String('pin', 10)->nullable(true);
 
+            $table->decimal('balance')->default(0);
+
             $table->tinyInteger('inforced')->default(1);
             $table->timestamps();
         });
