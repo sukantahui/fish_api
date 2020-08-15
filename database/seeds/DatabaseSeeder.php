@@ -72,7 +72,7 @@ class DatabaseSeeder extends Seeder
         ProductCategory::create(['category_name'=>'Hilsa']);
         ProductCategory::create(['category_name'=>'Pabda']);
         ProductCategory::create(['category_name'=>'Tangra']);
-        ProductCategory::create(['category_name'=>'Porn']);
+        ProductCategory::create(['category_name'=>'pron']);
         ProductCategory::create(['category_name'=>'Lobster']);
         ProductCategory::create(['category_name'=>'Pomfret']);
         ProductCategory::create(['category_name'=>'Bata']);
