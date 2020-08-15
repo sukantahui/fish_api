@@ -55,8 +55,9 @@ class DatabaseSeeder extends Seeder
 
 
         //vendor
-        User::create(['person_name'=>'Ritaja Ghosh','mobile1'=>'9836444972','mobile2'=>'','email'=>'ritaja@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1]);
-        User::create(['person_name'=>'Supriya Sandhukhan','mobile1'=>'9836444972','mobile2'=>'','email'=>'supriya@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1]);
+        User::create(['person_name'=>'Ritaja Ghosh','mobile1'=>'9836444972','mobile2'=>'','email'=>'ritaja@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1,'balance'=>3000]);
+        User::create(['person_name'=>'Supriya Sandhukhan','mobile1'=>'9836444972','mobile2'=>'','email'=>'supriya@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1,'balance'=>5000]);
+        User::create(['person_name'=>'Suman Mondal','mobile1'=>'9836444972','mobile2'=>'','email'=>'suman@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1,'balance'=>4000]);
 
         //customer cum vendor
         User::create(['person_name'=>'Suparna Saha','mobile1'=>'9836444972','mobile2'=>'','email'=>'suparna@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>12,'customer_category_id'=>3]);
