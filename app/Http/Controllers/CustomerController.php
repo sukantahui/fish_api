@@ -45,7 +45,7 @@ class CustomerController extends Controller
         $customer->person_name=$request->input('person_name');
         $customer->email=$request->input('email');
         $customer->password="81dc9bdb52d04dc20036dbd8313ed055";
-        $customer->person_type_id=$request->input('person_type_id');
+        $customer->person_type_id=10;
         $customer->customer_category_id=$request->input('customer_category_id');
         $customer->mobile1=$request->input('mobile1');
         $customer->mobile2=$request->input('mobile2');
@@ -61,7 +61,68 @@ class CustomerController extends Controller
         return response()->json(['success'=>1,'data'=>$customer], 200);
     }
 
-    public function updateCustomer($id,Request $request)
+    public function updateCustomer(Request $request)
+    {
+        $customer=User::find($request->input('id'));
+        if($request->input('person_name')){
+            $customer->person_name=$request->input('person_name');
+        }
+        if($request->input('email')){
+            $customer->email=$request->input('email');
+        }
+        if($request->input('password')){
+            $customer->password=$request->input('password');
+        }
+
+        if($request->input('person_type_id')){
+            $customer->person_type_id=$request->input('person_type_id');
+        }
+
+        if($request->input('customer_category_id')){
+            $customer->customer_category_id=$request->input('customer_category_id');
+        }
+
+        if($request->input('mobile1')){
+            $customer->mobile1=$request->input('mobile1');
+        }
+
+        if($request->input('mobile2')){
+            $customer->mobile2=$request->input('mobile2');
+        }
+
+        if($request->input('address1')){
+            $customer->address1=$request->input('address1');
+        }
+
+        if($request->input('address2')){
+            $customer->address2=$request->input('address2');
+        }
+
+        if($request->input('state')){
+            $customer->state=$request->input('state');
+        }
+
+        if($request->input('po')){
+            $customer->po=$request->input('po');
+        }
+
+        if($request->input('area')){
+            $customer->area=$request->input('area');
+        }
+
+        if($request->input('city')){
+            $customer->city=$request->input('city');
+        }
+
+        if($request->input('pin')){
+            $customer->pin=$request->input('pin');
+        }
+
+
+        $customer->save();
+        return response()->json(['success'=>1,'data'=>$customer], 200,[],JSON_NUMERIC_CHECK);
+    }
+    public function updateCustomerByID($id,Request $request)
     {
         $customer=User::find($id);
         if($request->input('person_name')){

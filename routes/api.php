@@ -17,29 +17,36 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-//updated by sreeparna
-
 Route::post('/register', 'AuthController@register');
-
 Route::post('/login', 'AuthController@login');
 Route::get('/me', 'AuthController@me');
 Route::delete('/customers/{id}', 'CustomerController@deleteCustomer');
 
-Route::get('/priceCodes', 'PriceCodeController@getPriceCodes');
-
-Route::get('/productCategory', 'ProductCategoryController@getProductCategories');
 
 
+
+Route::get('/productCategories', 'ProductCategoryController@getProductCategories');
+Route::post('/productCategories', 'ProductCategoryController@saveProductCategory');
+Route::patch('/productCategories', 'ProductCategoryController@updateProductCategory');
+Route::patch('/productCategories/{id}', 'ProductCategoryController@updateProductCategoryByID');
+
+
+//products
 Route::get('/products', 'ProductController@index');
+Route::post('/products', 'ProductController@saveProduct');
+Route::patch('/products', 'ProductController@updateProduct');
+Route::patch('/products/{id}', 'ProductController@updateProductByID');
+Route::delete('/products/{id}', 'ProductController@deleteProduct');
 
-Route::post('/orders', 'OrderMasterController@saveOrder');
-Route::get('/orders', 'OrderMasterController@index');
-Route::patch('/orders', 'OrderMasterController@updateOrder');
-Route::patch('/orderMaster', 'OrderMasterController@updateMaster');
-Route::delete('/orderMasterDelete/{id}', 'OrderMasterController@deleteOrderMaster');
-Route::post('/orderDetails', 'OrderDetailController@fetchingDetails');
-Route::get('/agents', 'AgentController@index');
+
+//customers
+Route::get('/customers', 'CustomerController@index');
+Route::post('/customers', 'CustomerController@saveCustomer');
+Route::patch('/customers', 'CustomerController@updateCustomer');
+Route::patch('/customers/{id}', 'CustomerController@updateCustomerByID');
+
+
+
 
 
 
@@ -48,17 +55,17 @@ Route::get('/agents', 'AgentController@index');
 Route::group(['middleware' => ['jwt.auth']], function() {
     Route::get('logout', 'AuthController@logout');
 
-    Route::post('/products', 'ProductController@saveProduct');
-    Route::patch('/products', 'ProductController@updateProduct');
-    Route::delete('/products/{id}', 'ProductController@deleteProduct');
+//    Route::post('/products', 'ProductController@saveProduct');
+//    Route::patch('/products', 'ProductController@updateProduct');
+//    Route::delete('/products/{id}', 'ProductController@deleteProduct');
 
     Route::get('/materials', 'MaterialController@getMaterials');
     Route::get('/orderMaterials', 'MaterialController@getOrderMaterials');
 
 
-    Route::get('/customers', 'CustomerController@index');
-    Route::post('/customers', 'CustomerController@saveCustomer');
-    Route::patch('/customers/{id}', 'CustomerController@updateCustomer');
+//    Route::get('/customers', 'CustomerController@index');
+//    Route::post('/customers', 'CustomerController@saveCustomer');
+//    Route::patch('/customers/{id}', 'CustomerController@updateCustomer');
 
 
     Route::delete('/ordersDetailsDelete/{id}', 'OrderDetailController@deleteOrder');
