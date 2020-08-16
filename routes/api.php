@@ -53,7 +53,7 @@ Route::get('/vendors/{id}', 'VendorController@getVendorById');
 Route::post('/vendors', 'VendorController@saveVendor');
 Route::patch('/vendors', 'VendorController@updateVendor');
 Route::patch('/vendors/{id}', 'VendorController@updateVendorByID');
-Route::delete('/vendors/{id}', 'CustomerController@deleteVendorByID');
+Route::delete('/vendors/{id}', 'VendorController@deleteVendorByID');
 
 
 
