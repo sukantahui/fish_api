@@ -6,6 +6,7 @@ use App\Model\CustomerCategory;
 use App\Model\PersonType;
 use App\Model\ProductCategory;
 use App\Model\Product;
+Use App\Model\Unit;
 
 class DatabaseSeeder extends Seeder
 {
@@ -65,6 +66,22 @@ class DatabaseSeeder extends Seeder
 
         //creating Customers(Fake)
         factory(User::class,100)->create();
+
+
+
+        //Unit
+        //1
+        Unit::create(['unit_name'=>'Primary','formal_name'=>'Primary','parent_id'=>0,'parent_conversion'=>0,'position'=>1,'active'=>0]);
+        //2
+        Unit::create(['unit_name'=>'gm','formal_name'=>'Gram','parent_id'=>1,'parent_conversion'=>0,'position'=>1,'active'=>0]);
+        //3
+        Unit::create(['unit_name'=>'kg','formal_name'=>'Kilo Gram','parent_id'=>2,'parent_conversion'=>1000,'position'=>2,'active'=>1]);
+        //4
+        Unit::create(['unit_name'=>'qntl','formal_name'=>'Quintal','parent_id'=>3,'parent_conversion'=>100,'position'=>3,'active'=>0]);
+        //5
+        Unit::create(['unit_name'=>'ton','formal_name'=>'Tonne','parent_id'=>4,'parent_conversion'=>10,'position'=>4,'active'=>0]);
+        //6
+        Unit::create(['unit_name'=>'pcs','formal_name'=>'Piece','parent_id'=>1,'parent_conversion'=>0,'position'=>1,'active'=>1]);
 
         //product_categories table data
         ProductCategory::create(['category_name'=>'Ruhi']);
