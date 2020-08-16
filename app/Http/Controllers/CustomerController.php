@@ -202,7 +202,7 @@ class CustomerController extends Controller
         $customer->save();
         return response()->json(['success'=>1,'data'=>$customer], 200,[],JSON_NUMERIC_CHECK);
     }
-    public function deleteCustomer($id)
+    public function deleteCustomerByID($id)
     {
         $res = User::destroy($id);
         if ($res) {

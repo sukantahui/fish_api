@@ -45,6 +45,7 @@ Route::get('/customers/{id}', 'CustomerController@getCustomerById');
 Route::post('/customers', 'CustomerController@saveCustomer');
 Route::patch('/customers', 'CustomerController@updateCustomer');
 Route::patch('/customers/{id}', 'CustomerController@updateCustomerByID');
+Route::delete('/customers/{id}', 'CustomerController@deleteCustomerByID');
 
 //vendor
 Route::get('/vendors', 'VendorController@index');
