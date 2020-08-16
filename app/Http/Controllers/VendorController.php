@@ -202,7 +202,7 @@ class VendorController extends Controller
         $vendor->save();
         return response()->json(['success'=>1,'data'=>$vendor], 200,[],JSON_NUMERIC_CHECK);
     }
-    public function deleteCustomer($id)
+    public function deleteVendorByID($id)
     {
         $res = User::destroy($id);
         if ($res) {
