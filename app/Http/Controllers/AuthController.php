@@ -33,6 +33,9 @@ class AuthController extends Controller
         $credentials['password']=$request->password;
 
         $user = User::where('email', '=', $request->email)->first();
+        if(!$user){
+            return response()->json(['success'=>false, 'message' => 'Login Fail, pls check User Id']);
+        }
         if (!Hash::check($request->password, $user->password)) {
             return response()->json(['success'=>false, 'message' => 'Login Fail, pls check password']);
         }
