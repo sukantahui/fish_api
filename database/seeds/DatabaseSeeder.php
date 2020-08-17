@@ -84,18 +84,18 @@ class DatabaseSeeder extends Seeder
         Unit::create(['unit_name'=>'pcs','formal_name'=>'Piece','parent_id'=>1,'parent_conversion'=>0,'position'=>1,'active'=>1]);
 
         //product_categories table data
-        ProductCategory::create(['category_name'=>'Ruhi']);
-        ProductCategory::create(['category_name'=>'Katla']);
-        ProductCategory::create(['category_name'=>'Hilsa']);
-        ProductCategory::create(['category_name'=>'Pabda']);
-        ProductCategory::create(['category_name'=>'Tangra']);
-        ProductCategory::create(['category_name'=>'pron']);
-        ProductCategory::create(['category_name'=>'Lobster']);
-        ProductCategory::create(['category_name'=>'Pomfret']);
-        ProductCategory::create(['category_name'=>'Bata']);
-        ProductCategory::create(['category_name'=>'Parse']);
-        ProductCategory::create(['category_name'=>'Vetki']);
-        ProductCategory::create(['category_name'=>'Chital']);
+        ProductCategory::create(['category_name'=>'Ruhi রুই']);
+        ProductCategory::create(['category_name'=>'Katla কাতলা']);
+        ProductCategory::create(['category_name'=>'Hilsa ইলিশ']);
+        ProductCategory::create(['category_name'=>'Pabda পাবদা']);
+        ProductCategory::create(['category_name'=>'Tangra টেংরা']);
+        ProductCategory::create(['category_name'=>'pron চিংড়ি']);
+        ProductCategory::create(['category_name'=>'Lobster গলদা চিংড়ি']);
+        ProductCategory::create(['category_name'=>'Pomfret পমফ্রেট']);
+        ProductCategory::create(['category_name'=>'Bata বাটা']);
+        ProductCategory::create(['category_name'=>'Parse পারসে']);
+        ProductCategory::create(['category_name'=>'Vetki ভেটকি']);
+        ProductCategory::create(['category_name'=>'Chital চিতল']);
 
 
         //Product Ruhi
