@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Model\CustomerCategory;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CustomerCategoryController extends Controller
 {
@@ -14,7 +17,8 @@ class CustomerCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $customerCategory = CustomerCategory::select('id','customer_category_name')->where('id','>',1)->get();
+        return response()->json(['success'=>1,'data'=>$customerCategory], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
@@ -24,7 +28,7 @@ class CustomerCategoryController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

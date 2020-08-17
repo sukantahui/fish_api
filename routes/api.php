@@ -38,6 +38,9 @@ Route::patch('/products', 'ProductController@updateProduct');
 Route::patch('/products/{id}', 'ProductController@updateProductByID');
 Route::delete('/products/{id}', 'ProductController@deleteProduct');
 
+//customer Categories
+Route::get('/customerCategories', 'CustomerCategoryController@index');
+
 
 //customers
 Route::get('/customers', 'CustomerController@index');
