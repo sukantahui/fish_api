@@ -34,6 +34,7 @@ class ProductController extends Controller
         $product->product_name=$request->input('product_name');
         $product->product_category_id=$request->input('product_category_id');
         $product->update();
+        $product->setAttribute('category_name', $product->category->category_name);
         return response()->json(['success'=>1,'data'=>$product], 200,[],JSON_NUMERIC_CHECK);
     }
 
