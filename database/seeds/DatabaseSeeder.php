@@ -160,7 +160,7 @@ class DatabaseSeeder extends Seeder
         PurchaseDetail::create(['purchase_master_id'=>2,'product_id'=>16,'unit_id'=>3,'quantity'=>25,'price'=>620]);
 
         // purchase Master
-        purchaseMaster::create(['purchase_date'=>'2020-05-25','invoice_number'=>'PKJH/00003/2021','vendor_id'=>19,'employee_id'=>1]);
+        purchaseMaster::create(['purchase_date'=>'2020-05-25','invoice_number'=>'PKJH/00003/2021','vendor_id'=>11,'employee_id'=>1]);
         PurchaseDetail::create(['purchase_master_id'=>3,'product_id'=>1,'unit_id'=>3,'quantity'=>6,'price'=>130]);
         PurchaseDetail::create(['purchase_master_id'=>3,'product_id'=>4,'unit_id'=>3,'quantity'=>15,'price'=>110]);
         PurchaseDetail::create(['purchase_master_id'=>3,'product_id'=>15,'unit_id'=>3,'quantity'=>8,'price'=>225]);

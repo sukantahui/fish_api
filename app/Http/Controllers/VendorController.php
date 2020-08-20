@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 class VendorController extends Controller
 {
+    public function test(){
+        $user=User::find(11)->purchases->count();
+        return response()->json(['success'=>1,'data'=>$user], 200,[],JSON_NUMERIC_CHECK);
+    }
+
     public function index()
     {
 //        $customers = PersonType::find(11)->people;
@@ -212,18 +217,19 @@ class VendorController extends Controller
     }
     public function deleteVendorByID($id)
     {
-        $res = User::destroy($id);
-        if ($res) {
-            return response()->json(['success'=>1,'message'=>'Deleted'], 200,[],JSON_NUMERIC_CHECK);
-        } else {
+        try {
+            //$res = User::destroy($id);
+            $note=User::findorfail($id); // fetch the note
+            if($note->delete()){
+                return response()->json(['success'=>1,'message'=>'Deleted'], 200,[],JSON_NUMERIC_CHECK);
+            }
+
+        } catch (Throwable $e) {
+            report($e);
+
             return response()->json(['success'=>0,'data'=>'Not Deleted'], 200,[],JSON_NUMERIC_CHECK);
         }
-    }
-    public function getkarigarhs()
-    {
-        $result = User::select('id','person_name')->where('person_type_id','=',11)->get();
-
-        return response()->json(['success'=>1,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
 
     }
+
 }

@@ -59,6 +59,9 @@ Route::patch('/vendors/{id}', 'VendorController@updateVendorByID');
 Route::delete('/vendors/{id}', 'VendorController@deleteVendorByID');
 
 
+Route::delete('/test', 'VendorController@test');
+
+
 
 
 //secured links here
