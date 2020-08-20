@@ -14,6 +14,7 @@ class VendorController extends Controller
 //        $customers = PersonType::find(11)->people;
         $query = User::select('id',
             'person_name',
+            'billing_name',
             'person_type_id',
             'email',
             'mobile1',
@@ -62,6 +63,7 @@ class VendorController extends Controller
         $vendor=new User();
 
         $vendor->person_name=$request->input('person_name');
+        $vendor->billing_name=$request->input('billing_name');
         $vendor->email=$request->input('email');
         $vendor->password="81dc9bdb52d04dc20036dbd8313ed055";
         $vendor->person_type_id=11;
@@ -85,6 +87,9 @@ class VendorController extends Controller
         $vendor=User::find($request->input('id'));
         if($request->input('person_name')){
             $vendor->person_name=$request->input('person_name');
+        }
+        if($request->input('billing_name')){
+            $vendor->billing_name=$request->input('billing_name');
         }
         if($request->input('email')){
             $vendor->email=$request->input('email');
@@ -146,6 +151,9 @@ class VendorController extends Controller
         $vendor=User::find($id);
         if($request->input('person_name')){
             $vendor->person_name=$request->input('person_name');
+        }
+        if($request->input('billing_name')){
+            $vendor->person_name=$request->input('billing_name');
         }
         if($request->input('email')){
             $vendor->email=$request->input('email');
