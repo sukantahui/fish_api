@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Model\purchaseMaster;
+use App\User;
 use Illuminate\Http\Request;
 
 class PurchaseMasterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function testPurchase($id){
+        $purchase=purchaseMaster::find($id)->vendor;
+
+        return response()->json(['success'=>1,'data'=>$purchase], 200,[],JSON_NUMERIC_CHECK);
+    }
     public function index()
     {
         //
