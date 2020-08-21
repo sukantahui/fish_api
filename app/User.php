@@ -25,7 +25,7 @@ class User extends Authenticatable implements JWTSubject
         'pin'];
     protected $guarded = ['id'];
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token'
     ];
 
     protected $casts = [

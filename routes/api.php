@@ -61,7 +61,8 @@ Route::get('/vendors/{id}/integrityCount', 'VendorController@getIntegrityCount')
 Route::get('/vendors/{id}/isDeletable', 'VendorController@isDeletable');
 
 
-Route::get('/purchases/{id}/testPurchase', 'PurchaseController@testPurchase');
+Route::get('/purchases/{id}/id', 'PurchaseController@purchasseById');
+Route::get('/purchases/{invoice}/invoice', 'PurchaseController@purchaseByInvoice');
 
 
 
