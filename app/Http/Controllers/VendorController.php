@@ -230,7 +230,7 @@ class VendorController extends Controller
     public function deleteVendorByID($id)
     {
         if(!$this->isDeletable($id)){
-            return response()->json(['success'=>0,'data'=>'Not Deletable', id=>$id], 200,[],JSON_NUMERIC_CHECK);
+            return response()->json(['success'=>0,'data'=>'Not Deletable', 'id'=>$id], 200,[],JSON_NUMERIC_CHECK);
         }
 
 
@@ -238,13 +238,13 @@ class VendorController extends Controller
             //$res = User::destroy($id);
             $note=User::findorfail($id); // fetch the note
             if($note->delete()){
-                return response()->json(['success'=>1,'data'=>'Deleted',id=>$id], 200,[],JSON_NUMERIC_CHECK);
+                return response()->json(['success'=>1,'data'=>'Deleted','id'=>$id], 200,[],JSON_NUMERIC_CHECK);
             }
 
         } catch (Throwable $e) {
             report($e);
 
-            return response()->json(['success'=>0,'data'=>'Not Deleted',id=>$id], 200,[],JSON_NUMERIC_CHECK);
+            return response()->json(['success'=>0,'data'=>'Not Deleted','id'=>$id], 200,[],JSON_NUMERIC_CHECK);
         }
 
     }
