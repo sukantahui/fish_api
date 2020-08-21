@@ -2,16 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Product;
 use App\Model\purchaseMaster;
+use App\Model\PurchaseDetail;
+use App\Model\Unit;
 use App\User;
 use Illuminate\Http\Request;
 
-class PurchaseMasterController extends Controller
+class PurchaseController extends Controller
 {
     public function testPurchase($id){
-        $purchase=purchaseMaster::find($id)->purchaseDetails;
+        $purchaseMaster=purchaseMaster::find($id);
+        $purchaseMaster->setAttribute('vendor', $purchaseMaster->vendor);
+        $purchaseMaster->setAttribute('purchaseDetails', $purchaseMaster->purchaseDetails);
+        foreach ($purchaseMaster->purchaseDetails as $value) {
+            $product = Product::find($value->product_id);
+            $value->setAttribute('product',$product);
+            $unit = Unit::find($value->unit_id);
+            $value->setAttribute('unit',$unit);
+        }
 
-        return response()->json(['success'=>1,'data'=>$purchase], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'purchase'=>$purchaseMaster], 200,[],JSON_NUMERIC_CHECK);
     }
     public function index()
     {
