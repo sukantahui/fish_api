@@ -9,9 +9,21 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 class VendorController extends Controller
 {
-    public function test(){
-        $user=User::find(11)->purchases->count();
-        return response()->json(['success'=>1,'data'=>$user], 200,[],JSON_NUMERIC_CHECK);
+    public function getIntegrityCount($id){
+        $user=User::find($id);
+        $purchaseCount=$user->purchases->count();
+        return response()->json(['success'=>1,'data'=>$purchaseCount], 200,[],JSON_NUMERIC_CHECK);
+    }
+    public function isDeletable($id){
+        $totalIntegrityCount = 0;
+        $user=User::find($id);
+        $purchaseCount=$user->purchases->count();
+        $totalIntegrityCount = $totalIntegrityCount + $purchaseCount;
+        if($totalIntegrityCount == 0){
+            return true;
+        }else{
+            return  false;
+        }
     }
 
     public function index()
@@ -217,11 +229,16 @@ class VendorController extends Controller
     }
     public function deleteVendorByID($id)
     {
+        if(!$this->isDeletable($id)){
+            return response()->json(['success'=>0,'data'=>'Not Deletable'], 200,[],JSON_NUMERIC_CHECK);
+        }
+
+
         try {
             //$res = User::destroy($id);
             $note=User::findorfail($id); // fetch the note
             if($note->delete()){
-                return response()->json(['success'=>1,'message'=>'Deleted'], 200,[],JSON_NUMERIC_CHECK);
+                return response()->json(['success'=>1,'data'=>'Deleted'], 200,[],JSON_NUMERIC_CHECK);
             }
 
         } catch (Throwable $e) {

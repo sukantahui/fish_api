@@ -57,9 +57,8 @@ Route::post('/vendors', 'VendorController@saveVendor');
 Route::patch('/vendors', 'VendorController@updateVendor');
 Route::patch('/vendors/{id}', 'VendorController@updateVendorByID');
 Route::delete('/vendors/{id}', 'VendorController@deleteVendorByID');
-
-
-Route::delete('/test', 'VendorController@test');
+Route::get('/vendors/{id}/integrityCount', 'VendorController@getIntegrityCount');
+Route::get('/vendors/{id}/isDeletable', 'VendorController@isDeletable');
 
 
 
