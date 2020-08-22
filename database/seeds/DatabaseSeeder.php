@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-
+        // ledger will be introduced now 22.08.2020
         //person_types table data
         PersonType::create(['person_type_name' => 'Owner']);                //1
         PersonType::create(['person_type_name' => 'Manager']);              //2
