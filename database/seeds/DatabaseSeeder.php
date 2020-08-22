@@ -12,6 +12,9 @@ use App\Model\PurchaseDetail;
 use App\Model\LedgerGroup;
 use App\Model\Voucher;
 use App\Model\Ledger;
+use App\Model\TransactionType;
+use App\Model\TransactionMaster;
+use App\Model\TransactionDetail;
 
 class DatabaseSeeder extends Seeder
 {
@@ -96,6 +99,10 @@ class DatabaseSeeder extends Seeder
         Unit::create(['unit_name'=>'ton','formal_name'=>'Tonne','parent_id'=>4,'parent_conversion'=>10,'position'=>4,'active'=>0]);
         //6
         Unit::create(['unit_name'=>'pcs','formal_name'=>'Piece','parent_id'=>1,'parent_conversion'=>0,'position'=>1,'active'=>1]);
+
+        //Transaction types
+        TransactionType::create(['transaction_name'=>'Dr.','formal_name'=>'Debit']);
+        TransactionType::create(['transaction_name'=>'Cr.','formal_name'=>'Credit']);
 
         //product_categories table data
         ProductCategory::create(['category_name'=>'Ruhi রুই']);
@@ -200,43 +207,59 @@ class DatabaseSeeder extends Seeder
             ['group_name'=>'Investments']               //23
         ]);
 
+        //Cash
+        Ledger::create(['ledger_name'=>'Cash in Hand','billing_name'=>'Cash in Hand','ledger_group_id'=>'13','email'=>'','mobile1'=>'','mobile2'=>'','opening_balance'=>7654,'transaction_type_id'=>1]);
+        //Bank
+        Ledger::create(['ledger_name'=>'Bank','billing_name'=>'State Bank of India','branch'=>'Anandapuri','account_number'=>'547002010004586','ifsc'=>'SBIN000123','ledger_group_id'=>'7','email'=>'anandapuri@sbi.com','mobile1'=>'234234234','mobile2'=>'23424454','opening_balance'=>5654,'transaction_type_id'=>1]);
+
+        //Rent
+        Ledger::create(['ledger_name'=>'Rent','billing_name'=>'Rent','ledger_group_id'=>2,'email'=>'','mobile1'=>'','mobile2'=>'','opening_balance'=>0,'transaction_type_id'=>1]);
+
+        //Purchase
+        Ledger::create(['ledger_name'=>'Purchase','billing_name'=>'Purchase','ledger_group_id'=>22,'email'=>'','mobile1'=>'','mobile2'=>'','opening_balance'=>0,'transaction_type_id'=>1]);
+
         //Ledger - Sundry Creditors
-        Ledger::create(['ledger_name'=>'Ritaja Das Kolkata','billing_name'=>'M/S Ritaja Das','ledger_group_id'=>'15','email'=>'rita4ja@gmail.com','mobile1'=>'9836449972','mobile2'=>'2342342','opening_balance'=>3459,'balance_type'=>'-1']);
-        Ledger::create(['ledger_name'=>'Sonali Samanta','billing_name'=>'M/S Sonali Samanta','ledger_group_id'=>'15','email'=>'dibesh@gmail.com','mobile1'=>'435333453423','mobile2'=>'25423234244','opening_balance'=>7568,'balance_type'=>'-1']);
-        Ledger::create(['ledger_name'=>'Dinesh Debnath','billing_name'=>'M/S Dinesh Debnath','ledger_group_id'=>'15','email'=>'sumit@gmail.com','mobile1'=>'34554234','mobile2'=>'24232334244','opening_balance'=>46833,'balance_type'=>'-1']);
-        Ledger::create(['ledger_name'=>'Sumit Sen Delhi','billing_name'=>'M/S Sumit Sen','ledger_group_id'=>'15','email'=>'sumitsen@gmail.com','mobile1'=>'345345345','mobile2'=>'34345345','opening_balance'=>7693,'balance_type'=>'-1']);
-        Ledger::create(['ledger_name'=>'Rajesh Saha','billing_name'=>'M/S Rajesh Saha','ledger_group_id'=>'15','email'=>'rajeshSaha@gmail.com','mobile1'=>'3254534532','mobile2'=>'34345345','opening_balance'=>7693,'balance_type'=>'-1']);
-        Ledger::create(['ledger_name'=>'Sunit Saha','billing_name'=>'M/S Sunit Mollah','ledger_group_id'=>'15','email'=>'sunitSaha@gmail.com','mobile1'=>'34543563','mobile2'=>'34566634','opening_balance'=>6798,'balance_type'=>'-1']);
+        Ledger::create(['ledger_name'=>'Ritaja Das Kolkata','billing_name'=>'M/S Ritaja Das','ledger_group_id'=>'15','email'=>'rita4ja@gmail.com','mobile1'=>'9836449972','mobile2'=>'2342342','opening_balance'=>3459,'transaction_type_id'=>2]);
+        Ledger::create(['ledger_name'=>'Sonali Samanta','billing_name'=>'M/S Sonali Samanta','ledger_group_id'=>'15','email'=>'dibesh@gmail.com','mobile1'=>'435333453423','mobile2'=>'25423234244','opening_balance'=>7568,'transaction_type_id'=>2]);
+        Ledger::create(['ledger_name'=>'Dinesh Debnath','billing_name'=>'M/S Dinesh Debnath','ledger_group_id'=>'15','email'=>'sumit@gmail.com','mobile1'=>'34554234','mobile2'=>'24232334244','opening_balance'=>46833,'transaction_type_id'=>2]);
+        Ledger::create(['ledger_name'=>'Sumit Sen Delhi','billing_name'=>'M/S Sumit Sen','ledger_group_id'=>'15','email'=>'sumitsen@gmail.com','mobile1'=>'345345345','mobile2'=>'34345345','opening_balance'=>7693,'transaction_type_id'=>2]);
+        Ledger::create(['ledger_name'=>'Rajesh Saha','billing_name'=>'M/S Rajesh Saha','ledger_group_id'=>'15','email'=>'rajeshSaha@gmail.com','mobile1'=>'3254534532','mobile2'=>'34345345','opening_balance'=>7693,'transaction_type_id'=>2]);
+        Ledger::create(['ledger_name'=>'Sunit Saha','billing_name'=>'M/S Sunit Mollah','ledger_group_id'=>'15','email'=>'sunitSaha@gmail.com','mobile1'=>'34543563','mobile2'=>'34566634','opening_balance'=>6798,'transaction_type_id'=>2]);
 
         //Ledger - Sundry Debtors
-        Ledger::create(['ledger_name'=>'Surendra Sarkaar','billing_name'=>'M/S Surendra Sarkaar','ledger_group_id'=>'16','email'=>'etyet@gmail.com','mobile1'=>'9836449972','mobile2'=>'2342342','opening_balance'=>3459,'balance_type'=>'1']);
-        Ledger::create(['ledger_name'=>'Sumit Barman','billing_name'=>'M/S Sumit Barman','ledger_group_id'=>'16','email'=>'etyery@gmail.com','mobile1'=>'435333453423','mobile2'=>'25423234244','opening_balance'=>7568,'balance_type'=>'1']);
-        Ledger::create(['ledger_name'=>'Sudeshna Dey','billing_name'=>'M/S Sudeshna Dey','ledger_group_id'=>'16','email'=>'ertyery@gmail.com','mobile1'=>'34554234','mobile2'=>'24232334244','opening_balance'=>46833,'balance_type'=>'1']);
-        Ledger::create(['ledger_name'=>'Kaustav Paul Delhi','billing_name'=>'M/S Kaustav Paul','ledger_group_id'=>'16','email'=>'sumertyitsen@gmail.com','mobile1'=>'345345345','mobile2'=>'34345345','opening_balance'=>7693,'balance_type'=>'1']);
-        Ledger::create(['ledger_name'=>'Kumkum Begum','billing_name'=>'M/S Kumkum Begum','ledger_group_id'=>'16','email'=>'ery@gmail.com','mobile1'=>'3254534532','mobile2'=>'34345345','opening_balance'=>7693,'balance_type'=>'1']);
-        Ledger::create(['ledger_name'=>'Sunita Kumari','billing_name'=>'M/S Sunita Kumari','ledger_group_id'=>'16','email'=>'suniertyetSaha@gmail.com','mobile1'=>'34543563','mobile2'=>'34566634','opening_balance'=>6798,'balance_type'=>'1']);
-        Ledger::create(['ledger_name'=>'Rathin Saha','billing_name'=>'M/S Rathin Saha','ledger_group_id'=>'16','email'=>'etyet@gmail.com','mobile1'=>'9836449972','mobile2'=>'2342342','opening_balance'=>3479,'balance_type'=>'1']);
-        Ledger::create(['ledger_name'=>'Ritam Karmakar','billing_name'=>'M/S Ritam Karmakar','ledger_group_id'=>'16','email'=>'etyery@gmail.com','mobile1'=>'435333453423','mobile2'=>'25423234244','opening_balance'=>5568,'balance_type'=>'1']);
-        Ledger::create(['ledger_name'=>'Himani Haribangshi','billing_name'=>'M/S Himani Haribangshi','ledger_group_id'=>'16','email'=>'ertyery@gmail.com','mobile1'=>'34554234','mobile2'=>'24232334244','opening_balance'=>49833,'balance_type'=>'1']);
-        Ledger::create(['ledger_name'=>'Kunal Paul Delhi','billing_name'=>'M/S Kunal Paul','ledger_group_id'=>'16','email'=>'sumertyitsen@gmail.com','mobile1'=>'345345345','mobile2'=>'34345345','opening_balance'=>3693,'balance_type'=>'1']);
-        Ledger::create(['ledger_name'=>'Ritesh Deshmukh','billing_name'=>'M/S Ritesh Deshmukh','ledger_group_id'=>'16','email'=>'ery@gmail.com','mobile1'=>'3254534532','mobile2'=>'34345345','opening_balance'=>9693,'balance_type'=>'1']);
-        Ledger::create(['ledger_name'=>'Dunpite Kumari','billing_name'=>'M/S Dunpite Kumari','ledger_group_id'=>'16','email'=>'suniertyetSaha@gmail.com','mobile1'=>'34543563','mobile2'=>'34566634','opening_balance'=>6598,'balance_type'=>'1']);
-
-        //Cash
-        Ledger::create(['ledger_name'=>'Cash in Hand','billing_name'=>'Cash in Hand','ledger_group_id'=>'13','email'=>'','mobile1'=>'','mobile2'=>'','opening_balance'=>7654,'balance_type'=>'1']);
-        //Bank
-        Ledger::create(['ledger_name'=>'Bank','billing_name'=>'State Bank of India','branch'=>'Anandapuri','account_number'=>'547002010004586','ifsc'=>'SBIN000123','ledger_group_id'=>'7','email'=>'anandapuri@sbi.com','mobile1'=>'234234234','mobile2'=>'23424454','opening_balance'=>5654,'balance_type'=>'1']);
-
+        Ledger::create(['ledger_name'=>'Surendra Sarkaar','billing_name'=>'M/S Surendra Sarkaar','ledger_group_id'=>'16','email'=>'etyet@gmail.com','mobile1'=>'9836449972','mobile2'=>'2342342','opening_balance'=>3459,'transaction_type_id'=>1]);
+        Ledger::create(['ledger_name'=>'Sumit Barman','billing_name'=>'M/S Sumit Barman','ledger_group_id'=>'16','email'=>'etyery@gmail.com','mobile1'=>'435333453423','mobile2'=>'25423234244','opening_balance'=>7568,'transaction_type_id'=>1]);
+        Ledger::create(['ledger_name'=>'Sudeshna Dey','billing_name'=>'M/S Sudeshna Dey','ledger_group_id'=>'16','email'=>'ertyery@gmail.com','mobile1'=>'34554234','mobile2'=>'24232334244','opening_balance'=>46833,'transaction_type_id'=>1]);
+        Ledger::create(['ledger_name'=>'Kaustav Paul Delhi','billing_name'=>'M/S Kaustav Paul','ledger_group_id'=>'16','email'=>'sumertyitsen@gmail.com','mobile1'=>'345345345','mobile2'=>'34345345','opening_balance'=>7693,'transaction_type_id'=>1]);
+        Ledger::create(['ledger_name'=>'Kumkum Begum','billing_name'=>'M/S Kumkum Begum','ledger_group_id'=>'16','email'=>'ery@gmail.com','mobile1'=>'3254534532','mobile2'=>'34345345','opening_balance'=>7693,'transaction_type_id'=>1]);
+        Ledger::create(['ledger_name'=>'Sunita Kumari','billing_name'=>'M/S Sunita Kumari','ledger_group_id'=>'16','email'=>'suniertyetSaha@gmail.com','mobile1'=>'34543563','mobile2'=>'34566634','opening_balance'=>6798,'transaction_type_id'=>1]);
+        Ledger::create(['ledger_name'=>'Rathin Saha','billing_name'=>'M/S Rathin Saha','ledger_group_id'=>'16','email'=>'etyet@gmail.com','mobile1'=>'9836449972','mobile2'=>'2342342','opening_balance'=>3479,'transaction_type_id'=>1]);
+        Ledger::create(['ledger_name'=>'Ritam Karmakar','billing_name'=>'M/S Ritam Karmakar','ledger_group_id'=>'16','email'=>'etyery@gmail.com','mobile1'=>'435333453423','mobile2'=>'25423234244','opening_balance'=>5568,'transaction_type_id'=>1]);
+        Ledger::create(['ledger_name'=>'Himani Haribangshi','billing_name'=>'M/S Himani Haribangshi','ledger_group_id'=>'16','email'=>'ertyery@gmail.com','mobile1'=>'34554234','mobile2'=>'24232334244','opening_balance'=>49833,'transaction_type_id'=>1]);
+        Ledger::create(['ledger_name'=>'Kunal Paul Delhi','billing_name'=>'M/S Kunal Paul','ledger_group_id'=>'16','email'=>'sumertyitsen@gmail.com','mobile1'=>'345345345','mobile2'=>'34345345','opening_balance'=>3693,'transaction_type_id'=>1]);
+        Ledger::create(['ledger_name'=>'Ritesh Deshmukh','billing_name'=>'M/S Ritesh Deshmukh','ledger_group_id'=>'16','email'=>'ery@gmail.com','mobile1'=>'3254534532','mobile2'=>'34345345','opening_balance'=>9693,'transaction_type_id'=>1]);
+        Ledger::create(['ledger_name'=>'Dunpite Kumari','billing_name'=>'M/S Dunpite Kumari','ledger_group_id'=>'16','email'=>'suniertyetSaha@gmail.com','mobile1'=>'34543563','mobile2'=>'34566634','opening_balance'=>6598,'transaction_type_id'=>1]);
 
         Voucher::insert([
-            ['voucher_name'=>'Sales Voucher'],
-            ['voucher_name'=>'Purchase Voucher'],
-            ['voucher_name'=>'Payment Voucher'],
-            ['voucher_name'=>'Receipt Voucher'],
-            ['voucher_name'=>'Contra Voucher'],
-            ['voucher_name'=>'Journal Voucher'],
-            ['voucher_name'=>'Credit Note Voucher'],
-            ['voucher_name'=>'Debit Note Voucher']
+            ['voucher_name'=>'Sales Voucher'],              //1
+            ['voucher_name'=>'Purchase Voucher'],           //2
+            ['voucher_name'=>'Payment Voucher'],            //3
+            ['voucher_name'=>'Receipt Voucher'],            //4
+            ['voucher_name'=>'Contra Voucher'],             //5
+            ['voucher_name'=>'Journal Voucher'],            //6
+            ['voucher_name'=>'Credit Note Voucher'],        //7
+            ['voucher_name'=>'Debit Note Voucher']          //8
         ]);
+
+        //rent
+        TransactionMaster::create(['voucher_id'=>3,'transaction_date'=>'2020-08-22']);
+        TransactionDetail::create(['transaction_master_id'=>1,'transaction_type_id'=>1,'ledger_id'=>3,'amount'=>500]);
+        TransactionDetail::create(['transaction_master_id'=>1,'transaction_type_id'=>2,'ledger_id'=>1,'amount'=>500]);
+
+        //purchase
+        TransactionMaster::create(['voucher_id'=>2,'transaction_date'=>'2020-08-22']);
+        TransactionDetail::create(['transaction_master_id'=>2,'transaction_type_id'=>1,'ledger_id'=>4,'amount'=>25000]);
+        TransactionDetail::create(['transaction_master_id'=>2,'transaction_type_id'=>2,'ledger_id'=>5,'amount'=>25000]);
+
     }
 }

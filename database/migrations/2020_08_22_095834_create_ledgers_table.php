@@ -39,7 +39,9 @@ class CreateLedgersTable extends Migration
             $table->String('city', 50)->nullable(true);
             $table->String('pin', 10)->nullable(true);
             $table->decimal('opening_balance')->default(0);
-            $table->enum('balance_type',[1,-1])->default('1');
+
+            $table->bigInteger('transaction_type_id')->unsigned();
+            $table ->foreign('transaction_type_id')->references('id')->on('transaction_types');
 
             $table->timestamps();
         });
