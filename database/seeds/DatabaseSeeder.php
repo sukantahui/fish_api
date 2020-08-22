@@ -9,6 +9,7 @@ use App\Model\Product;
 Use App\Model\Unit;
 use App\Model\purchaseMaster;
 use App\Model\PurchaseDetail;
+use App\Model\LedgerGroup;
 
 class DatabaseSeeder extends Seeder
 {
@@ -170,5 +171,31 @@ class DatabaseSeeder extends Seeder
         //use following command for products in separate seeding products are not seeding here
        // php artisan db:seed --class=ProductSeeder
 
+       //Ledger Groups
+        LedgerGroup::insert(
+            ['group_name'=>'Current Assets'],
+            ['group_name'=>'Indirect Expenses'],
+            ['group_name'=>'Current Liabilities'],
+            ['group_name'=>'Fixed Assets'],
+            ['group_name'=>'Direct Incomes'],
+            ['group_name'=>'Indirect Incomes'],
+            ['group_name'=>'Bank Account'],
+            ['group_name'=>'Loans & Liabilities'],
+            ['group_name'=>'Bank OD'],
+            ['group_name'=>'Branch & Division'],
+            ['group_name'=>'Capital Account'],
+            ['group_name'=>'Direct Expenses'],
+            ['group_name'=>'Cash in Hand'],
+            ['group_name'=>'Stock in Hand'],
+            ['group_name'=>'Sundry Creditors'],
+            ['group_name'=>'Sundry Debtors'],
+            ['group_name'=>'Suspense Account'],
+            ['group_name'=>'Indirect Income'],
+            ['group_name'=>'Sales Account'],
+            ['group_name'=>'Duties & Taxes'],
+            ['group_name'=>'Investment'],
+            ['group_name'=>'Purchase Account'],
+            ['group_name'=>'Investments']
+        );
     }
 }
