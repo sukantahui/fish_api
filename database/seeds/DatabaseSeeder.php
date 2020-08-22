@@ -222,6 +222,11 @@ class DatabaseSeeder extends Seeder
         Ledger::create(['ledger_name'=>'Ritesh Deshmukh','billing_name'=>'M/S Ritesh Deshmukh','ledger_group_id'=>'16','email'=>'ery@gmail.com','mobile1'=>'3254534532','mobile2'=>'34345345','opening_balance'=>9693,'balance_type'=>'1']);
         Ledger::create(['ledger_name'=>'Dunpite Kumari','billing_name'=>'M/S Dunpite Kumari','ledger_group_id'=>'16','email'=>'suniertyetSaha@gmail.com','mobile1'=>'34543563','mobile2'=>'34566634','opening_balance'=>6598,'balance_type'=>'1']);
 
+        //Cash
+        Ledger::create(['ledger_name'=>'Cash in Hand','billing_name'=>'Cash in Hand','ledger_group_id'=>'13','email'=>'','mobile1'=>'','mobile2'=>'','opening_balance'=>7654,'balance_type'=>'1']);
+        //Bank
+        Ledger::create(['ledger_name'=>'Bank','billing_name'=>'State Bank of India','branch'=>'Anandapuri','account_number'=>'547002010004586','ifsc'=>'SBIN000123','ledger_group_id'=>'7','email'=>'anandapuri@sbi.com','mobile1'=>'234234234','mobile2'=>'23424454','opening_balance'=>5654,'balance_type'=>'1']);
+
 
         Voucher::insert([
             ['voucher_name'=>'Sales Voucher'],

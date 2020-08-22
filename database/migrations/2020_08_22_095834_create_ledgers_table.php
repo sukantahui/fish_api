@@ -26,6 +26,11 @@ class CreateLedgersTable extends Migration
             $table->string('mobile1',15)->nullable(true);
             $table->string('mobile2',15)->nullable(true);
 
+            //for Bank only
+            $table->String('branch', 100)->nullable(true);
+            $table->String('account_number', 30)->nullable(true);
+            $table->String('ifsc', 20)->nullable(true);
+
             $table->String('address1', 100)->nullable(true);
             $table->String('address2', 100)->nullable(true);
             $table->String('state', 50)->default('West Bengal')->nullable(true);
