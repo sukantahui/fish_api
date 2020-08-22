@@ -208,6 +208,21 @@ class DatabaseSeeder extends Seeder
         Ledger::create(['ledger_name'=>'Rajesh Saha','billing_name'=>'M/S Rajesh Saha','ledger_group_id'=>'15','email'=>'rajeshSaha@gmail.com','mobile1'=>'3254534532','mobile2'=>'34345345','opening_balance'=>7693,'balance_type'=>'-1']);
         Ledger::create(['ledger_name'=>'Sunit Saha','billing_name'=>'M/S Sunit Mollah','ledger_group_id'=>'15','email'=>'sunitSaha@gmail.com','mobile1'=>'34543563','mobile2'=>'34566634','opening_balance'=>6798,'balance_type'=>'-1']);
 
+        //Ledger - Sundry Debtors
+        Ledger::create(['ledger_name'=>'Surendra Sarkaar','billing_name'=>'M/S Surendra Sarkaar','ledger_group_id'=>'16','email'=>'etyet@gmail.com','mobile1'=>'9836449972','mobile2'=>'2342342','opening_balance'=>3459,'balance_type'=>'1']);
+        Ledger::create(['ledger_name'=>'Sumit Barman','billing_name'=>'M/S Sumit Barman','ledger_group_id'=>'16','email'=>'etyery@gmail.com','mobile1'=>'435333453423','mobile2'=>'25423234244','opening_balance'=>7568,'balance_type'=>'1']);
+        Ledger::create(['ledger_name'=>'Sudeshna Dey','billing_name'=>'M/S Sudeshna Dey','ledger_group_id'=>'16','email'=>'ertyery@gmail.com','mobile1'=>'34554234','mobile2'=>'24232334244','opening_balance'=>46833,'balance_type'=>'1']);
+        Ledger::create(['ledger_name'=>'Kaustav Paul Delhi','billing_name'=>'M/S Kaustav Paul','ledger_group_id'=>'16','email'=>'sumertyitsen@gmail.com','mobile1'=>'345345345','mobile2'=>'34345345','opening_balance'=>7693,'balance_type'=>'1']);
+        Ledger::create(['ledger_name'=>'Kumkum Begum','billing_name'=>'M/S Kumkum Begum','ledger_group_id'=>'16','email'=>'ery@gmail.com','mobile1'=>'3254534532','mobile2'=>'34345345','opening_balance'=>7693,'balance_type'=>'1']);
+        Ledger::create(['ledger_name'=>'Sunita Kumari','billing_name'=>'M/S Sunita Kumari','ledger_group_id'=>'16','email'=>'suniertyetSaha@gmail.com','mobile1'=>'34543563','mobile2'=>'34566634','opening_balance'=>6798,'balance_type'=>'1']);
+        Ledger::create(['ledger_name'=>'Rathin Saha','billing_name'=>'M/S Rathin Saha','ledger_group_id'=>'16','email'=>'etyet@gmail.com','mobile1'=>'9836449972','mobile2'=>'2342342','opening_balance'=>3479,'balance_type'=>'1']);
+        Ledger::create(['ledger_name'=>'Ritam Karmakar','billing_name'=>'M/S Ritam Karmakar','ledger_group_id'=>'16','email'=>'etyery@gmail.com','mobile1'=>'435333453423','mobile2'=>'25423234244','opening_balance'=>5568,'balance_type'=>'1']);
+        Ledger::create(['ledger_name'=>'Himani Haribangshi','billing_name'=>'M/S Himani Haribangshi','ledger_group_id'=>'16','email'=>'ertyery@gmail.com','mobile1'=>'34554234','mobile2'=>'24232334244','opening_balance'=>49833,'balance_type'=>'1']);
+        Ledger::create(['ledger_name'=>'Kunal Paul Delhi','billing_name'=>'M/S Kunal Paul','ledger_group_id'=>'16','email'=>'sumertyitsen@gmail.com','mobile1'=>'345345345','mobile2'=>'34345345','opening_balance'=>3693,'balance_type'=>'1']);
+        Ledger::create(['ledger_name'=>'Ritesh Deshmukh','billing_name'=>'M/S Ritesh Deshmukh','ledger_group_id'=>'16','email'=>'ery@gmail.com','mobile1'=>'3254534532','mobile2'=>'34345345','opening_balance'=>9693,'balance_type'=>'1']);
+        Ledger::create(['ledger_name'=>'Dunpite Kumari','billing_name'=>'M/S Dunpite Kumari','ledger_group_id'=>'16','email'=>'suniertyetSaha@gmail.com','mobile1'=>'34543563','mobile2'=>'34566634','opening_balance'=>6598,'balance_type'=>'1']);
+
+
         Voucher::insert([
             ['voucher_name'=>'Sales Voucher'],
             ['voucher_name'=>'Purchase Voucher'],
