@@ -10,6 +10,7 @@ Use App\Model\Unit;
 use App\Model\purchaseMaster;
 use App\Model\PurchaseDetail;
 use App\Model\LedgerGroup;
+use App\Model\Voucher;
 
 class DatabaseSeeder extends Seeder
 {
@@ -196,6 +197,17 @@ class DatabaseSeeder extends Seeder
             ['group_name'=>'Investment'],
             ['group_name'=>'Purchase Account'],
             ['group_name'=>'Investments']
+        );
+
+        Voucher::insert(
+            ['voucher_name'=>'Sales Voucher'],
+            ['voucher_name'=>'Purchase Voucher'],
+            ['voucher_name'=>'Payment Voucher'],
+            ['voucher_name'=>'Receipt Voucher'],
+            ['voucher_name'=>'Contra Voucher'],
+            ['voucher_name'=>'Journal Voucher'],
+            ['voucher_name'=>'Credit Note Voucher'],
+            ['voucher_name'=>'Debit Note Voucher']
         );
     }
 }
