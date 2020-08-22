@@ -11,6 +11,7 @@ use App\Model\purchaseMaster;
 use App\Model\PurchaseDetail;
 use App\Model\LedgerGroup;
 use App\Model\Voucher;
+use App\Model\Ledger;
 
 class DatabaseSeeder extends Seeder
 {
@@ -173,33 +174,41 @@ class DatabaseSeeder extends Seeder
        // php artisan db:seed --class=ProductSeeder
 
        //Ledger Groups
-        LedgerGroup::insert(
-            ['group_name'=>'Current Assets'],
-            ['group_name'=>'Indirect Expenses'],
-            ['group_name'=>'Current Liabilities'],
-            ['group_name'=>'Fixed Assets'],
-            ['group_name'=>'Direct Incomes'],
-            ['group_name'=>'Indirect Incomes'],
-            ['group_name'=>'Bank Account'],
-            ['group_name'=>'Loans & Liabilities'],
-            ['group_name'=>'Bank OD'],
-            ['group_name'=>'Branch & Division'],
-            ['group_name'=>'Capital Account'],
-            ['group_name'=>'Direct Expenses'],
-            ['group_name'=>'Cash in Hand'],
-            ['group_name'=>'Stock in Hand'],
-            ['group_name'=>'Sundry Creditors'],
-            ['group_name'=>'Sundry Debtors'],
-            ['group_name'=>'Suspense Account'],
-            ['group_name'=>'Indirect Income'],
-            ['group_name'=>'Sales Account'],
-            ['group_name'=>'Duties & Taxes'],
-            ['group_name'=>'Investment'],
-            ['group_name'=>'Purchase Account'],
-            ['group_name'=>'Investments']
-        );
+        LedgerGroup::insert([
+            ['group_name'=>'Current Assets'],           //1
+            ['group_name'=>'Indirect Expenses'],        //2
+            ['group_name'=>'Current Liabilities'],      //3
+            ['group_name'=>'Fixed Assets'],             //4
+            ['group_name'=>'Direct Incomes'],           //5
+            ['group_name'=>'Indirect Incomes'],         //6
+            ['group_name'=>'Bank Account'],             //7
+            ['group_name'=>'Loans & Liabilities'],      //8
+            ['group_name'=>'Bank OD'],                  //9
+            ['group_name'=>'Branch & Division'],        //10
+            ['group_name'=>'Capital Account'],          //11
+            ['group_name'=>'Direct Expenses'],          //12
+            ['group_name'=>'Cash in Hand'],             //13
+            ['group_name'=>'Stock in Hand'],            //14
+            ['group_name'=>'Sundry Creditors'],         //15
+            ['group_name'=>'Sundry Debtors'],           //16
+            ['group_name'=>'Suspense Account'],         //17
+            ['group_name'=>'Indirect Income'],          //18
+            ['group_name'=>'Sales Account'],            //19
+            ['group_name'=>'Duties & Taxes'],           //20
+            ['group_name'=>'Investment'],               //21
+            ['group_name'=>'Purchase Account'],         //22
+            ['group_name'=>'Investments']               //23
+        ]);
 
-        Voucher::insert(
+        //Ledger - Sundry Creditors
+        Ledger::create(['ledger_name'=>'Ritaja Das Kolkata','billing_name'=>'M/S Ritaja Das','ledger_group_id'=>'15','email'=>'rita4ja@gmail.com','mobile1'=>'9836449972','mobile2'=>'2342342','opening_balance'=>3459,'balance_type'=>'-1']);
+        Ledger::create(['ledger_name'=>'Sonali Samanta','billing_name'=>'M/S Sonali Samanta','ledger_group_id'=>'15','email'=>'dibesh@gmail.com','mobile1'=>'435333453423','mobile2'=>'25423234244','opening_balance'=>7568,'balance_type'=>'-1']);
+        Ledger::create(['ledger_name'=>'Dinesh Debnath','billing_name'=>'M/S Dinesh Debnath','ledger_group_id'=>'15','email'=>'sumit@gmail.com','mobile1'=>'34554234','mobile2'=>'24232334244','opening_balance'=>46833,'balance_type'=>'-1']);
+        Ledger::create(['ledger_name'=>'Sumit Sen Delhi','billing_name'=>'M/S Sumit Sen','ledger_group_id'=>'15','email'=>'sumitsen@gmail.com','mobile1'=>'345345345','mobile2'=>'34345345','opening_balance'=>7693,'balance_type'=>'-1']);
+        Ledger::create(['ledger_name'=>'Rajesh Saha','billing_name'=>'M/S Rajesh Saha','ledger_group_id'=>'15','email'=>'rajeshSaha@gmail.com','mobile1'=>'3254534532','mobile2'=>'34345345','opening_balance'=>7693,'balance_type'=>'-1']);
+        Ledger::create(['ledger_name'=>'Sunit Saha','billing_name'=>'M/S Sunit Mollah','ledger_group_id'=>'15','email'=>'sunitSaha@gmail.com','mobile1'=>'34543563','mobile2'=>'34566634','opening_balance'=>6798,'balance_type'=>'-1']);
+
+        Voucher::insert([
             ['voucher_name'=>'Sales Voucher'],
             ['voucher_name'=>'Purchase Voucher'],
             ['voucher_name'=>'Payment Voucher'],
@@ -208,6 +217,6 @@ class DatabaseSeeder extends Seeder
             ['voucher_name'=>'Journal Voucher'],
             ['voucher_name'=>'Credit Note Voucher'],
             ['voucher_name'=>'Debit Note Voucher']
-        );
+        ]);
     }
 }

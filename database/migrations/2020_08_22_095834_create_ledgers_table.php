@@ -18,8 +18,11 @@ class CreateLedgersTable extends Migration
             $table->string('ledger_name')->unique()->nullable(false);
             $table->string('billing_name')->unique()->nullable(false);
 
+            $table->bigInteger('ledger_group_id')->unsigned();
+            $table ->foreign('ledger_group_id')->references('id')->on('ledger_groups');
 
-            $table->string('email')->nullable(true);
+
+            $table->string('email')->nullable(true)->nullable(true);
             $table->string('mobile1',15)->nullable(true);
             $table->string('mobile2',15)->nullable(true);
 
@@ -30,8 +33,8 @@ class CreateLedgersTable extends Migration
             $table->String('area', 50)->nullable(true);
             $table->String('city', 50)->nullable(true);
             $table->String('pin', 10)->nullable(true);
-
-            $table->enum('balance_type',[1,-1]);
+            $table->decimal('opening_balance')->default(0);
+            $table->enum('balance_type',[1,-1])->default('1');
 
             $table->timestamps();
         });
