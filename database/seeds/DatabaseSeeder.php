@@ -207,16 +207,17 @@ class DatabaseSeeder extends Seeder
             ['group_name'=>'Investments']               //23
         ]);
 
-        //Cash
+        //1. Cash
         Ledger::create(['ledger_name'=>'Cash in Hand','billing_name'=>'Cash in Hand','ledger_group_id'=>'13','email'=>'','mobile1'=>'','mobile2'=>'','opening_balance'=>7654,'transaction_type_id'=>1]);
-        //Bank
+        //2. Bank
         Ledger::create(['ledger_name'=>'Bank','billing_name'=>'State Bank of India','branch'=>'Anandapuri','account_number'=>'547002010004586','ifsc'=>'SBIN000123','ledger_group_id'=>'7','email'=>'anandapuri@sbi.com','mobile1'=>'234234234','mobile2'=>'23424454','opening_balance'=>5654,'transaction_type_id'=>1]);
+        //3. Purchase
+        Ledger::create(['ledger_name'=>'Purchase','billing_name'=>'Purchase','ledger_group_id'=>22,'email'=>'','mobile1'=>'','mobile2'=>'','opening_balance'=>0,'transaction_type_id'=>1]);
 
-        //Rent
+
+        //4. Rent
         Ledger::create(['ledger_name'=>'Rent','billing_name'=>'Rent','ledger_group_id'=>2,'email'=>'','mobile1'=>'','mobile2'=>'','opening_balance'=>0,'transaction_type_id'=>1]);
 
-        //Purchase
-        Ledger::create(['ledger_name'=>'Purchase','billing_name'=>'Purchase','ledger_group_id'=>22,'email'=>'','mobile1'=>'','mobile2'=>'','opening_balance'=>0,'transaction_type_id'=>1]);
 
         //Ledger - Sundry Creditors
         Ledger::create(['ledger_name'=>'Ritaja Das Kolkata','billing_name'=>'M/S Ritaja Das','ledger_group_id'=>'15','email'=>'rita4ja@gmail.com','mobile1'=>'9836449972','mobile2'=>'2342342','opening_balance'=>3459,'transaction_type_id'=>2]);
@@ -253,12 +254,12 @@ class DatabaseSeeder extends Seeder
 
         //rent
         TransactionMaster::create(['voucher_id'=>3,'transaction_date'=>'2020-08-22']);
-        TransactionDetail::create(['transaction_master_id'=>1,'transaction_type_id'=>1,'ledger_id'=>3,'amount'=>500]);
+        TransactionDetail::create(['transaction_master_id'=>1,'transaction_type_id'=>1,'ledger_id'=>4,'amount'=>500]);
         TransactionDetail::create(['transaction_master_id'=>1,'transaction_type_id'=>2,'ledger_id'=>1,'amount'=>500]);
 
         //purchase
         TransactionMaster::create(['voucher_id'=>2,'transaction_date'=>'2020-08-22']);
-        TransactionDetail::create(['transaction_master_id'=>2,'transaction_type_id'=>1,'ledger_id'=>4,'amount'=>25000]);
+        TransactionDetail::create(['transaction_master_id'=>2,'transaction_type_id'=>1,'ledger_id'=>3,'amount'=>25000]);
         TransactionDetail::create(['transaction_master_id'=>2,'transaction_type_id'=>2,'ledger_id'=>5,'amount'=>25000]);
 
     }
