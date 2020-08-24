@@ -66,8 +66,6 @@ Route::get('/purchases/{invoice}/invoice', 'PurchaseController@purchaseByInvoice
 Route::get('/testPurchase', 'PurchaseController@testPurchase');
 
 
-Route::get('/testTransaction/{id}', 'TransactionMasterController@testTransaction');
-
 
 
 //secured links here
