@@ -15,14 +15,14 @@ class CreatePurchaseMastersTable extends Migration
     {
         Schema::create('purchase_masters', function (Blueprint $table) {
             $table->id();
-            $table->string('invoice_number',20);
-            $table->date('purchase_date');
+//            $table->string('invoice_number',20);
+//            $table->date('purchase_date');
 
-            $table->bigInteger('vendor_id')->unsigned();
-            $table ->foreign('vendor_id')->references('id')->on('users');
+//            $table->bigInteger('vendor_id')->unsigned();
+//            $table ->foreign('vendor_id')->references('id')->on('users');
 
-            $table->bigInteger('employee_id')->unsigned();
-            $table ->foreign('employee_id')->references('id')->on('users');
+//            $table->bigInteger('employee_id')->unsigned();
+//            $table ->foreign('employee_id')->references('id')->on('users');
 
             $table->decimal('discount')->default(0);
             $table->decimal('round_off')->default(0);

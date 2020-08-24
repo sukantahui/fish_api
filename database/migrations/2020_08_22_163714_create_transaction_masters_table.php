@@ -16,6 +16,8 @@ class CreateTransactionMastersTable extends Migration
         Schema::create('transaction_masters', function (Blueprint $table) {
             $table->id();
 
+            $table->string('transaction_number',20);
+
             $table->bigInteger('voucher_id')->unsigned();
             $table ->foreign('voucher_id')->references('id')->on('vouchers');
 
@@ -24,6 +26,9 @@ class CreateTransactionMastersTable extends Migration
 
             $table->bigInteger('sale_master_id')->unsigned()->nullable();
             $table->foreign('sale_master_id')->nullable()->references('id')->on('sale_masters')->onDelete('cascade');
+
+            $table->bigInteger('employee_id')->unsigned();
+            $table ->foreign('employee_id')->references('id')->on('users');
 
             $table->date('transaction_date');
             $table->timestamps();

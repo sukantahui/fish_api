@@ -152,30 +152,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        // purchase Master
-        purchaseMaster::create(['purchase_date'=>'2020-05-22','invoice_number'=>'PKJH-00001-2021','vendor_id'=>11,'employee_id'=>1]);
-        PurchaseDetail::create(['purchase_master_id'=>1,'product_id'=>1,'unit_id'=>3,'quantity'=>5,'price'=>230]);
-        PurchaseDetail::create(['purchase_master_id'=>1,'product_id'=>3,'unit_id'=>3,'quantity'=>10,'price'=>210]);
-        PurchaseDetail::create(['purchase_master_id'=>1,'product_id'=>5,'unit_id'=>3,'quantity'=>11,'price'=>220]);
-        PurchaseDetail::create(['purchase_master_id'=>1,'product_id'=>4,'unit_id'=>3,'quantity'=>15,'price'=>120]);
-        PurchaseDetail::create(['purchase_master_id'=>1,'product_id'=>6,'unit_id'=>3,'quantity'=>5,'price'=>420]);
 
-
-        // purchase Master
-        purchaseMaster::create(['purchase_date'=>'2020-05-24','invoice_number'=>'PKJH-00002-2021','vendor_id'=>15,'employee_id'=>1]);
-        PurchaseDetail::create(['purchase_master_id'=>2,'product_id'=>11,'unit_id'=>3,'quantity'=>3,'price'=>130]);
-        PurchaseDetail::create(['purchase_master_id'=>2,'product_id'=>13,'unit_id'=>3,'quantity'=>8,'price'=>510]);
-        PurchaseDetail::create(['purchase_master_id'=>2,'product_id'=>15,'unit_id'=>3,'quantity'=>9,'price'=>325]);
-        PurchaseDetail::create(['purchase_master_id'=>2,'product_id'=>14,'unit_id'=>3,'quantity'=>15,'price'=>720]);
-        PurchaseDetail::create(['purchase_master_id'=>2,'product_id'=>16,'unit_id'=>3,'quantity'=>25,'price'=>620]);
-
-        // purchase Master
-        purchaseMaster::create(['purchase_date'=>'2020-05-25','invoice_number'=>'PKJH-00003-2021','vendor_id'=>11,'employee_id'=>1]);
-        PurchaseDetail::create(['purchase_master_id'=>3,'product_id'=>1,'unit_id'=>3,'quantity'=>6,'price'=>130]);
-        PurchaseDetail::create(['purchase_master_id'=>3,'product_id'=>4,'unit_id'=>3,'quantity'=>15,'price'=>110]);
-        PurchaseDetail::create(['purchase_master_id'=>3,'product_id'=>15,'unit_id'=>3,'quantity'=>8,'price'=>225]);
-        PurchaseDetail::create(['purchase_master_id'=>3,'product_id'=>10,'unit_id'=>3,'quantity'=>9,'price'=>520]);
-        PurchaseDetail::create(['purchase_master_id'=>3,'product_id'=>12,'unit_id'=>3,'quantity'=>17,'price'=>420]);
 
         //use following command for products in separate seeding products are not seeding here
        // php artisan db:seed --class=ProductSeeder
@@ -252,15 +229,99 @@ class DatabaseSeeder extends Seeder
             ['voucher_name'=>'Debit Note Voucher']          //8
         ]);
 
-        //rent
-        TransactionMaster::create(['voucher_id'=>3,'transaction_date'=>'2020-08-22']);
+        //rent TransactionMaster:1
+        TransactionMaster::create(['voucher_id'=>3,'transaction_date'=>'2020-08-22','transaction_number'=>'RNT-00001-2021','employee_id'=>1]);
         TransactionDetail::create(['transaction_master_id'=>1,'transaction_type_id'=>1,'ledger_id'=>4,'amount'=>500]);
         TransactionDetail::create(['transaction_master_id'=>1,'transaction_type_id'=>2,'ledger_id'=>1,'amount'=>500]);
 
-        //purchase
-        TransactionMaster::create(['voucher_id'=>2,'transaction_date'=>'2020-08-22']);
-        TransactionDetail::create(['transaction_master_id'=>2,'transaction_type_id'=>1,'ledger_id'=>3,'amount'=>25000]);
-        TransactionDetail::create(['transaction_master_id'=>2,'transaction_type_id'=>2,'ledger_id'=>5,'amount'=>25000]);
+
+
+
+        // purchase Master  1  TransactionMaster:2
+        purchaseMaster::create(['discount'=>0]);
+        PurchaseDetail::create(['purchase_master_id'=>1,'product_id'=>1,'unit_id'=>3,'quantity'=>5,'price'=>230]);
+        PurchaseDetail::create(['purchase_master_id'=>1,'product_id'=>3,'unit_id'=>3,'quantity'=>10,'price'=>210]);
+        PurchaseDetail::create(['purchase_master_id'=>1,'product_id'=>5,'unit_id'=>3,'quantity'=>11,'price'=>220]);
+        PurchaseDetail::create(['purchase_master_id'=>1,'product_id'=>4,'unit_id'=>3,'quantity'=>15,'price'=>120]);
+        PurchaseDetail::create(['purchase_master_id'=>1,'product_id'=>6,'unit_id'=>3,'quantity'=>5,'price'=>420]);
+        TransactionMaster::create(['voucher_id'=>2,'transaction_date'=>'2020-07-20','purchase_master_id'=>1,'transaction_number'=>'CDFA-00001-2021','employee_id'=>1]);
+        TransactionDetail::create(['transaction_master_id'=>2,'transaction_type_id'=>1,'ledger_id'=>3,'amount'=>0]);
+        TransactionDetail::create(['transaction_master_id'=>2,'transaction_type_id'=>2,'ledger_id'=>5,'amount'=>0]);
+
+
+
+        // purchase Master  2 TransactionMaster:3
+        purchaseMaster::create(['discount'=>0]);
+        PurchaseDetail::create(['purchase_master_id'=>2,'product_id'=>11,'unit_id'=>3,'quantity'=>3,'price'=>130]);
+        PurchaseDetail::create(['purchase_master_id'=>2,'product_id'=>13,'unit_id'=>3,'quantity'=>8,'price'=>510]);
+        PurchaseDetail::create(['purchase_master_id'=>2,'product_id'=>15,'unit_id'=>3,'quantity'=>9,'price'=>325]);
+        PurchaseDetail::create(['purchase_master_id'=>2,'product_id'=>14,'unit_id'=>3,'quantity'=>15,'price'=>720]);
+        PurchaseDetail::create(['purchase_master_id'=>2,'product_id'=>16,'unit_id'=>3,'quantity'=>25,'price'=>620]);
+        TransactionMaster::create(['voucher_id'=>2,'transaction_date'=>'2020-07-22','purchase_master_id'=>2,'transaction_number'=>'CDFA-00002-2021','employee_id'=>1]);
+        TransactionDetail::create(['transaction_master_id'=>3,'transaction_type_id'=>1,'ledger_id'=>3,'amount'=>0]);
+        TransactionDetail::create(['transaction_master_id'=>3,'transaction_type_id'=>2,'ledger_id'=>7,'amount'=>0]);
+
+        // purchase Master  4
+        purchaseMaster::create(['discount'=>0]);
+        PurchaseDetail::create(['purchase_master_id'=>3,'product_id'=>1,'unit_id'=>3,'quantity'=>6,'price'=>130]);
+        PurchaseDetail::create(['purchase_master_id'=>3,'product_id'=>4,'unit_id'=>3,'quantity'=>15,'price'=>110]);
+        PurchaseDetail::create(['purchase_master_id'=>3,'product_id'=>15,'unit_id'=>3,'quantity'=>8,'price'=>225]);
+        PurchaseDetail::create(['purchase_master_id'=>3,'product_id'=>10,'unit_id'=>3,'quantity'=>9,'price'=>520]);
+        PurchaseDetail::create(['purchase_master_id'=>3,'product_id'=>12,'unit_id'=>3,'quantity'=>17,'price'=>420]);
+        TransactionMaster::create(['voucher_id'=>2,'transaction_date'=>'2020-08-20','purchase_master_id'=>3,'transaction_number'=>'CDFA-00003-2021','employee_id'=>1]);
+        TransactionDetail::create(['transaction_master_id'=>4,'transaction_type_id'=>1,'ledger_id'=>3,'amount'=>0]);
+        TransactionDetail::create(['transaction_master_id'=>4,'transaction_type_id'=>2,'ledger_id'=>8,'amount'=>0]);
+
+        // purchase Master  4 TransactionMaster:5
+        purchaseMaster::create(['discount'=>0]);
+        PurchaseDetail::create(['purchase_master_id'=>4,'product_id'=>1,'unit_id'=>3,'quantity'=>6,'price'=>130]);
+        PurchaseDetail::create(['purchase_master_id'=>4,'product_id'=>4,'unit_id'=>3,'quantity'=>15,'price'=>110]);
+        PurchaseDetail::create(['purchase_master_id'=>4,'product_id'=>15,'unit_id'=>3,'quantity'=>8,'price'=>225]);
+        PurchaseDetail::create(['purchase_master_id'=>4,'product_id'=>10,'unit_id'=>3,'quantity'=>9,'price'=>520]);
+        PurchaseDetail::create(['purchase_master_id'=>4,'product_id'=>12,'unit_id'=>3,'quantity'=>17,'price'=>420]);
+        PurchaseDetail::create(['purchase_master_id'=>4,'product_id'=>2,'unit_id'=>3,'quantity'=>12,'price'=>220]);
+        PurchaseDetail::create(['purchase_master_id'=>4,'product_id'=>3,'unit_id'=>3,'quantity'=>11,'price'=>450]);
+        PurchaseDetail::create(['purchase_master_id'=>4,'product_id'=>5,'unit_id'=>3,'quantity'=>14,'price'=>520]);
+        PurchaseDetail::create(['purchase_master_id'=>4,'product_id'=>6,'unit_id'=>3,'quantity'=>15,'price'=>426]);
+        PurchaseDetail::create(['purchase_master_id'=>4,'product_id'=>7,'unit_id'=>3,'quantity'=>11,'price'=>326]);
+        PurchaseDetail::create(['purchase_master_id'=>4,'product_id'=>16,'unit_id'=>3,'quantity'=>10,'price'=>220]);
+        TransactionMaster::create(['voucher_id'=>2,'transaction_date'=>'2020-08-21','purchase_master_id'=>4,'transaction_number'=>'CDFA-00004-2021','employee_id'=>1]);
+        TransactionDetail::create(['transaction_master_id'=>5,'transaction_type_id'=>1,'ledger_id'=>3,'amount'=>0]);
+        TransactionDetail::create(['transaction_master_id'=>5,'transaction_type_id'=>2,'ledger_id'=>8,'amount'=>0]);
+
+        // purchase Master  5  TransactionMaster:6
+        purchaseMaster::create(['discount'=>0]);
+        PurchaseDetail::create(['purchase_master_id'=>5,'product_id'=>1,'unit_id'=>3,'quantity'=>6,'price'=>130]);
+        PurchaseDetail::create(['purchase_master_id'=>5,'product_id'=>4,'unit_id'=>3,'quantity'=>15,'price'=>110]);
+        PurchaseDetail::create(['purchase_master_id'=>5,'product_id'=>15,'unit_id'=>3,'quantity'=>8,'price'=>225]);
+        PurchaseDetail::create(['purchase_master_id'=>5,'product_id'=>10,'unit_id'=>3,'quantity'=>9,'price'=>520]);
+        PurchaseDetail::create(['purchase_master_id'=>5,'product_id'=>9,'unit_id'=>3,'quantity'=>10,'price'=>420]);
+        PurchaseDetail::create(['purchase_master_id'=>5,'product_id'=>2,'unit_id'=>3,'quantity'=>12,'price'=>220]);
+        PurchaseDetail::create(['purchase_master_id'=>5,'product_id'=>3,'unit_id'=>3,'quantity'=>11,'price'=>450]);
+        PurchaseDetail::create(['purchase_master_id'=>5,'product_id'=>5,'unit_id'=>3,'quantity'=>14,'price'=>520]);
+        PurchaseDetail::create(['purchase_master_id'=>5,'product_id'=>6,'unit_id'=>3,'quantity'=>15,'price'=>426]);
+        PurchaseDetail::create(['purchase_master_id'=>5,'product_id'=>11,'unit_id'=>3,'quantity'=>8,'price'=>326]);
+        PurchaseDetail::create(['purchase_master_id'=>5,'product_id'=>15,'unit_id'=>3,'quantity'=>10,'price'=>220]);
+        TransactionMaster::create(['voucher_id'=>2,'transaction_date'=>'2020-08-24','purchase_master_id'=>5,'transaction_number'=>'CDFA-00005-2021','employee_id'=>1]);
+        TransactionDetail::create(['transaction_master_id'=>6,'transaction_type_id'=>1,'ledger_id'=>3,'amount'=>0]);
+        TransactionDetail::create(['transaction_master_id'=>6,'transaction_type_id'=>2,'ledger_id'=>1,'amount'=>0]);
+
+        // purchase Master  6  TransactionMaster:6
+        purchaseMaster::create(['discount'=>0]);
+        PurchaseDetail::create(['purchase_master_id'=>6,'product_id'=>1,'unit_id'=>3,'quantity'=>6,'price'=>130]);
+        PurchaseDetail::create(['purchase_master_id'=>6,'product_id'=>4,'unit_id'=>3,'quantity'=>15,'price'=>110]);
+        PurchaseDetail::create(['purchase_master_id'=>6,'product_id'=>5,'unit_id'=>3,'quantity'=>8,'price'=>425]);
+        PurchaseDetail::create(['purchase_master_id'=>6,'product_id'=>1,'unit_id'=>3,'quantity'=>9,'price'=>520]);
+        PurchaseDetail::create(['purchase_master_id'=>6,'product_id'=>9,'unit_id'=>3,'quantity'=>10,'price'=>320]);
+        PurchaseDetail::create(['purchase_master_id'=>6,'product_id'=>2,'unit_id'=>3,'quantity'=>12,'price'=>220]);
+        PurchaseDetail::create(['purchase_master_id'=>6,'product_id'=>3,'unit_id'=>3,'quantity'=>11,'price'=>450]);
+        PurchaseDetail::create(['purchase_master_id'=>6,'product_id'=>5,'unit_id'=>3,'quantity'=>14,'price'=>520]);
+        PurchaseDetail::create(['purchase_master_id'=>6,'product_id'=>8,'unit_id'=>3,'quantity'=>15,'price'=>426]);
+        PurchaseDetail::create(['purchase_master_id'=>6,'product_id'=>11,'unit_id'=>3,'quantity'=>8,'price'=>226]);
+        PurchaseDetail::create(['purchase_master_id'=>6,'product_id'=>15,'unit_id'=>3,'quantity'=>10,'price'=>220]);
+        TransactionMaster::create(['voucher_id'=>2,'transaction_date'=>'2020-08-24','purchase_master_id'=>6,'transaction_number'=>'CDFA-00006-2021','employee_id'=>1]);
+        TransactionDetail::create(['transaction_master_id'=>7,'transaction_type_id'=>1,'ledger_id'=>3,'amount'=>0]);
+        TransactionDetail::create(['transaction_master_id'=>7,'transaction_type_id'=>2,'ledger_id'=>2,'amount'=>0]);
 
     }
 }
