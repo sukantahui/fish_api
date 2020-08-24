@@ -15,20 +15,10 @@ class CreateSaleMastersTable extends Migration
     {
         Schema::create('sale_masters', function (Blueprint $table) {
             $table->id();
-            $table->string('bill_number',20)->unique();
-
-            $table->bigInteger('customer_id')->unsigned();
-            $table ->foreign('customer_id')->references('id')->on('users');
-
-            $table->bigInteger('employee_id')->unsigned();
-            $table ->foreign('employee_id')->references('id')->on('users');
-
-            $table->date('sale_date');
-
-            $table->string('description',255);
             $table->decimal('discount')->default(0);
             $table->decimal('round_off')->default(0);
-
+            $table->decimal('loading_expenditure')->default(0);
+            $table->string('comment',255)->nullable(true);
             $table->tinyInteger('inforce')->default(0);
             $table->timestamps();
         });
