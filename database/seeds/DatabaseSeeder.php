@@ -323,5 +323,11 @@ class DatabaseSeeder extends Seeder
         TransactionDetail::create(['transaction_master_id'=>7,'transaction_type_id'=>1,'ledger_id'=>3,'amount'=>0]);
         TransactionDetail::create(['transaction_master_id'=>7,'transaction_type_id'=>2,'ledger_id'=>2,'amount'=>0]);
 
+
+        //paid to vendor TransactionMaster:7
+        TransactionMaster::create(['voucher_id'=>3,'transaction_date'=>'2020-08-25','transaction_number'=>'RCA-00001-2021','employee_id'=>1]);
+        TransactionDetail::create(['transaction_master_id'=>7,'transaction_type_id'=>1,'ledger_id'=>1,'amount'=>2865]);
+        TransactionDetail::create(['transaction_master_id'=>7,'transaction_type_id'=>2,'ledger_id'=>5,'amount'=>2865]);
+
     }
 }
