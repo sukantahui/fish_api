@@ -13,10 +13,10 @@ use Illuminate\Http\Request;
 class TransactionController extends Controller
 {
 
-    public function testPurchase(){
+    public function getVouchers(){
 
         $test = User::doesnthave('purchases')->where('person_type_id','=',11)->get();
         return response()->json(['success'=>1,'purchase'=>$test], 200,[],JSON_NUMERIC_CHECK);
     }
-    
+
 }

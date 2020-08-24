@@ -69,6 +69,9 @@ Route::get('/testPurchase', 'PurchaseController@testPurchase');
 Route::get('/testTransaction/{id}', 'TransactionMasterController@testTransaction');
 
 
+// Vouchers
+Route::get('/vouchers', 'VoucherController@index');
+
 
 //secured links here
 Route::group(['middleware' => ['jwt.auth']], function() {
