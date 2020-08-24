@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Model\PersonType;
+use App\Model\LedgerGroup;
+use App\Model\Ledger;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 class VendorController extends Controller
@@ -28,30 +30,9 @@ class VendorController extends Controller
 
     public function index()
     {
-//        $customers = PersonType::find(11)->people;
-        $query = User::select('id',
-            'person_name',
-            'billing_name',
-            'person_type_id',
-            'email',
-            'mobile1',
-            'mobile2',
-            'customer_category_id',
-            'address1',
-            'address2',
-            'state',
-            'city',
-            'po',
-            'area',
-            'pin')->where('person_type_id','=',11);
+        $vendors = LedgerGroup::find(15)->ledgers;
 
-        //to bind the parameters, the above statement does not bind the parameters so we need to bind them
-        // using following statement
-        $finalQuery=Str::replaceArray('?', $query->getBindings(), $query->toSql());
-
-        $result=DB::table(DB::raw("($finalQuery) as table1"))->select()->get();
-
-        return response()->json(['success'=>1,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>$vendors], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function getVendorById($id)
@@ -77,14 +58,12 @@ class VendorController extends Controller
 
     public function saveVendor(Request $request)
     {
-        $vendor=new User();
+        $vendor=new Ledger();
 
-        $vendor->person_name=$request->input('person_name');
+        $vendor->ledger_name=$request->input('ledger_name');
         $vendor->billing_name=$request->input('billing_name');
+        $vendor->ledger_group_id=$request->input('ledger_group_id');
         $vendor->email=$request->input('email');
-        $vendor->password="81dc9bdb52d04dc20036dbd8313ed055";
-        $vendor->person_type_id=11;
-        $vendor->customer_category_id=1;
         $vendor->mobile1=$request->input('mobile1');
         $vendor->mobile2=$request->input('mobile2');
         $vendor->address1=$request->input('address1');
@@ -94,6 +73,8 @@ class VendorController extends Controller
         $vendor->area=$request->input('area');
         $vendor->city=$request->input('city');
         $vendor->pin=$request->input('pin');
+        $vendor->opening_balance=$request->input('opening_balance');
+        $vendor->transaction_type_id=$request->input('transaction_type_id');
 
         $vendor->save();
         return response()->json(['success'=>1,'data'=>$vendor], 200);
