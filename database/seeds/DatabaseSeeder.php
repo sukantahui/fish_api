@@ -15,6 +15,8 @@ use App\Model\Ledger;
 use App\Model\TransactionType;
 use App\Model\TransactionMaster;
 use App\Model\TransactionDetail;
+use App\Model\SaleMaster;
+use App\Model\SaleDetail;
 
 class DatabaseSeeder extends Seeder
 {
@@ -190,6 +192,8 @@ class DatabaseSeeder extends Seeder
         Ledger::create(['ledger_name'=>'Bank','billing_name'=>'State Bank of India','branch'=>'Anandapuri','account_number'=>'547002010004586','ifsc'=>'SBIN000123','ledger_group_id'=>'7','email'=>'anandapuri@sbi.com','mobile1'=>'234234234','mobile2'=>'23424454','opening_balance'=>5654,'transaction_type_id'=>1]);
         //3. Purchase
         Ledger::create(['ledger_name'=>'Purchase','billing_name'=>'Purchase','ledger_group_id'=>22,'email'=>'','mobile1'=>'','mobile2'=>'','opening_balance'=>0,'transaction_type_id'=>1]);
+        //4. Sale
+        Ledger::create(['ledger_name'=>'Sales','billing_name'=>'Sales','ledger_group_id'=>19,'email'=>'','mobile1'=>'','mobile2'=>'','opening_balance'=>0,'transaction_type_id'=>2]);
 
 
         //4. Rent
@@ -231,7 +235,7 @@ class DatabaseSeeder extends Seeder
 
         //rent TransactionMaster:1
         TransactionMaster::create(['voucher_id'=>3,'transaction_date'=>'2020-08-22','transaction_number'=>'RNT-00001-2021','employee_id'=>1]);
-        TransactionDetail::create(['transaction_master_id'=>1,'transaction_type_id'=>1,'ledger_id'=>4,'amount'=>500]);
+        TransactionDetail::create(['transaction_master_id'=>1,'transaction_type_id'=>1,'ledger_id'=>5,'amount'=>500]);
         TransactionDetail::create(['transaction_master_id'=>1,'transaction_type_id'=>2,'ledger_id'=>1,'amount'=>500]);
 
 
@@ -333,6 +337,27 @@ class DatabaseSeeder extends Seeder
         TransactionMaster::create(['voucher_id'=>4,'transaction_date'=>'2020-08-26','transaction_number'=>'RCPT-00001-2021','employee_id'=>1]);
         TransactionDetail::create(['transaction_master_id'=>9,'transaction_type_id'=>1,'ledger_id'=>1,'amount'=>25000]);
         TransactionDetail::create(['transaction_master_id'=>9,'transaction_type_id'=>2,'ledger_id'=>22,'amount'=>25000]);
+
+        // Sale Master 1    TransactionMaster:10
+        SaleMaster::create(['discount'=>0]);
+        SaleDetail::create(['sale_master_id'=>1,'product_id'=>3,'unit_id'=>3,'quantity'=>8,'price'=>150]);
+        SaleDetail::create(['sale_master_id'=>1,'product_id'=>5,'unit_id'=>3,'quantity'=>7,'price'=>250]);
+        SaleDetail::create(['sale_master_id'=>1,'product_id'=>8,'unit_id'=>3,'quantity'=>12,'price'=>450]);
+        SaleDetail::create(['sale_master_id'=>1,'product_id'=>10,'unit_id'=>3,'quantity'=>2,'price'=>150]);
+        TransactionMaster::create(['voucher_id'=>1,'transaction_date'=>'2020-08-24','sale_master_id'=>1,'transaction_number'=>'FISH-00001-2021','employee_id'=>1]);
+        TransactionDetail::create(['transaction_master_id'=>10,'transaction_type_id'=>1,'ledger_id'=>16,'amount'=>0]);
+        TransactionDetail::create(['transaction_master_id'=>10,'transaction_type_id'=>2,'ledger_id'=>4,'amount'=>0]);
+
+
+        // Sale Master 2    TransactionMaster:11
+        SaleMaster::create(['discount'=>50]);
+        SaleDetail::create(['sale_master_id'=>2,'product_id'=>3,'unit_id'=>3,'quantity'=>8,'price'=>150]);
+        SaleDetail::create(['sale_master_id'=>2,'product_id'=>5,'unit_id'=>3,'quantity'=>7,'price'=>250]);
+        SaleDetail::create(['sale_master_id'=>2,'product_id'=>8,'unit_id'=>3,'quantity'=>12,'price'=>450]);
+        SaleDetail::create(['sale_master_id'=>2,'product_id'=>10,'unit_id'=>3,'quantity'=>2,'price'=>150]);
+        TransactionMaster::create(['voucher_id'=>1,'transaction_date'=>'2020-08-24','sale_master_id'=>2,'transaction_number'=>'FISH-00002-2021','employee_id'=>1]);
+        TransactionDetail::create(['transaction_master_id'=>11,'transaction_type_id'=>1,'ledger_id'=>18,'amount'=>0]);
+        TransactionDetail::create(['transaction_master_id'=>11,'transaction_type_id'=>2,'ledger_id'=>4,'amount'=>0]);
 
     }
 }
