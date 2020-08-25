@@ -18,8 +18,8 @@ class VendorController extends Controller
     }
     public function isDeletable($id){
         $totalIntegrityCount = 0;
-        $user=User::find($id);
-        $purchaseCount=$user->purchases->count();
+        $vendor=Ledger::find($id);
+        $purchaseCount=$vendor->purchases->count();
         $totalIntegrityCount = $totalIntegrityCount + $purchaseCount;
         if($totalIntegrityCount == 0){
             return true;
@@ -31,8 +31,12 @@ class VendorController extends Controller
     public function index()
     {
         $vendors = LedgerGroup::find(15)->ledgers;
+        $subset = $vendors->map(function ($vendor) {
+            return $vendor->only(['id', 'ledger_name','billing_name','ledger_group_id','email','mobile1',
+                'mobile2','address1','address2','city','state','po','area','pin','opening_balance','transaction_type_id']);
+        });
 
-        return response()->json(['success'=>1,'data'=>$vendors], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>$subset], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function getVendorById($id)
@@ -77,14 +81,16 @@ class VendorController extends Controller
         $vendor->transaction_type_id=$request->input('transaction_type_id');
 
         $vendor->save();
-        return response()->json(['success'=>1,'data'=>$vendor], 200);
+        $subset = $vendor->only(['id', 'ledger_name','billing_name','ledger_group_id','email','mobile1',
+            'mobile2','address1','address2','city','state','po','area','pin','opening_balance','transaction_type_id']);
+        return response()->json(['success'=>1,'data'=>$subset], 200);
     }
 
     public function updateVendor(Request $request)
     {
-        $vendor=User::find($request->input('id'));
-        if($request->input('person_name')){
-            $vendor->person_name=$request->input('person_name');
+        $vendor=Ledger::find($request->input('id'));
+        if($request->input('ledger_name')){
+            $vendor->ledger_name=$request->input('ledger_name');
         }
         if($request->input('billing_name')){
             $vendor->billing_name=$request->input('billing_name');
@@ -96,14 +102,6 @@ class VendorController extends Controller
             $vendor->password=$request->input('password');
         }
 
-        if($request->input('person_type_id')){
-            $vendor->person_type_id=$request->input('person_type_id');
-        }
-
-        if($request->input('customer_category_id')){
-            $vendor->customer_category_id=$request->input('customer_category_id');
-        }
-
         if($request->input('mobile1')){
             $vendor->mobile1=$request->input('mobile1');
         }
@@ -139,19 +137,24 @@ class VendorController extends Controller
         if($request->input('pin')){
             $vendor->pin=$request->input('pin');
         }
-
+        if($request->input('opening_balance')){
+            $vendor->opening_balance=$request->input('opening_balance');
+        }
+        if($request->input('transaction_type_id')){
+            $vendor->transaction_type_id=$request->input('transaction_type_id');
+        }
 
         $vendor->save();
         return response()->json(['success'=>1,'data'=>$vendor], 200,[],JSON_NUMERIC_CHECK);
     }
     public function updateVendorByID($id,Request $request)
     {
-        $vendor=User::find($id);
-        if($request->input('person_name')){
-            $vendor->person_name=$request->input('person_name');
+        $vendor=Ledger::find($id);
+        if($request->input('ledger_name')){
+            $vendor->ledger_name=$request->input('ledger_name');
         }
         if($request->input('billing_name')){
-            $vendor->person_name=$request->input('billing_name');
+            $vendor->billing_name=$request->input('billing_name');
         }
         if($request->input('email')){
             $vendor->email=$request->input('email');
@@ -160,14 +163,6 @@ class VendorController extends Controller
             $vendor->password=$request->input('password');
         }
 
-        if($request->input('person_type_id')){
-            $vendor->person_type_id=$request->input('person_type_id');
-        }
-
-        if($request->input('customer_category_id')){
-            $vendor->customer_category_id=$request->input('customer_category_id');
-        }
-
         if($request->input('mobile1')){
             $vendor->mobile1=$request->input('mobile1');
         }
@@ -203,21 +198,43 @@ class VendorController extends Controller
         if($request->input('pin')){
             $vendor->pin=$request->input('pin');
         }
-
+        if($request->input('opening_balance')){
+            $vendor->opening_balance=$request->input('opening_balance');
+        }
+        if($request->input('transaction_type_id')){
+            $vendor->transaction_type_id=$request->input('transaction_type_id');
+        }
 
         $vendor->save();
         return response()->json(['success'=>1,'data'=>$vendor], 200,[],JSON_NUMERIC_CHECK);
     }
+//    public function deleteVendorByID($id)
+//    {
+//        if(!$this->isDeletable($id)){
+//            return response()->json(['success'=>0,'data'=>'Not Deletable', 'id'=>$id], 200,[],JSON_NUMERIC_CHECK);
+//        }
+//
+//
+//        try {
+//            //$res = User::destroy($id);
+//            $note=User::findorfail($id); // fetch the note
+//            if($note->delete()){
+//                return response()->json(['success'=>1,'data'=>'Deleted','id'=>$id], 200,[],JSON_NUMERIC_CHECK);
+//            }
+//
+//        } catch (Throwable $e) {
+//            report($e);
+//
+//            return response()->json(['success'=>0,'data'=>'Not Deleted','id'=>$id], 200,[],JSON_NUMERIC_CHECK);
+//        }
+//
+//    }
+
     public function deleteVendorByID($id)
     {
-        if(!$this->isDeletable($id)){
-            return response()->json(['success'=>0,'data'=>'Not Deletable', 'id'=>$id], 200,[],JSON_NUMERIC_CHECK);
-        }
-
-
         try {
             //$res = User::destroy($id);
-            $note=User::findorfail($id); // fetch the note
+            $note=Ledger::findorfail($id); // fetch the note
             if($note->delete()){
                 return response()->json(['success'=>1,'data'=>'Deleted','id'=>$id], 200,[],JSON_NUMERIC_CHECK);
             }
