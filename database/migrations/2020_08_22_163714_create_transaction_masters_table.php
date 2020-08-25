@@ -16,6 +16,8 @@ class CreateTransactionMastersTable extends Migration
         Schema::create('transaction_masters', function (Blueprint $table) {
             $table->id();
 
+            $table->date('transaction_date');
+
             $table->string('transaction_number',20);
 
             $table->bigInteger('voucher_id')->unsigned();
@@ -30,7 +32,7 @@ class CreateTransactionMastersTable extends Migration
             $table->bigInteger('employee_id')->unsigned();
             $table ->foreign('employee_id')->references('id')->on('users');
 
-            $table->date('transaction_date');
+
             $table->timestamps();
         });
     }
