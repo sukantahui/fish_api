@@ -16,13 +16,23 @@ class purchaseMaster extends Model
 
 //    public function vendor()
 //    {
+<<<<<<< HEAD
 //        return $this->belongsTo('App\User','vendor_id');
+=======
+//        return $this->belongsTo('App\Model\Ledger','vendor_id');
+>>>>>>> a0f5d7c488140de0e2dda12eb89467688f9ac7fb
 //    }
 //    public function employee()
 //    {
 //        return $this->belongsTo('App\User','employee_id');
 //    }
+<<<<<<< HEAD
 //    public function purchaseDetails(){
 //        return $this->hasMany('App\Model\PurchaseDetail','purchase_master_id');
 //    }
+=======
+    public function purchaseDetails(){
+        return $this->hasMany('App\Model\PurchaseDetail','purchase_master_id');
+    }
+>>>>>>> a0f5d7c488140de0e2dda12eb89467688f9ac7fb
 }
