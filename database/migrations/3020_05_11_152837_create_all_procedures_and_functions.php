@@ -20,6 +20,8 @@ class CreateAllProceduresAndFunctions extends Migration
                         END');
         DB::unprepared('DROP FUNCTION IF EXISTS get_purchase_amount_by_transaction_master_id;
             CREATE FUNCTION get_purchase_amount_by_transaction_master_id (temp_transaction_master_id bigint) RETURNS double
+            READS SQL DATA
+            DETERMINISTIC
             BEGIN
                 DECLARE temp_purchase_master_id double;
                 DECLARE total_bill_amount double;
