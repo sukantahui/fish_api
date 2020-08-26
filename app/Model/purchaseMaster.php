@@ -25,4 +25,7 @@ class purchaseMaster extends Model
     public function purchaseDetails(){
         return $this->hasMany('App\Model\PurchaseDetail','purchase_master_id');
     }
+    public function transaction(){
+        return $this->hasManyThrough(TransactionMaster::class, TransactionDetail::class,'purchase_master_id','transaction_master_id');
+    }
 }

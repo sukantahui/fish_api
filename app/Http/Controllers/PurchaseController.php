@@ -14,8 +14,9 @@ class PurchaseController extends Controller
 {
 
     public function testPurchase(){
+        $test = purchaseMaster::find(2)->transaction;
 
-        $test = User::doesnthave('purchases')->where('person_type_id','=',11)->get();
+//        $test = User::doesnthave('purchases')->where('person_type_id','=',11)->get();
         return response()->json(['success'=>1,'purchase'=>$test], 200,[],JSON_NUMERIC_CHECK);
     }
     public function purchasseById($id){
