@@ -65,6 +65,8 @@ Route::get('/purchases/{id}/id', 'PurchaseController@purchasseById');
 Route::get('/purchases/{invoice}/invoice', 'PurchaseController@purchaseByInvoice');
 Route::get('/testPurchase', 'PurchaseController@testPurchase');
 
+//unit
+Route::get('/units', 'UnitController@index');
 
 Route::get('/testTransaction/{id}', 'TransactionMasterController@testTransaction');
 
