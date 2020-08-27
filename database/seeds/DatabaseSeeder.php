@@ -330,8 +330,8 @@ class DatabaseSeeder extends Seeder
 
         //paid to vendor TransactionMaster:8
         TransactionMaster::create(['voucher_id'=>3,'transaction_date'=>'2020-08-25','transaction_number'=>'PMT-00001-2021','employee_id'=>1]);
-        TransactionDetail::create(['transaction_master_id'=>8,'transaction_type_id'=>1,'ledger_id'=>1,'amount'=>2865]);
-        TransactionDetail::create(['transaction_master_id'=>8,'transaction_type_id'=>2,'ledger_id'=>5,'amount'=>2865]);
+        TransactionDetail::create(['transaction_master_id'=>8,'transaction_type_id'=>1,'ledger_id'=>8,'amount'=>110]);
+        TransactionDetail::create(['transaction_master_id'=>8,'transaction_type_id'=>2,'ledger_id'=>1,'amount'=>110]);
 
         //Receipt Voucher vendor TransactionMaster:9
         TransactionMaster::create(['voucher_id'=>4,'transaction_date'=>'2020-08-26','transaction_number'=>'RCPT-00001-2021','employee_id'=>1]);
