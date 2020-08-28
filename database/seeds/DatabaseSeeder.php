@@ -42,9 +42,6 @@ class DatabaseSeeder extends Seeder
         PersonType::create(['person_type_name' => 'Agent']);                //7
         PersonType::create(['person_type_name' => 'Worker']);               //8
         PersonType::create(['person_type_name' => 'Developer']);            //9
-        PersonType::create(['person_type_name' => 'Customer']);             //10
-        PersonType::create(['person_type_name' => 'Vendor']);               //11
-        PersonType::create(['person_type_name' => 'Customer Cum Vendor']);  //12
 
         //customer_categories table data
         CustomerCategory::create(['customer_category_name'=>'Not Applicable']);
@@ -58,33 +55,13 @@ class DatabaseSeeder extends Seeder
         User::create(['person_name'=>'Abishek Basak','mobile1'=>'9836444451','mobile2'=>'','email'=>'bangle396@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>7,'customer_category_id'=>1]);
         User::create(['person_name'=>'Pushpendu Pal','mobile1'=>'9836444568','mobile2'=>'','email'=>'bangle363@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>7,'customer_category_id'=>1]);
         User::create(['person_name'=>'Pushpendu Roy','mobile1'=>'9836444426','mobile2'=>'','email'=>'bangle376@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>8,'customer_category_id'=>1]);
-        User::create(['person_name'=>'Pushpendu Ghosh','mobile1'=>'9836444785','mobile2'=>'','email'=>'bangle371@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>10,'customer_category_id'=>1]);
         User::create(['person_name'=>'Abishek Ghosh','mobile1'=>'9836444972','mobile2'=>'','email'=>'bangle314@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>7,'customer_category_id'=>1]);
-        User::create(['person_name'=>'Joy Ghosh','mobile1'=>'9836444972','mobile2'=>'','email'=>'bangle322@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1]);
-        User::create(['person_name'=>'Erik Ghosh','mobile1'=>'9836444972','mobile2'=>'','email'=>'erik@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1]);
-        User::create(['person_name'=>'Tuhin Ghosh','mobile1'=>'9836444972','mobile2'=>'','email'=>'tuhin@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1]);
 
 
-        //vendor
-        User::create(['person_name'=>'Ritaja Das','mobile1'=>'9836449972','mobile2'=>'','email'=>'rita4ja@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1,'balance'=>3000]);
-        User::create(['person_name'=>'Supriya Sandhukhan','mobile1'=>'9839444972','mobile2'=>'','email'=>'supriy4a@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1,'balance'=>5000]);
-        User::create(['person_name'=>'Suman Mondal','mobile1'=>'9836644972','mobile2'=>'','email'=>'suma74n@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1,'balance'=>4000]);
-        User::create(['person_name'=>'Rathin Ghosh','mobile1'=>'9838445979','mobile2'=>'','email'=>'rita6ja@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1,'balance'=>13000]);
-        User::create(['person_name'=>'Supriya Dhara','mobile1'=>'9146434972','mobile2'=>'','email'=>'su4priyaDhara@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1,'balance'=>15000]);
-        User::create(['person_name'=>'Bimal Mondal','mobile1'=>'9536474972','mobile2'=>'563535334534','email'=>'Z67XCV@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1,'balance'=>41000]);
-        User::create(['person_name'=>'Ritaja Sen','mobile1'=>'9831444972','mobile2'=>'','email'=>'rita34ja@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1,'balance'=>307770]);
-        User::create(['person_name'=>'Supriya Halder','mobile1'=>'9836441972','mobile2'=>'','email'=>'sup4riya@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1,'balance'=>5070]);
-        User::create(['person_name'=>'Suman Baishya','mobile1'=>'9836144972','mobile2'=>'','email'=>'suma56n@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1,'balance'=>4060]);
-        User::create(['person_name'=>'Rathin Talukdar','mobile1'=>'9838461979','mobile2'=>'','email'=>'ritaja@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1,'balance'=>13090]);
-        User::create(['person_name'=>'Supriya Pandey','mobile1'=>'9716434972','mobile2'=>'','email'=>'supriyaDhara@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1,'balance'=>15070]);
-        User::create(['person_name'=>'Bimal Agarwal','mobile1'=>'9516474972','mobile2'=>'863535334534','email'=>'ZX6CV@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>11,'customer_category_id'=>1,'balance'=>1000]);
-
-        //customer cum vendor
-        User::create(['person_name'=>'Suparna Saha Das','mobile1'=>'98316444972','mobile2'=>'','email'=>'suparna@gmail.com','password'=>"81dc9bdb52d04dc20036dbd8313ed055",'person_type_id'=>12,'customer_category_id'=>3]);
 
 
         //creating Customers(Fake)
-        factory(User::class,100)->create();
+        //factory(User::class,100)->create();
 
 
 
@@ -103,8 +80,8 @@ class DatabaseSeeder extends Seeder
         Unit::create(['unit_name'=>'pcs','formal_name'=>'Piece','parent_id'=>1,'parent_conversion'=>0,'position'=>1,'active'=>1]);
 
         //Transaction types
-        TransactionType::create(['transaction_name'=>'Dr.','formal_name'=>'Debit']);
-        TransactionType::create(['transaction_name'=>'Cr.','formal_name'=>'Credit']);
+        TransactionType::create(['transaction_name'=>'Dr.','formal_name'=>'Debit','transaction_type_value'=>1]);
+        TransactionType::create(['transaction_name'=>'Cr.','formal_name'=>'Credit','transaction_type_value'=>-1]);
 
         //product_categories table data
         ProductCategory::create(['category_name'=>'Ruhi রুই']);
