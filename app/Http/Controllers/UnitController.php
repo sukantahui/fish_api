@@ -14,7 +14,8 @@ class UnitController extends Controller
      */
     public function index()
     {
-        //
+        $getUnits= Unit::where('active',1)->get();
+        return response()->json(['success'=>1,'data'=>$getUnits], 200,[],JSON_NUMERIC_CHECK);
     }
 
     /**
