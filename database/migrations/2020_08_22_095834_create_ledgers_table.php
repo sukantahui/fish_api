@@ -21,6 +21,10 @@ class CreateLedgersTable extends Migration
             $table->bigInteger('ledger_group_id')->unsigned();
             $table ->foreign('ledger_group_id')->references('id')->on('ledger_groups');
 
+            $table->bigInteger('customer_category_id')->unsigned()->nullable()->default(null);
+            $table->foreign('customer_category_id')->nullable()->references('id')->on('customer_categories')->onDelete('cascade');
+
+
 
             $table->string('email')->nullable(true)->nullable(true);
             $table->string('mobile1',15)->nullable(true);
