@@ -63,7 +63,9 @@ Route::get('/vendors/{id}/isDeletable', 'VendorController@isDeletable');
 
 Route::get('/purchases/{id}/id', 'PurchaseController@purchasseById');
 Route::get('/purchases/{invoice}/invoice', 'PurchaseController@purchaseByInvoice');
+Route::post('/purchases', 'PurchaseController@savePurchase');
 Route::get('/testPurchase', 'PurchaseController@testPurchase');
+
 
 //unit
 Route::get('/units', 'UnitController@index');

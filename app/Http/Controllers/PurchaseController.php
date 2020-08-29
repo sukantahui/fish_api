@@ -6,9 +6,12 @@ use App\Model\PersonType;
 use App\Model\Product;
 use App\Model\purchaseMaster;
 use App\Model\PurchaseDetail;
+use App\Model\TransactionDetail;
+use App\Model\TransactionMaster;
 use App\Model\Unit;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PurchaseController extends Controller
 {
@@ -60,6 +63,61 @@ class PurchaseController extends Controller
     public function index()
     {
         //
+    }
+    public function savePurchase(Request $request){
+        $input=($request->json()->all());
+        $inputPurchaseMaster=(object)($input['purchase_master']);
+        $inputPurchaseDetails=($input['purchase_details']);
+        $inputTransactionMaster=(object)($input['transaction_master']);
+        $inputTransactionDetails=($input['transaction_details']);
+
+        DB::beginTransaction();
+        try{
+            //save data into purchase_masters
+            $purchaseMaster= new PurchaseMaster();
+            $purchaseMaster->discount = $inputPurchaseMaster->discount;
+            $purchaseMaster->round_off = $inputPurchaseMaster->round_off;
+            $purchaseMaster->loading_n_unloading_expenditure = $inputPurchaseMaster->loading_n_unloading_expenditure;
+            $purchaseMaster->save();
+            //save data into purchase_details
+            foreach($inputPurchaseDetails as $inputPurchaseDetail){
+                $purchaseDetail = new PurchaseDetail();
+                $purchaseDetail->purchase_master_id = $purchaseMaster->id;
+                $purchaseDetail->product_id = $inputPurchaseDetail['product_id'];
+                $purchaseDetail->unit_id = $inputPurchaseDetail['unit_id'];
+                $purchaseDetail->quantity = $inputPurchaseDetail['quantity'];
+                $purchaseDetail->price = $inputPurchaseDetail['price'];
+                $purchaseDetail->discount = $inputPurchaseDetail['discount'];
+                $purchaseDetail->save();
+            }
+            //save data into transaction_masters
+            $transactionMaster = new TransactionMaster();
+            $transactionMaster->transaction_date = $inputTransactionMaster->transaction_date;
+            $transactionMaster->transaction_number = $inputTransactionMaster->transaction_number;
+            $transactionMaster->voucher_id = $inputTransactionMaster->voucher_id;
+            $transactionMaster->purchase_master_id = $purchaseMaster->id;
+            $transactionMaster->employee_id = $inputTransactionMaster->employee_id;
+            $transactionMaster->save();
+
+            //save data into transaction_details
+            foreach($inputTransactionDetails as $inputTransactionDetail){
+                $transactionDetail = new TransactionDetail();
+                $transactionDetail->transaction_master_id = $transactionMaster->id;
+                $transactionDetail->transaction_type_id = $inputTransactionDetail['transaction_type_id'];
+                $transactionDetail->ledger_id = $inputTransactionDetail['ledger_id'];
+                $transactionDetail->amount = $inputTransactionDetail['amount'];
+                $transactionDetail->save();
+            }
+            DB::commit();
+        }
+        catch(\Exception $e){
+            DB::rollBack();
+            return response()->json(['Success'=>0,'Exception'=>$e->getMessage()], 401);
+        }
+        return response()->json(['Success'=>1,'data'=>$purchaseMaster], 200);
+
+//        return response()->json(['Success'=>1,'inputPurchaseMaster'=>$inputPurchaseMaster,'inputPurchaseDetails'=>$inputPurchaseDetails,
+//            'inputTransactionMaster'=>$inputTransactionMaster,'inputTransactionDetails'=>$inputTransactionDetails], 200);
     }
 
 }

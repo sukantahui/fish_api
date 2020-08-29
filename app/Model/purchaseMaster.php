@@ -13,6 +13,18 @@ class purchaseMaster extends Model
     protected $hidden = [
         "inforced","created_at","updated_at"
     ];
+    /**
+     * @var mixed
+     */
+    private $discount;
+    /**
+     * @var mixed
+     */
+    private $round_off;
+    /**
+     * @var mixed
+     */
+    private $loading_n_unloading_expenditure;
 
     public function vendor()
     {
