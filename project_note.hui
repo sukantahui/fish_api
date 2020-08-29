@@ -1,3 +1,4 @@
+This is a sample code
 [merge]
 	tool = p4merge
 [mergetool "p4merge"]
@@ -10,3 +11,5 @@
 	path = C:/Program Files/Perforce/p4merge.exe
 [difftool]
 	prompt = false
+
+
