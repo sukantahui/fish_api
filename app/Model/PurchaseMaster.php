@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class purchaseMaster extends Model
+class PurchaseMaster extends Model
 {
     protected $visible = [
         "id","invoice_number","purchase_date","vendor_id","employee_id","discount","round_off"

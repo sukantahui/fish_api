@@ -7,7 +7,7 @@ use App\Model\PersonType;
 use App\Model\ProductCategory;
 use App\Model\Product;
 Use App\Model\Unit;
-use App\Model\purchaseMaster;
+use App\Model\PurchaseMaster;
 use App\Model\PurchaseDetail;
 use App\Model\LedgerGroup;
 use App\Model\Voucher;
@@ -219,7 +219,7 @@ class DatabaseSeeder extends Seeder
 
 
         // purchase Master  1  TransactionMaster:2
-        purchaseMaster::create(['discount'=>0]);
+        PurchaseMaster::create(['discount'=>0]);
         PurchaseDetail::create(['purchase_master_id'=>1,'product_id'=>1,'unit_id'=>3,'quantity'=>5,'price'=>230]);
         PurchaseDetail::create(['purchase_master_id'=>1,'product_id'=>3,'unit_id'=>3,'quantity'=>10,'price'=>210]);
         PurchaseDetail::create(['purchase_master_id'=>1,'product_id'=>5,'unit_id'=>3,'quantity'=>11,'price'=>220]);
@@ -232,7 +232,7 @@ class DatabaseSeeder extends Seeder
 
 
         // purchase Master  2 TransactionMaster:3
-        purchaseMaster::create(['discount'=>0]);
+        PurchaseMaster::create(['discount'=>0]);
         PurchaseDetail::create(['purchase_master_id'=>2,'product_id'=>11,'unit_id'=>3,'quantity'=>3,'price'=>130]);
         PurchaseDetail::create(['purchase_master_id'=>2,'product_id'=>13,'unit_id'=>3,'quantity'=>8,'price'=>510]);
         PurchaseDetail::create(['purchase_master_id'=>2,'product_id'=>15,'unit_id'=>3,'quantity'=>9,'price'=>325]);
@@ -243,7 +243,7 @@ class DatabaseSeeder extends Seeder
         TransactionDetail::create(['transaction_master_id'=>3,'transaction_type_id'=>2,'ledger_id'=>7,'amount'=>0]);
 
         // purchase Master  4
-        purchaseMaster::create(['discount'=>0]);
+        PurchaseMaster::create(['discount'=>0]);
         PurchaseDetail::create(['purchase_master_id'=>3,'product_id'=>1,'unit_id'=>3,'quantity'=>6,'price'=>130]);
         PurchaseDetail::create(['purchase_master_id'=>3,'product_id'=>4,'unit_id'=>3,'quantity'=>15,'price'=>110]);
         PurchaseDetail::create(['purchase_master_id'=>3,'product_id'=>15,'unit_id'=>3,'quantity'=>8,'price'=>225]);
@@ -254,7 +254,7 @@ class DatabaseSeeder extends Seeder
         TransactionDetail::create(['transaction_master_id'=>4,'transaction_type_id'=>2,'ledger_id'=>8,'amount'=>0]);
 
         // purchase Master  4 TransactionMaster:5
-        purchaseMaster::create(['discount'=>0]);
+        PurchaseMaster::create(['discount'=>0]);
         PurchaseDetail::create(['purchase_master_id'=>4,'product_id'=>1,'unit_id'=>3,'quantity'=>6,'price'=>130]);
         PurchaseDetail::create(['purchase_master_id'=>4,'product_id'=>4,'unit_id'=>3,'quantity'=>15,'price'=>110]);
         PurchaseDetail::create(['purchase_master_id'=>4,'product_id'=>15,'unit_id'=>3,'quantity'=>8,'price'=>225]);
@@ -271,7 +271,7 @@ class DatabaseSeeder extends Seeder
         TransactionDetail::create(['transaction_master_id'=>5,'transaction_type_id'=>2,'ledger_id'=>8,'amount'=>0]);
 
         // purchase Master  5  TransactionMaster:6
-        purchaseMaster::create(['discount'=>0]);
+        PurchaseMaster::create(['discount'=>0]);
         PurchaseDetail::create(['purchase_master_id'=>5,'product_id'=>1,'unit_id'=>3,'quantity'=>6,'price'=>130]);
         PurchaseDetail::create(['purchase_master_id'=>5,'product_id'=>4,'unit_id'=>3,'quantity'=>15,'price'=>110]);
         PurchaseDetail::create(['purchase_master_id'=>5,'product_id'=>15,'unit_id'=>3,'quantity'=>8,'price'=>225]);
@@ -288,7 +288,7 @@ class DatabaseSeeder extends Seeder
         TransactionDetail::create(['transaction_master_id'=>6,'transaction_type_id'=>2,'ledger_id'=>1,'amount'=>0]);
 
         // purchase Master  6  TransactionMaster:7
-        purchaseMaster::create(['discount'=>0]);
+        PurchaseMaster::create(['discount'=>0]);
         PurchaseDetail::create(['purchase_master_id'=>6,'product_id'=>1,'unit_id'=>3,'quantity'=>6,'price'=>130]);
         PurchaseDetail::create(['purchase_master_id'=>6,'product_id'=>4,'unit_id'=>3,'quantity'=>15,'price'=>110]);
         PurchaseDetail::create(['purchase_master_id'=>6,'product_id'=>5,'unit_id'=>3,'quantity'=>8,'price'=>425]);

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\PersonType;
 use App\Model\Product;
-use App\Model\PurchaseMaster;
+use App\Model\purchaseMaster;
 use App\Model\PurchaseDetail;
 use App\Model\TransactionDetail;
 use App\Model\TransactionMaster;
@@ -18,13 +18,13 @@ class PurchaseController extends Controller
 {
 
     public function testPurchase(){
-        $test = PurchaseMaster::find(2)->transaction;
+        $test = purchaseMaster::find(2)->transaction;
 
 //        $test = User::doesnthave('purchases')->where('person_type_id','=',11)->get();
         return response()->json(['success'=>1,'purchase'=>$test], 200,[],JSON_NUMERIC_CHECK);
     }
     public function purchasseById($id){
-        $purchaseMaster=PurchaseMaster::find($id);
+        $purchaseMaster=purchaseMaster::find($id);
         $purchaseMaster->setAttribute('vendor', $purchaseMaster->vendor);
         $purchaseMaster->purchaseDetails;
         $total_amount=0;
@@ -44,7 +44,7 @@ class PurchaseController extends Controller
     public function purchaseByInvoice($invoice){
         //$purchaseMaster=purchaseMaster::find($id);
 
-        $purchaseMaster=PurchaseMaster::where('invoice_number', '=', $invoice)->first();
+        $purchaseMaster=purchaseMaster::where('invoice_number', '=', $invoice)->first();
         $purchaseMaster->setAttribute('vendor', $purchaseMaster->vendor);
         $purchaseMaster->purchaseDetails;
         $total_amount=0;
