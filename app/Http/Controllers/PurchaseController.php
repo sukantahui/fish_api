@@ -72,6 +72,8 @@ class PurchaseController extends Controller
         $inputTransactionMaster=(object)($input['transaction_master']);
         $inputTransactionDetails=($input['transaction_details']);
 
+//        return response()->json(['success'=>1,'data'=>13], 200,[],JSON_NUMERIC_CHECK);
+
         DB::beginTransaction();
         try{
             //save data into purchase_masters
@@ -121,7 +123,10 @@ class PurchaseController extends Controller
 //            'inputTransactionMaster'=>$inputTransactionMaster,'inputTransactionDetails'=>$inputTransactionDetails], 200);
     }
     public function getAllPurchases(){
-        $purchases = Voucher::find(2)->transactionMasters;
-        return response()->json(['success'=>1,'data'=>$purchases], 200,[],JSON_NUMERIC_CHECK);
+        $transactions = Voucher::find(2)->transactionMasters;
+        foreach ($transactions as $transaction){
+            $transaction->setAttribute('transaction_details', $transaction->transactionDetails);
+        }
+        return response()->json(['success'=>1,'data'=>$transactions], 200,[],JSON_NUMERIC_CHECK);
     }
 }
