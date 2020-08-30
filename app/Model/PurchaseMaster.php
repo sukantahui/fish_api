@@ -6,17 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class PurchaseMaster extends Model
 {
-    protected $visible = [
-        "id","invoice_number","purchase_date","vendor_id","employee_id","discount","round_off"
-    ];
+//    protected $visible = [
+//        "id","invoice_number","purchase_date","vendor_id","employee_id","discount","round_off"
+//    ];
 
-    protected $hidden = [
-        "inforced","created_at","updated_at"
-    ];
+
     private $discount;
     private $round_off;
     private $loading_n_unloading_expenditure;
-
+    protected $hidden = ["inforce","created_at","updated_at"];
     public function vendor()
     {
         return $this->belongsTo('App\User','vendor_id');

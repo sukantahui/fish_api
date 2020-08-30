@@ -14,9 +14,7 @@ class TransactionMaster extends Model
     private $purchase_master_id;
     private $sale_master_id;
     private $employee_id;
-
-    protected $visible = ['id','transaction_date','transaction_number','voucher_id','purchase_master_id','sale_master_id','employee_id'];
-
+    protected $hidden = ["inforce","created_at","updated_at"];
     public function voucher()
     {
         return $this->belongsTo('App\Model\Voucher','voucher_id');

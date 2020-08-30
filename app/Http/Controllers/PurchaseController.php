@@ -123,8 +123,13 @@ class PurchaseController extends Controller
 //            'inputTransactionMaster'=>$inputTransactionMaster,'inputTransactionDetails'=>$inputTransactionDetails], 200);
     }
     public function getAllPurchases(){
-        $purchaseMaster=purchaseMaster::find(1);
-        $purchaseMaster->setAttribute('vendor', 'asdfasdfasdf');
-        return response()->json(['success'=>1,'data'=>$purchaseMaster], 200,[],JSON_NUMERIC_CHECK);
+        $purchaseMasters=TransactionMaster::where('voucher_id','=',2)->orderBy('id', 'desc')->get();
+        foreach ($purchaseMasters as $purchaseMaster){
+            foreach($purchaseMaster->transactionDetails as $transactionDetail){
+                $transactionDetail->ledger->transaction_type;
+            }
+        }
+
+        return response()->json(['success'=>1,'data'=>$purchaseMasters], 200,[],JSON_NUMERIC_CHECK);
     }
 }
