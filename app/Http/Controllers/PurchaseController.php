@@ -112,9 +112,9 @@ class PurchaseController extends Controller
         }
         catch(\Exception $e){
             DB::rollBack();
-            return response()->json(['Success'=>0,'Exception'=>$e->getMessage()], 401);
+            return response()->json(['success'=>0,'exception'=>$e->getMessage()], 401);
         }
-        return response()->json(['Success'=>1,'data'=>$purchaseMaster], 200);
+        return response()->json(['success'=>1,'data'=>$transactionMaster->id], 200);
 
 //        return response()->json(['Success'=>1,'inputPurchaseMaster'=>$inputPurchaseMaster,'inputPurchaseDetails'=>$inputPurchaseDetails,
 //            'inputTransactionMaster'=>$inputTransactionMaster,'inputTransactionDetails'=>$inputTransactionDetails], 200);
