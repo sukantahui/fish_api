@@ -6,26 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class TransactionMaster extends Model
 {
-    /**
-     * @var mixed
-     */
+
+    private $id;
     private $transaction_date;
-    /**
-     * @var mixed
-     */
     private $transaction_number;
-    /**
-     * @var mixed
-     */
     private $voucher_id;
-    /**
-     * @var mixed
-     */
     private $purchase_master_id;
-    /**
-     * @var mixed
-     */
+    private $sale_master_id;
     private $employee_id;
+
+    protected $visible = ['id','transaction_date','transaction_number','voucher_id','purchase_master_id','sale_master_id','employee_id'];
 
     public function voucher()
     {

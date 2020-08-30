@@ -9,6 +9,7 @@ use App\Model\PurchaseDetail;
 use App\Model\TransactionDetail;
 use App\Model\TransactionMaster;
 use App\Model\Unit;
+use App\Model\Voucher;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -119,5 +120,8 @@ class PurchaseController extends Controller
 //        return response()->json(['Success'=>1,'inputPurchaseMaster'=>$inputPurchaseMaster,'inputPurchaseDetails'=>$inputPurchaseDetails,
 //            'inputTransactionMaster'=>$inputTransactionMaster,'inputTransactionDetails'=>$inputTransactionDetails], 200);
     }
-
+    public function getAllPurchases(){
+        $purchases = Voucher::find(2)->transactionMasters;
+        return response()->json(['success'=>1,'data'=>$purchases], 200,[],JSON_NUMERIC_CHECK);
+    }
 }
