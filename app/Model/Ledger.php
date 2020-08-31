@@ -26,4 +26,8 @@ class Ledger extends Model
     {
         return $this->belongsTo('App\Model\TransactionType','transaction_type_id');
     }
+    public function ledger_group()
+    {
+        return $this->belongsTo('App\Model\LedgerGroup','ledger_group_id');
+    }
 }

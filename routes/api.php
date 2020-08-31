@@ -68,7 +68,7 @@ Route::post('/purchases', 'PurchaseController@savePurchase');
 Route::get('/testPurchase', 'PurchaseController@testPurchase');
 
 
-Route::get('/purchasesDetails/{id}', 'PurchaseController@getPurchaseDetailsByTransactionMasterID');
+Route::get('/purchaseDetails/{id}', 'PurchaseController@getPurchaseDetailsByTransactionMasterID');
 
 
 

@@ -22,4 +22,7 @@ class TransactionMaster extends Model
     public function transactionDetails() {
         return $this->hasMany('App\Model\TransactionDetail', 'transaction_master_id');
     }
+    public function purchaseMaster(){
+        return $this->belongsTo('App\Model\PurchaseMaster','purchase_master_id');
+    }
 }

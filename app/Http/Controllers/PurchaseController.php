@@ -177,7 +177,12 @@ class PurchaseController extends Controller
     }
     public function getPurchaseDetailsByTransactionMasterID($id){
         $transactionMaster=TransactionMaster::find($id);
-        $transactionMaster->transactionDetails;
-        return response()->json(['success'=>1,'purchase'=>$transactionMaster], 200,[],JSON_NUMERIC_CHECK);
+        foreach($transactionMaster->transactionDetails as $transactionDetail){
+            $transactionDetail->ledger->ledger_group;
+            $transactionDetail->transaction_type;
+        }
+        $transactionMaster->purchaseMaster->purchaseDetails;
+
+        return response()->json(['success'=>1,'transaction_master'=>$transactionMaster], 200,[],JSON_NUMERIC_CHECK);
     }
 }
