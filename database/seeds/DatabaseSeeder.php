@@ -173,7 +173,7 @@ class DatabaseSeeder extends Seeder
         Ledger::create(['ledger_name'=>'Sales','billing_name'=>'Sales','ledger_group_id'=>19,'email'=>'','mobile1'=>'','mobile2'=>'','opening_balance'=>0,'transaction_type_id'=>2]);
 
 
-        //4. Rent
+        //5. Rent
         Ledger::create(['ledger_name'=>'Rent','billing_name'=>'Rent','ledger_group_id'=>2,'email'=>'','mobile1'=>'','mobile2'=>'','opening_balance'=>0,'transaction_type_id'=>1]);
 
 
@@ -227,7 +227,7 @@ class DatabaseSeeder extends Seeder
         PurchaseDetail::create(['purchase_master_id'=>1,'product_id'=>6,'unit_id'=>3,'quantity'=>5,'price'=>420]);
         TransactionMaster::create(['voucher_id'=>2,'transaction_date'=>'2020-07-20','purchase_master_id'=>1,'transaction_number'=>'CDFA-00001-2021','employee_id'=>1]);
         TransactionDetail::create(['transaction_master_id'=>2,'transaction_type_id'=>1,'ledger_id'=>3,'amount'=>0]);
-        TransactionDetail::create(['transaction_master_id'=>2,'transaction_type_id'=>2,'ledger_id'=>5,'amount'=>0]);
+        TransactionDetail::create(['transaction_master_id'=>2,'transaction_type_id'=>2,'ledger_id'=>6,'amount'=>0]);
 
 
 

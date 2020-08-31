@@ -123,13 +123,15 @@ class PurchaseController extends Controller
 //            'inputTransactionMaster'=>$inputTransactionMaster,'inputTransactionDetails'=>$inputTransactionDetails], 200);
     }
     public function getAllPurchases(){
-        $purchaseMasters=TransactionMaster::where('voucher_id','=',2)->orderBy('id', 'desc')->get();
-        foreach ($purchaseMasters as $purchaseMaster){
-            foreach($purchaseMaster->transactionDetails as $transactionDetail){
-                $transactionDetail->ledger->transaction_type;
-            }
-        }
+//        $purchaseMasters=TransactionMaster::where('voucher_id','=',2)->orderBy('id', 'desc')->get();
+//        foreach ($purchaseMasters as $purchaseMaster){
+//            foreach($purchaseMaster->transactionDetails as $transactionDetail){
+//                $transactionDetail->ledger->transaction_type;
+//            }
+//        }
 
-        return response()->json(['success'=>1,'data'=>$purchaseMasters], 200,[],JSON_NUMERIC_CHECK);
+//        $result=TransactionMaster::join('transaction_details', 'transaction_masters.id', '=', 'transaction_details.transaction_master_id')->get();
+        $result = TransactionMaster::joinRelationship('transaction_details')->get();
+        return response()->json(['success'=>1,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
     }
 }
