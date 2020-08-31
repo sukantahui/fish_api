@@ -117,7 +117,20 @@ class PurchaseController extends Controller
             DB::rollBack();
             return response()->json(['success'=>0,'exception'=>$e->getMessage()], 401);
         }
-        return response()->json(['success'=>1,'data'=>$transactionMaster->id], 200);
+        $purchaseVoucher=TransactionMaster::join('transaction_details', 'transaction_masters.id', '=', 'transaction_details.transaction_master_id')
+            ->join('ledgers', 'ledgers.id', '=', 'transaction_details.ledger_id')
+            ->where('transaction_masters.voucher_id', '=', 2)
+            ->where('transaction_details.transaction_type_id','=',2)
+            ->where('transaction_masters.id','=',$transactionMaster->id)
+            ->select('transaction_masters.id'
+                ,'transaction_masters.transaction_number'
+                , DB::raw('date_format(transaction_masters.transaction_date,"%D %b %Y") as formatted_transaction_date')
+                ,'transaction_masters.transaction_date'
+                ,'ledgers.ledger_name'
+                , DB::raw('get_purchase_amount_by_transaction_master_id(transaction_masters.id) as bill_amount')
+            )
+            ->first();
+        return response()->json(['success'=>1,'data'=>$purchaseVoucher], 200);
 
 //        return response()->json(['Success'=>1,'inputPurchaseMaster'=>$inputPurchaseMaster,'inputPurchaseDetails'=>$inputPurchaseDetails,
 //            'inputTransactionMaster'=>$inputTransactionMaster,'inputTransactionDetails'=>$inputTransactionDetails], 200);
@@ -148,7 +161,8 @@ class PurchaseController extends Controller
 
         $result=TransactionMaster::join('transaction_details', 'transaction_masters.id', '=', 'transaction_details.transaction_master_id')
             ->join('ledgers', 'ledgers.id', '=', 'transaction_details.ledger_id')
-            ->where('transaction_masters.voucher_id', '=', 2)->where('transaction_details.transaction_type_id','=',2)
+            ->where('transaction_masters.voucher_id', '=', 2)
+            ->where('transaction_details.transaction_type_id','=',2)
             ->select('transaction_masters.id'
                 ,'transaction_masters.transaction_number'
                 , DB::raw('date_format(transaction_masters.transaction_date,"%D %b %Y") as formatted_transaction_date')
