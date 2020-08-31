@@ -130,8 +130,15 @@ class PurchaseController extends Controller
 //            }
 //        }
 
-//        $result=TransactionMaster::join('transaction_details', 'transaction_masters.id', '=', 'transaction_details.transaction_master_id')->get();
-        $result = TransactionMaster::joinRelationship('transaction_details')->get();
+        $result=TransactionMaster::join('transaction_details', 'transaction_masters.id', '=', 'transaction_details.transaction_master_id')
+            ->join('ledgers', 'ledgers.id', '=', 'transaction_details.ledger_id')
+            ->whereIn('transaction_masters.id', function($query) {
+                return $query->fromSub(function($subQuery){
+                    $subQuery->select('id')->from('vouchers')->where('vouchers.voucher_name','=','purchase_voucher')->limit(1);
+                });
+            })->get();
+
+
         return response()->json(['success'=>1,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
     }
 }
