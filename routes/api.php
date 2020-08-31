@@ -68,6 +68,10 @@ Route::post('/purchases', 'PurchaseController@savePurchase');
 Route::get('/testPurchase', 'PurchaseController@testPurchase');
 
 
+Route::get('/purchasesDetails/{id}', 'PurchaseController@getPurchaseDetailsByTransactionMasterID');
+
+
+
 //unit
 Route::get('/units', 'UnitController@index');
 

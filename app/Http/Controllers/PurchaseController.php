@@ -175,4 +175,9 @@ class PurchaseController extends Controller
 
         return response()->json(['success'=>1,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
     }
+    public function getPurchaseDetailsByTransactionMasterID($id){
+        $transactionMaster=TransactionMaster::find($id);
+        $transactionMaster->transactionDetails;
+        return response()->json(['success'=>1,'purchase'=>$transactionMaster], 200,[],JSON_NUMERIC_CHECK);
+    }
 }
