@@ -130,13 +130,33 @@ class PurchaseController extends Controller
 //            }
 //        }
 
+
+        // To select all Purchase Vouchers
+        /*  select
+                tm.id
+                 ,tm.transaction_number
+                 , tm.transaction_date
+                 , date_format(tm.transaction_date,'%D %b %Y') as formatted_transaction_date
+                 , get_purchase_amount_by_transaction_master_id(tm.id) as bill_amount
+                  ,l.ledger_name
+            from transaction_masters as tm
+            inner join transaction_details td on tm.id = td.transaction_master_id
+            inner join ledgers l on td.ledger_id = l.id
+            where tm.voucher_id =2 and td.transaction_type_id=2
+      */
+
+
         $result=TransactionMaster::join('transaction_details', 'transaction_masters.id', '=', 'transaction_details.transaction_master_id')
             ->join('ledgers', 'ledgers.id', '=', 'transaction_details.ledger_id')
-            ->whereIn('transaction_masters.id', function($query) {
-                return $query->fromSub(function($subQuery){
-                    $subQuery->select('id')->from('vouchers')->where('vouchers.voucher_name','=','purchase_voucher')->limit(1);
-                });
-            })->get();
+            ->where('transaction_masters.voucher_id', '=', 2)->where('transaction_details.transaction_type_id','=',2)
+            ->select('transaction_masters.id'
+                ,'transaction_masters.transaction_number'
+                , DB::raw('date_format(transaction_masters.transaction_date,"%D %b %Y") as formatted_transaction_date')
+                ,'transaction_masters.transaction_date'
+                ,'ledgers.ledger_name'
+                , DB::raw('get_purchase_amount_by_transaction_master_id(transaction_masters.id) as bill_amount')
+            )
+            ->get();
 
 
         return response()->json(['success'=>1,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
