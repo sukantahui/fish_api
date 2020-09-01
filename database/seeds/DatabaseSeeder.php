@@ -104,7 +104,10 @@ class DatabaseSeeder extends Seeder
             ['product_code'=>'R1','product_name'=>'Ruhi Less than 1 KG','product_category_id'=>1],
             ['product_code'=>'R2','product_name'=>'Ruhi Between 1 and half','product_category_id'=>1],
             ['product_code'=>'R3','product_name'=>'Ruhi Greater than 1.5 and less than 2KG','product_category_id'=>1],
-            ['product_code'=>'R4','product_name'=>'Ruhi Greater than 2KG','product_category_id'=>1]
+            ['product_code'=>'R4','product_name'=>'Ruhi Greater than 2KG','product_category_id'=>1],
+            ['product_code'=>'R5','product_name'=>'Ruhi Greater than 3KG','product_category_id'=>1],
+            ['product_code'=>'R6','product_name'=>'Ruhi Greater than 4KG','product_category_id'=>1],
+            ['product_code'=>'R7','product_name'=>'Ruhi Greater than 5KG','product_category_id'=>1],
         ]);
 
         //Product Katla
