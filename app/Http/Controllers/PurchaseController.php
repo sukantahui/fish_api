@@ -186,10 +186,14 @@ class PurchaseController extends Controller
             $transactionDetail->ledger->ledger_group;
             $transactionDetail->transaction_type;
         }
+        $amount=0;
         foreach($transactionMaster->purchaseMaster->purchaseDetails as $purchaseDetail){
             $purchaseDetail->product;
             $purchaseDetail->unit;
+            $amount += $purchaseDetail->quantity * $purchaseDetail->price - $purchaseDetail->discount;
         }
+        $transactionMaster->setAttribute('total_amount',$amount);
+
 
 
         return response()->json(['success'=>1,'data'=>$transactionMaster], 200,[],JSON_NUMERIC_CHECK);
