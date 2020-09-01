@@ -10,7 +10,7 @@ class ProductCategoryController extends Controller
 {
     public function getProductCategories()
     {
-        $data=ProductCategory::select()->get();
+        $data = ProductCategory::has('products')->get();
         return response()->json(['success'=>1,'data'=>$data], 200,[],JSON_NUMERIC_CHECK);
     }
 
