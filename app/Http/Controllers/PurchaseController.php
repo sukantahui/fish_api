@@ -178,11 +178,19 @@ class PurchaseController extends Controller
     public function getPurchaseDetailsByTransactionMasterID($id){
 //        $transactionMaster = TransactionMaster::where('voucher_id','=',2)->first();
         $transactionMaster=TransactionMaster::find($id);
-        foreach($transactionMaster->transactionDetails as $transactionDetail){
+//        foreach($transactionMaster->transactionDetails as $transactionDetail){
+//            $transactionDetail->ledger->ledger_group;
+//            $transactionDetail->transaction_type;
+//        }
+        foreach($transactionMaster->creditTransactionDetails as $transactionDetail){
             $transactionDetail->ledger->ledger_group;
             $transactionDetail->transaction_type;
         }
-        $transactionMaster->purchaseMaster->purchaseDetails;
+        foreach($transactionMaster->purchaseMaster->purchaseDetails as $purchaseDetail){
+            $purchaseDetail->product;
+            $purchaseDetail->unit;
+        }
+
 
         return response()->json(['success'=>1,'data'=>$transactionMaster], 200,[],JSON_NUMERIC_CHECK);
     }

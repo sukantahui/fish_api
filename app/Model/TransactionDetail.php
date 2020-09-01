@@ -16,6 +16,7 @@ class TransactionDetail extends Model
     {
         return $this->belongsTo('App\Model\Ledger','ledger_id');
     }
+
     public function transaction_type()
     {
         return $this->belongsTo('App\Model\TransactionType','transaction_type_id');

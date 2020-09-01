@@ -15,4 +15,12 @@ class PurchaseDetail extends Model
     private $price;
     private $discount;
     protected $hidden = ["inforce","created_at","updated_at"];
+    public function product()
+    {
+        return $this->belongsTo('App\Model\Product','product_id');
+    }
+    public function unit()
+    {
+        return $this->belongsTo('App\Model\Unit','unit_id');
+    }
 }

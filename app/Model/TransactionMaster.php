@@ -20,7 +20,10 @@ class TransactionMaster extends Model
         return $this->belongsTo('App\Model\Voucher','voucher_id');
     }
     public function transactionDetails() {
-        return $this->hasMany('App\Model\TransactionDetail', 'transaction_master_id');
+        return $this->hasMany('App\Model\TransactionDetail', 'transaction_master_id')->where('transaction_type_id','=',2);
+    }
+    public function creditTransactionDetails() {
+        return $this->hasMany('App\Model\TransactionDetail', 'transaction_master_id')->where('transaction_type_id','=',2);
     }
     public function purchaseMaster(){
         return $this->belongsTo('App\Model\PurchaseMaster','purchase_master_id');
