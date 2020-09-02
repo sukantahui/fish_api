@@ -5,35 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Model\PersonType;
+use App\Model\LedgerGroup;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 class CustomerController extends Controller
 {
     public function index()
     {
-//        $customers = PersonType::find(10)->people;
-        $query = User::select('id',
-            'person_name',
-            'person_type_id',
-            'email',
-            'mobile1',
-            'mobile2',
-            'customer_category_id',
-            'address1',
-            'address2',
-            'state',
-            'city',
-            'po',
-            'area',
-            'pin')->where('person_type_id','=',10);
+		$customers=LedgerGroup::find(16)->ledgers;
+		$subset = $customers->map(function ($customer) {
+			return $customer->only(['id', 'ledger_name','billing_name','ledger_group_id','email','mobile1',
+				'mobile2','address1','address2','city','state','po','area','pin','opening_balance','transaction_type_id']);
+		});
 
-        //to bind the parameters, the above statement does not bind the parameters so we need to bind them
-        // using following statement
-        $finalQuery=Str::replaceArray('?', $query->getBindings(), $query->toSql());
-
-        $result=DB::table(DB::raw("($finalQuery) as table1"))->select()->get();
-
-        return response()->json(['success'=>1,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>$subset], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function getCustomerById($id)
