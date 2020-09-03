@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Ledger;
 use Illuminate\Http\Request;
 use App\User;
 use App\Model\PersonType;
@@ -23,34 +24,21 @@ class CustomerController extends Controller
 
     public function getCustomerById($id)
     {
-//        $customers = PersonType::find(10)->people;
-        $result = User::select('id',
-            'person_name',
-            'person_type_id',
-            'email',
-            'mobile1',
-            'mobile2',
-            'customer_category_id',
-            'address1',
-            'address2',
-            'state',
-            'city',
-            'po',
-            'area',
-            'pin')->where('id',$id)->where('person_type_id','=',10)->first();
+        $customer = Ledger::find($id)
+            ->only(['id', 'ledger_name','billing_name','ledger_group_id','email','mobile1',
+                'mobile2','address1','address2','city','state','po','area','pin','opening_balance','transaction_type_id']);
 
-        return response()->json(['success'=>1,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
+        return response()->json(['success'=>1,'data'=>$customer], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function saveCustomer(Request $request)
     {
-        $customer=new User();
+        $customer=new Ledger();
 
-        $customer->person_name=$request->input('person_name');
+        $customer->ledger_name=$request->input('ledger_name');
+        $customer->billing_name=$request->input('billing_name');
+        $customer->ledger_group_id=$request->input('ledger_group_id');
         $customer->email=$request->input('email');
-        $customer->password="81dc9bdb52d04dc20036dbd8313ed055";
-        $customer->person_type_id=10;
-        $customer->customer_category_id=$request->input('customer_category_id');
         $customer->mobile1=$request->input('mobile1');
         $customer->mobile2=$request->input('mobile2');
         $customer->address1=$request->input('address1');
@@ -60,6 +48,8 @@ class CustomerController extends Controller
         $customer->area=$request->input('area');
         $customer->city=$request->input('city');
         $customer->pin=$request->input('pin');
+        $customer->opening_balance=$request->input('opening_balance');
+        $customer->transaction_type_id=$request->input('transaction_type_id');
 
         $customer->save();
         return response()->json(['success'=>1,'data'=>$customer], 200);
@@ -67,23 +57,18 @@ class CustomerController extends Controller
 
     public function updateCustomer(Request $request)
     {
-        $customer=User::find($request->input('id'));
-        if($request->input('person_name')){
-            $customer->person_name=$request->input('person_name');
+        $customer=Ledger::find($request->input('id'));
+        if($request->input('ledger_name')){
+            $customer->ledger_name=$request->input('ledger_name');
+        }
+        if($request->input('billing_name')){
+            $customer->billing_name=$request->input('billing_name');
         }
         if($request->input('email')){
             $customer->email=$request->input('email');
         }
         if($request->input('password')){
             $customer->password=$request->input('password');
-        }
-
-        if($request->input('person_type_id')){
-            $customer->person_type_id=$request->input('person_type_id');
-        }
-
-        if($request->input('customer_category_id')){
-            $customer->customer_category_id=$request->input('customer_category_id');
         }
 
         if($request->input('mobile1')){
@@ -121,7 +106,12 @@ class CustomerController extends Controller
         if($request->input('pin')){
             $customer->pin=$request->input('pin');
         }
-
+        if($request->input('opening_balance')){
+            $customer->pin=$request->input('opening_balance');
+        }
+        if($request->input('transaction_type_id')){
+            $customer->pin=$request->input('transaction_type_id');
+        }
 
         $customer->save();
         return response()->json(['success'=>1,'data'=>$customer], 200,[],JSON_NUMERIC_CHECK);
@@ -129,22 +119,14 @@ class CustomerController extends Controller
     public function updateCustomerByID($id,Request $request)
     {
         $customer=User::find($id);
-        if($request->input('person_name')){
-            $customer->person_name=$request->input('person_name');
+        if($request->input('ledger_name')){
+            $customer->ledger_name=$request->input('ledger_name');
+        }
+        if($request->input('billing_name')){
+            $customer->billing_name=$request->input('billing_name');
         }
         if($request->input('email')){
             $customer->email=$request->input('email');
-        }
-        if($request->input('password')){
-            $customer->password=$request->input('password');
-        }
-
-        if($request->input('person_type_id')){
-            $customer->person_type_id=$request->input('person_type_id');
-        }
-
-        if($request->input('customer_category_id')){
-            $customer->customer_category_id=$request->input('customer_category_id');
         }
 
         if($request->input('mobile1')){
@@ -182,14 +164,20 @@ class CustomerController extends Controller
         if($request->input('pin')){
             $customer->pin=$request->input('pin');
         }
+        if($request->input('opening_balance')){
+            $customer->pin=$request->input('opening_balance');
+        }
 
+        if($request->input('transaction_type_id')){
+            $customer->pin=$request->input('transaction_type_id');
+        }
 
         $customer->save();
         return response()->json(['success'=>1,'data'=>$customer], 200,[],JSON_NUMERIC_CHECK);
     }
     public function deleteCustomerByID($id)
     {
-        $res = User::destroy($id);
+        $res = Ledger::destroy($id);
         if ($res) {
             return response()->json(['success'=>1,'message'=>'Deleted'], 200,[],JSON_NUMERIC_CHECK);
         } else {
