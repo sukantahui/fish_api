@@ -31,8 +31,6 @@ class CreateTransactionMastersTable extends Migration
 
             $table->bigInteger('employee_id')->unsigned();
             $table ->foreign('employee_id')->references('id')->on('users');
-
-
             $table->timestamps();
         });
     }
