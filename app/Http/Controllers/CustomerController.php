@@ -15,7 +15,7 @@ class CustomerController extends Controller
     {
 		$customers=LedgerGroup::find(16)->ledgers;
 		$subset = $customers->map(function ($customer) {
-			return $customer->only(['id', 'ledger_name','billing_name','ledger_group_id','email','mobile1',
+			return $customer->only(['id', 'ledger_name','billing_name','ledger_group_id','customer_category_id','email','mobile1',
 				'mobile2','address1','address2','city','state','po','area','pin','opening_balance','transaction_type_id']);
 		});
 
@@ -25,7 +25,7 @@ class CustomerController extends Controller
     public function getCustomerById($id)
     {
         $customer = Ledger::find($id)
-            ->only(['id', 'ledger_name','billing_name','ledger_group_id','email','mobile1',
+            ->only(['id', 'ledger_name','billing_name','ledger_group_id','customer_category_id','email','mobile1',
                 'mobile2','address1','address2','city','state','po','area','pin','opening_balance','transaction_type_id']);
 
         return response()->json(['success'=>1,'data'=>$customer], 200,[],JSON_NUMERIC_CHECK);
@@ -38,6 +38,7 @@ class CustomerController extends Controller
         $customer->ledger_name=$request->input('ledger_name');
         $customer->billing_name=$request->input('billing_name');
         $customer->ledger_group_id=$request->input('ledger_group_id');
+        $customer->customer_category_id=$request->input('customer_category_id');
         $customer->email=$request->input('email');
         $customer->mobile1=$request->input('mobile1');
         $customer->mobile2=$request->input('mobile2');
@@ -63,6 +64,9 @@ class CustomerController extends Controller
         }
         if($request->input('billing_name')){
             $customer->billing_name=$request->input('billing_name');
+        }
+        if($request->input('customer_category_id')){
+            $customer->customer_category_id=$request->input('customer_category_id');
         }
         if($request->input('email')){
             $customer->email=$request->input('email');
@@ -124,6 +128,9 @@ class CustomerController extends Controller
         }
         if($request->input('billing_name')){
             $customer->billing_name=$request->input('billing_name');
+        }
+        if($request->input('customer_category_id')){
+            $customer->billing_name=$request->input('customer_category_id');
         }
         if($request->input('email')){
             $customer->email=$request->input('email');
