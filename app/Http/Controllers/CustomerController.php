@@ -53,7 +53,9 @@ class CustomerController extends Controller
         $customer->transaction_type_id=$request->input('transaction_type_id');
 
         $customer->save();
-        return response()->json(['success'=>1,'data'=>$customer], 200);
+        $subset = $customer->only(['id', 'ledger_name','billing_name','ledger_group_id','customer_category_id','email','mobile1',
+            'mobile2','address1','address2','city','state','po','area','pin','opening_balance','transaction_type_id']);
+        return response()->json(['success'=>1,'data'=>$subset], 200);
     }
 
     public function updateCustomer(Request $request)
@@ -111,10 +113,10 @@ class CustomerController extends Controller
             $customer->pin=$request->input('pin');
         }
         if($request->input('opening_balance')){
-            $customer->pin=$request->input('opening_balance');
+            $customer->opening_balance=$request->input('opening_balance');
         }
         if($request->input('transaction_type_id')){
-            $customer->pin=$request->input('transaction_type_id');
+            $customer->transaction_type_id=$request->input('transaction_type_id');
         }
 
         $customer->save();
@@ -130,7 +132,7 @@ class CustomerController extends Controller
             $customer->billing_name=$request->input('billing_name');
         }
         if($request->input('customer_category_id')){
-            $customer->billing_name=$request->input('customer_category_id');
+            $customer->customer_category_id=$request->input('customer_category_id');
         }
         if($request->input('email')){
             $customer->email=$request->input('email');
@@ -172,11 +174,11 @@ class CustomerController extends Controller
             $customer->pin=$request->input('pin');
         }
         if($request->input('opening_balance')){
-            $customer->pin=$request->input('opening_balance');
+            $customer->opening_balance=$request->input('opening_balance');
         }
 
         if($request->input('transaction_type_id')){
-            $customer->pin=$request->input('transaction_type_id');
+            $customer->transaction_type_id=$request->input('transaction_type_id');
         }
 
         $customer->save();
