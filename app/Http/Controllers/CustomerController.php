@@ -120,7 +120,9 @@ class CustomerController extends Controller
         }
 
         $customer->save();
-        return response()->json(['success'=>1,'data'=>$customer], 200,[],JSON_NUMERIC_CHECK);
+        $subset = $customer->only(['id', 'ledger_name','billing_name','ledger_group_id','customer_category_id','email','mobile1',
+            'mobile2','address1','address2','city','state','po','area','pin','opening_balance','transaction_type_id']);
+        return response()->json(['success'=>1,'data'=>$subset], 200,[],JSON_NUMERIC_CHECK);
     }
     public function updateCustomerByID($id,Request $request)
     {
@@ -182,7 +184,9 @@ class CustomerController extends Controller
         }
 
         $customer->save();
-        return response()->json(['success'=>1,'data'=>$customer], 200,[],JSON_NUMERIC_CHECK);
+        $subset = $customer->only(['id', 'ledger_name','billing_name','ledger_group_id','customer_category_id','email','mobile1',
+            'mobile2','address1','address2','city','state','po','area','pin','opening_balance','transaction_type_id']);
+        return response()->json(['success'=>1,'data'=>$subset], 200,[],JSON_NUMERIC_CHECK);
     }
     public function deleteCustomerByID($id)
     {

@@ -145,7 +145,9 @@ class VendorController extends Controller
         }
 
         $vendor->save();
-        return response()->json(['success'=>1,'data'=>$vendor], 200,[],JSON_NUMERIC_CHECK);
+        $subset = $vendor->only(['id', 'ledger_name','billing_name','ledger_group_id','email','mobile1',
+            'mobile2','address1','address2','city','state','po','area','pin','opening_balance','transaction_type_id']);
+        return response()->json(['success'=>1,'data'=>$subset], 200,[],JSON_NUMERIC_CHECK);
     }
     public function updateVendorByID($id,Request $request)
     {
@@ -206,7 +208,9 @@ class VendorController extends Controller
         }
 
         $vendor->save();
-        return response()->json(['success'=>1,'data'=>$vendor], 200,[],JSON_NUMERIC_CHECK);
+        $subset = $vendor->only(['id', 'ledger_name','billing_name','ledger_group_id','email','mobile1',
+            'mobile2','address1','address2','city','state','po','area','pin','opening_balance','transaction_type_id']);
+        return response()->json(['success'=>1,'data'=>$subset], 200,[],JSON_NUMERIC_CHECK);
     }
 //    public function deleteVendorByID($id)
 //    {
