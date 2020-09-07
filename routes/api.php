@@ -22,49 +22,68 @@ Route::post('/login', 'AuthController@login');
 Route::get('/me', 'AuthController@me');
 Route::delete('/customers/{id}', 'CustomerController@deleteCustomer');
 
+Route::group(array('prefix' => 'dev'), function()
+{
+    //productCategories
+    Route::get('/productCategories', 'ProductCategoryController@getProductCategories');
+    Route::post('/productCategories', 'ProductCategoryController@saveProductCategory');
+    Route::patch('/productCategories', 'ProductCategoryController@updateProductCategory');
+    Route::patch('/productCategories/{id}', 'ProductCategoryController@updateProductCategoryBy');
+
+    //products
+    Route::get('/products', 'ProductController@index');
+    Route::post('/products', 'ProductController@saveProduct');
+    Route::patch('/products', 'ProductController@updateProduct');
+    Route::patch('/products/{id}', 'ProductController@updateProductByID');
+    Route::delete('/products/{id}', 'ProductController@deleteProduct');
+
+    //customers
+    Route::get('/customers', 'CustomerController@index');
+    Route::get('/customers/{id}', 'CustomerController@getCustomerById');
+    Route::post('/customers', 'CustomerController@saveCustomer');
+    Route::patch('/customers', 'CustomerController@updateCustomer');
+    Route::patch('/customers/{id}', 'CustomerController@updateCustomerByID');
+    Route::delete('/customers/{id}', 'CustomerController@deleteCustomerByID');
+
+    //vendor
+    Route::get('/vendors', 'VendorController@index');
+    Route::get('/vendors/{id}', 'VendorController@getVendorById');
+    Route::post('/vendors', 'VendorController@saveVendor');
+    Route::patch('/vendors', 'VendorController@updateVendor');
+    Route::patch('/vendors/{id}', 'VendorController@updateVendorByID');
+    Route::delete('/vendors/{id}', 'VendorController@deleteVendorByID');
+    Route::get('/vendors/{id}/integrityCount', 'VendorController@getIntegrityCount');
+    Route::get('/vendors/{id}/isDeletable', 'VendorController@isDeletable');
+
+
+    Route::get('/purchases', 'PurchaseController@getAllPurchases');
+    Route::get('/purchases/{id}/id', 'PurchaseController@purchasseById');
+    Route::get('/purchases/{invoice}/invoice', 'PurchaseController@purchaseByInvoice');
+    Route::post('/purchases', 'PurchaseController@savePurchase');
+
+    //unit
+    Route::get('/units', 'UnitController@index');
+
+    //customer Categories
+    Route::get('/customerCategories', 'CustomerCategoryController@index');
+
+});
 
 
 
-Route::get('/productCategories', 'ProductCategoryController@getProductCategories');
-Route::post('/productCategories', 'ProductCategoryController@saveProductCategory');
-Route::patch('/productCategories', 'ProductCategoryController@updateProductCategory');
-Route::patch('/productCategories/{id}', 'ProductCategoryController@updateProductCategoryBy');
 
 
-//products
-Route::get('/products', 'ProductController@index');
-Route::post('/products', 'ProductController@saveProduct');
-Route::patch('/products', 'ProductController@updateProduct');
-Route::patch('/products/{id}', 'ProductController@updateProductByID');
-Route::delete('/products/{id}', 'ProductController@deleteProduct');
-
-//customer Categories
-Route::get('/customerCategories', 'CustomerCategoryController@index');
 
 
-//customers
-Route::get('/customers', 'CustomerController@index');
-Route::get('/customers/{id}', 'CustomerController@getCustomerById');
-Route::post('/customers', 'CustomerController@saveCustomer');
-Route::patch('/customers', 'CustomerController@updateCustomer');
-Route::patch('/customers/{id}', 'CustomerController@updateCustomerByID');
-Route::delete('/customers/{id}', 'CustomerController@deleteCustomerByID');
-
-//vendor
-Route::get('/vendors', 'VendorController@index');
-Route::get('/vendors/{id}', 'VendorController@getVendorById');
-Route::post('/vendors', 'VendorController@saveVendor');
-Route::patch('/vendors', 'VendorController@updateVendor');
-Route::patch('/vendors/{id}', 'VendorController@updateVendorByID');
-Route::delete('/vendors/{id}', 'VendorController@deleteVendorByID');
-Route::get('/vendors/{id}/integrityCount', 'VendorController@getIntegrityCount');
-Route::get('/vendors/{id}/isDeletable', 'VendorController@isDeletable');
 
 
-Route::get('/purchases', 'PurchaseController@getAllPurchases');
-Route::get('/purchases/{id}/id', 'PurchaseController@purchasseById');
-Route::get('/purchases/{invoice}/invoice', 'PurchaseController@purchaseByInvoice');
-Route::post('/purchases', 'PurchaseController@savePurchase');
+
+
+
+
+
+
+
 Route::get('/testPurchase', 'PurchaseController@testPurchase');
 
 
@@ -72,8 +91,7 @@ Route::get('/purchaseDetails/{id}', 'PurchaseController@getPurchaseDetailsByTran
 
 
 
-//unit
-Route::get('/units', 'UnitController@index');
+
 
 Route::get('/testTransaction/{id}', 'TransactionMasterController@testTransaction');
 
@@ -86,20 +104,47 @@ Route::get('/vouchers', 'VoucherController@index');
 Route::group(['middleware' => ['jwt.auth']], function() {
     Route::get('logout', 'AuthController@logout');
 
-//    Route::post('/products', 'ProductController@saveProduct');
-//    Route::patch('/products', 'ProductController@updateProduct');
-//    Route::delete('/products/{id}', 'ProductController@deleteProduct');
+    Route::get('/purchases', 'PurchaseController@getAllPurchases');
+    Route::get('/purchases/{id}/id', 'PurchaseController@purchasseById');
+    Route::get('/purchases/{invoice}/invoice', 'PurchaseController@purchaseByInvoice');
+    Route::post('/purchases', 'PurchaseController@savePurchase');
 
-    Route::get('/materials', 'MaterialController@getMaterials');
-    Route::get('/orderMaterials', 'MaterialController@getOrderMaterials');
+    //vendor
+    Route::get('/vendors', 'VendorController@index');
+    Route::get('/vendors/{id}', 'VendorController@getVendorById');
+    Route::post('/vendors', 'VendorController@saveVendor');
+    Route::patch('/vendors', 'VendorController@updateVendor');
+    Route::patch('/vendors/{id}', 'VendorController@updateVendorByID');
+    Route::delete('/vendors/{id}', 'VendorController@deleteVendorByID');
+    Route::get('/vendors/{id}/integrityCount', 'VendorController@getIntegrityCount');
+    Route::get('/vendors/{id}/isDeletable', 'VendorController@isDeletable');
 
+    //Customers
+    Route::get('/customers', 'CustomerController@index');
+    Route::get('/customers/{id}', 'CustomerController@getCustomerById');
+    Route::post('/customers', 'CustomerController@saveCustomer');
+    Route::patch('/customers', 'CustomerController@updateCustomer');
+    Route::patch('/customers/{id}', 'CustomerController@updateCustomerByID');
+    Route::delete('/customers/{id}', 'CustomerController@deleteCustomerByID');
 
-//    Route::get('/customers', 'CustomerController@index');
-//    Route::post('/customers', 'CustomerController@saveCustomer');
-//    Route::patch('/customers/{id}', 'CustomerController@updateCustomer');
+    //products
+    Route::get('/products', 'ProductController@index');
+    Route::post('/products', 'ProductController@saveProduct');
+    Route::patch('/products', 'ProductController@updateProduct');
+    Route::patch('/products/{id}', 'ProductController@updateProductByID');
+    Route::delete('/products/{id}', 'ProductController@deleteProduct');
 
+    //productCategories
+    Route::get('/productCategories', 'ProductCategoryController@getProductCategories');
+    Route::post('/productCategories', 'ProductCategoryController@saveProductCategory');
+    Route::patch('/productCategories', 'ProductCategoryController@updateProductCategory');
+    Route::patch('/productCategories/{id}', 'ProductCategoryController@updateProductCategoryBy');
 
-    Route::delete('/ordersDetailsDelete/{id}', 'OrderDetailController@deleteOrder');
+    //unit
+    Route::get('/units', 'UnitController@index');
+
+    //customer Categories
+    Route::get('/customerCategories', 'CustomerCategoryController@index');
 
     Route::get('test', function(){
         return response()->json(['foo'=>'bar']);
