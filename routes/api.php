@@ -22,6 +22,9 @@ Route::post('/login', 'AuthController@login');
 Route::get('/me', 'AuthController@me');
 Route::delete('/customers/{id}', 'CustomerController@deleteCustomer');
 
+
+Route::get('/testMails', 'MailController@sendMail');
+
 Route::group(array('prefix' => 'dev'), function()
 {
     //productCategories
