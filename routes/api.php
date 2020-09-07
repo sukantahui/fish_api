@@ -27,6 +27,8 @@ Route::get('/testMails', 'MailController@sendMail');
 
 Route::group(array('prefix' => 'dev'), function()
 {
+	
+	Route::post('/sales', 'SaleController@saveSale');
     //productCategories
     Route::get('/productCategories', 'ProductCategoryController@getProductCategories');
     Route::post('/productCategories', 'ProductCategoryController@saveProductCategory');
@@ -69,7 +71,8 @@ Route::group(array('prefix' => 'dev'), function()
 
     //customer Categories
     Route::get('/customerCategories', 'CustomerCategoryController@index');
-
+	
+	
 });
 
 
