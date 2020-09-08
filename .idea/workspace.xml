@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7010efa0-51c7-419e-880d-a443dc150bac" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/fish_api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fish_api.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/emails/simple.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/simple.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,6 +130,9 @@
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/spatie/temporary-directory" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-backup" />
+      <path value="$PROJECT_DIR$/vendor/spatie/db-dumper" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hBJzEO3dd8A32VIx3pyonNewUe" />
@@ -163,6 +169,7 @@
       <updated>1599478811868</updated>
       <workItem from="1599478816635" duration="1101000" />
       <workItem from="1599481757507" duration="6026000" />
+      <workItem from="1599548530645" duration="5772000" />
     </task>
     <servers />
   </component>
