@@ -21,7 +21,18 @@ class SaleController extends Controller
 		$inputTransactionDetails=$input['transaction_details'];
 		$result =array();
 		DB::beginTransaction();
-        $customVoucher=CustomVoucher::where('voucher_name',"order")->Where('accounting_year',"2020")->first();
+		$temp_date = explode("-",$inputTransactionMaster->transaction_date);
+        $accounting_year="";
+		if($temp_date[1]>3){
+            $x = $temp_date[0]%100;
+            $accounting_year = $x*100 + ($x+1);
+        }else{
+            $x = $temp_date[0]%100;
+            $accounting_year =($x-1)*100+$x;
+        }
+        $result['accounting_year'] = $accounting_year;
+
+        $customVoucher=CustomVoucher::where('voucher_name','=',"Sale")->where('accounting_year',"=",$accounting_year)->first();
 
         if($customVoucher) {
             $customVoucher->last_counter = $customVoucher->last_counter + 1;
@@ -30,13 +41,13 @@ class SaleController extends Controller
             $customVoucher= new CustomVoucher();
             $customVoucher->voucher_name="Sale";
 //            $customVoucher->accounting_year=$inputOrderMaster->accounting_year;
-            $customVoucher->accounting_year="2020";
+            $customVoucher->accounting_year= $accounting_year;
             $customVoucher->last_counter=1;
             $customVoucher->delimiter='-';
             $customVoucher->prefix='FIS';
             $customVoucher->save();
         }
-        $voucher_number = "FISH-".$customVoucher->last_counter."-"."2020";
+        $voucher_number = "FISH-".$customVoucher->last_counter."-".$accounting_year;
         $result['custom_voucher'] = $customVoucher;
 		try{
 
