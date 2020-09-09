@@ -17,7 +17,7 @@ class CreateSaleMastersTable extends Migration
             $table->id();
             $table->decimal('discount')->default(0);
             $table->decimal('round_off')->default(0);
-            $table->decimal('loading_expenditure')->default(0);
+            $table->decimal('loading_n_unloading_expenditure')->default(0);
             $table->string('comment',255)->nullable(true);
             $table->tinyInteger('inforce')->default(0);
             $table->timestamps();

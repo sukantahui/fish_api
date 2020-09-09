@@ -8,6 +8,7 @@ use App\Model\SaleMaster;
 use App\Model\SaleDetail;
 use App\Model\TransactionMaster;
 use App\Model\TransactionDetail;
+use App\Model\CustomVoucher;
 class SaleController extends Controller
 {
     //
@@ -18,6 +19,7 @@ class SaleController extends Controller
 		$inputSaleDetails=$input['sale_details'];
 		$inputTransactionMaster=(object)($input['transaction_master']);
 		$inputTransactionDetails=$input['transaction_details'];
+		$result =array();
 		DB::beginTransaction();
         $customVoucher=CustomVoucher::where('voucher_name',"order")->Where('accounting_year',"2020")->first();
 
@@ -26,7 +28,7 @@ class SaleController extends Controller
             $customVoucher->save();
         }else{
             $customVoucher= new CustomVoucher();
-            $customVoucher->voucher_name="order";
+            $customVoucher->voucher_name="Sale";
 //            $customVoucher->accounting_year=$inputOrderMaster->accounting_year;
             $customVoucher->accounting_year="2020";
             $customVoucher->last_counter=1;
@@ -34,6 +36,8 @@ class SaleController extends Controller
             $customVoucher->prefix='FIS';
             $customVoucher->save();
         }
+        $voucher_number = "FISH-".$customVoucher->last_counter."-"."2020";
+        $result['custom_voucher'] = $customVoucher;
 		try{
 
 				//save data into purchase_masters
@@ -42,7 +46,8 @@ class SaleController extends Controller
 				$saleMaster->round_off = $inputSaleMaster->round_off;
 				$saleMaster->loading_n_unloading_expenditure = $inputSaleMaster->loading_n_unloading_expenditure;
 				$saleMaster->save();
-				//save data into purchase_details
+                $result['sale_master'] = $saleMaster;
+				//save data into sale_details
 				foreach ($inputSaleDetails as $inputSaleDetail) {
 					$saleDetail = new SaleDetail();
 					$saleDetail->sale_master_id = $saleMaster->id;
@@ -56,11 +61,12 @@ class SaleController extends Controller
 				//save data into transaction_masters
 				$transactionMaster = new TransactionMaster();
 				$transactionMaster->transaction_date = $inputTransactionMaster->transaction_date;
-				$transactionMaster->transaction_number = 'FISH-0001-2021';
+				$transactionMaster->transaction_number = $voucher_number;
 				$transactionMaster->voucher_id = $inputTransactionMaster->voucher_id;
 				$transactionMaster->sale_master_id = $saleMaster->id;
 				$transactionMaster->employee_id = $inputTransactionMaster->employee_id;
 				$transactionMaster->save();
+                $result['transaction_master'] = $transactionMaster;
 
 				//save data into transaction_details
 				foreach ($inputTransactionDetails as $inputTransactionDetail) {
@@ -78,7 +84,7 @@ class SaleController extends Controller
 				return response()->json(['success'=>0,'exception'=>$e->getMessage()], 401);
 		}
 
-				return response()->json(['success'=>1,'data'=>$transactionMaster->id], 200,[],JSON_NUMERIC_CHECK);
+				return response()->json(['success'=>1,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
 		/*return response()->json(['inputSaleMaster'=>$inputSaleMaster,'inputSaleDetails'=>$inputSaleDetails,'inputTransactionMaster'=>$inputTransactionMaster,'inputTransactionDetails'=>$inputTransactionDetails], 200,[],JSON_NUMERIC_CHECK);*/
     }
 }
