@@ -19,8 +19,23 @@ class SaleController extends Controller
 		$inputTransactionMaster=(object)($input['transaction_master']);
 		$inputTransactionDetails=$input['transaction_details'];
 		DB::beginTransaction();
+        $customVoucher=CustomVoucher::where('voucher_name',"order")->Where('accounting_year',"2020")->first();
+
+        if($customVoucher) {
+            $customVoucher->last_counter = $customVoucher->last_counter + 1;
+            $customVoucher->save();
+        }else{
+            $customVoucher= new CustomVoucher();
+            $customVoucher->voucher_name="order";
+//            $customVoucher->accounting_year=$inputOrderMaster->accounting_year;
+            $customVoucher->accounting_year="2020";
+            $customVoucher->last_counter=1;
+            $customVoucher->delimiter='-';
+            $customVoucher->prefix='FIS';
+            $customVoucher->save();
+        }
 		try{
-			
+
 				//save data into purchase_masters
 				$saleMaster= new SaleMaster();
 				$saleMaster->discount = $inputSaleMaster->discount;
@@ -62,7 +77,7 @@ class SaleController extends Controller
 				DB::rollBack();
 				return response()->json(['success'=>0,'exception'=>$e->getMessage()], 401);
 		}
-		
+
 				return response()->json(['success'=>1,'data'=>$transactionMaster->id], 200,[],JSON_NUMERIC_CHECK);
 		/*return response()->json(['inputSaleMaster'=>$inputSaleMaster,'inputSaleDetails'=>$inputSaleDetails,'inputTransactionMaster'=>$inputTransactionMaster,'inputTransactionDetails'=>$inputTransactionDetails], 200,[],JSON_NUMERIC_CHECK);*/
     }

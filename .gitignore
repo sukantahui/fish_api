@@ -2,6 +2,8 @@
 /public/hot
 /public/storage
 /storage/*.key
+/storage/app/backup-temp
+/storage/app/laravel
 /vendor
 .env
 .env.backup
@@ -14,4 +16,6 @@ composer.lock
 *.clpprj
 *.csprj
 .idea
-.idea/*.*
+/.idea/*.*
+/.idea
+
