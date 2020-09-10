@@ -19,7 +19,6 @@ class SaleController extends Controller
 		$inputSaleDetails=$input['sale_details'];
 		$inputTransactionMaster=(object)($input['transaction_master']);
 		$inputTransactionDetails=$input['transaction_details'];
-		$result =array();
 		DB::beginTransaction();
 		$temp_date = explode("-",$inputTransactionMaster->transaction_date);
         $accounting_year="";
@@ -30,7 +29,6 @@ class SaleController extends Controller
             $x = $temp_date[0]%100;
             $accounting_year =($x-1)*100+$x;
         }
-        $result['accounting_year'] = $accounting_year;
 
         $customVoucher=CustomVoucher::where('voucher_name','=',"Sale")->where('accounting_year',"=",$accounting_year)->first();
 
@@ -48,7 +46,6 @@ class SaleController extends Controller
             $customVoucher->save();
         }
         $voucher_number = "FISH-".$customVoucher->last_counter."-".$accounting_year;
-        $result['custom_voucher'] = $customVoucher;
 		try{
 
 				//save data into purchase_masters
@@ -57,7 +54,6 @@ class SaleController extends Controller
 				$saleMaster->round_off = $inputSaleMaster->round_off;
 				$saleMaster->loading_n_unloading_expenditure = $inputSaleMaster->loading_n_unloading_expenditure;
 				$saleMaster->save();
-                $result['sale_master'] = $saleMaster;
 				//save data into sale_details
 				foreach ($inputSaleDetails as $inputSaleDetail) {
 					$saleDetail = new SaleDetail();
@@ -77,7 +73,6 @@ class SaleController extends Controller
 				$transactionMaster->sale_master_id = $saleMaster->id;
 				$transactionMaster->employee_id = $inputTransactionMaster->employee_id;
 				$transactionMaster->save();
-                $result['transaction_master'] = $transactionMaster;
 
 				//save data into transaction_details
 				foreach ($inputTransactionDetails as $inputTransactionDetail) {
@@ -93,9 +88,25 @@ class SaleController extends Controller
 			catch (\Exception $e) {
 				DB::rollBack();
 				return response()->json(['success'=>0,'exception'=>$e->getMessage()], 401);
-		}
+		    }
+
+            $result=TransactionMaster::join('transaction_details', 'transaction_masters.id', '=', 'transaction_details.transaction_master_id')
+                ->join('ledgers', 'ledgers.id', '=', 'transaction_details.ledger_id')
+                ->where('transaction_masters.id', '=', $transactionMaster->id)
+                ->where('transaction_masters.voucher_id', '=', 1)
+                ->where('transaction_details.transaction_type_id','=',1)
+                ->select('transaction_masters.id'
+                    ,'transaction_masters.transaction_number'
+                    , DB::raw('date_format(transaction_masters.transaction_date,"%D %b %Y") as formatted_transaction_date')
+                    ,'transaction_masters.transaction_date'
+                    ,'ledgers.ledger_name'
+                    , DB::raw('get_sale_amount_by_transaction_master_id(transaction_masters.id) as bill_amount')
+                )
+                ->get();
+
 
 				return response()->json(['success'=>1,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
 		/*return response()->json(['inputSaleMaster'=>$inputSaleMaster,'inputSaleDetails'=>$inputSaleDetails,'inputTransactionMaster'=>$inputTransactionMaster,'inputTransactionDetails'=>$inputTransactionDetails], 200,[],JSON_NUMERIC_CHECK);*/
     }
+
 }
