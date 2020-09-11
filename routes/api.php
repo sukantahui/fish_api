@@ -27,8 +27,7 @@ Route::get('/testMails', 'MailController@sendMail');
 
 Route::group(array('prefix' => 'dev'), function()
 {
-	
-	Route::post('/sales', 'SaleController@saveSale');
+
     //productCategories
     Route::get('/productCategories', 'ProductCategoryController@getProductCategories');
     Route::post('/productCategories', 'ProductCategoryController@saveProductCategory');
@@ -66,13 +65,16 @@ Route::group(array('prefix' => 'dev'), function()
     Route::get('/purchases/{invoice}/invoice', 'PurchaseController@purchaseByInvoice');
     Route::post('/purchases', 'PurchaseController@savePurchase');
 
+    Route::post('/sales', 'SaleController@saveSale');
+    Route::get('/sales', 'SaleController@getAllSales');
+
     //unit
     Route::get('/units', 'UnitController@index');
 
     //customer Categories
     Route::get('/customerCategories', 'CustomerCategoryController@index');
-	
-	
+
+
 });
 
 

@@ -109,4 +109,22 @@ class SaleController extends Controller
 		/*return response()->json(['inputSaleMaster'=>$inputSaleMaster,'inputSaleDetails'=>$inputSaleDetails,'inputTransactionMaster'=>$inputTransactionMaster,'inputTransactionDetails'=>$inputTransactionDetails], 200,[],JSON_NUMERIC_CHECK);*/
     }
 
+
+    public function getAllSales(){
+        $result=TransactionMaster::join('transaction_details', 'transaction_masters.id', '=', 'transaction_details.transaction_master_id')
+            ->join('ledgers', 'ledgers.id', '=', 'transaction_details.ledger_id')
+            ->where('transaction_masters.voucher_id', '=', 1)
+            ->where('transaction_details.transaction_type_id','=',1)
+            ->select('transaction_masters.id'
+                ,'transaction_masters.transaction_number'
+                , DB::raw('date_format(max(transaction_masters.transaction_date),"%D %b %Y") as formatted_transaction_date')
+                ,'transaction_masters.transaction_date'
+                ,'ledgers.ledger_name'
+                , DB::raw('get_sale_amount_by_transaction_master_id(transaction_masters.id) as bill_amount')
+            )
+            ->groupBy('transaction_masters.id','transaction_masters.transaction_number','ledgers.ledger_name')
+            ->get();
+        return response()->json(['success'=>1,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
+    }
+
 }
