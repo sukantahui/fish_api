@@ -127,4 +127,31 @@ class SaleController extends Controller
         return response()->json(['success'=>1,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
     }
 
+    public function saleDetailsById($id){
+	    $arrReturnData = array();
+	    $transactionMaster = TransactionMaster::
+                            select('transaction_masters.transaction_date','transaction_masters.transaction_number'
+                            ,DB::raw("get_sale_amount_by_transaction_master_id(transaction_masters.id) as bill_total"),
+                            'ledgers.ledger_name','ledgers.billing_name','ledgers.email','ledgers.mobile1','ledgers.mobile2',
+                            'ledgers.address1','ledgers.address2','ledgers.po','ledgers.area', 'ledgers.city', 'ledgers.pin'
+                            ,'sale_masters.discount', 'sale_masters.round_off', 'sale_masters.loading_n_unloading_expenditure')
+                            ->join('sale_masters','transaction_masters.sale_master_id','sale_masters.id')
+                            ->join('transaction_details','transaction_details.transaction_master_id','transaction_masters.id')
+                            ->join('ledgers','ledgers.id','transaction_details.ledger_id')
+                            ->where('transaction_masters.id',$id)
+                            ->where('transaction_details.transaction_type_id',1)
+                            ->first();
+	    $saleDetails = TransactionMaster::
+                        select('products.product_code', 'products.product_name','units.unit_name', 'units.formal_name',
+                        'sale_details.quantity', 'sale_details.price', 'sale_details.discount'
+                        ,DB::raw("(sale_details.quantity*sale_details.price)-sale_details.discount as total"))
+                        ->join('sale_details','transaction_masters.sale_master_id','sale_details.sale_master_id')
+                        ->join('units','sale_details.unit_id','units.id')
+                        ->join('products','sale_details.product_id','products.id')
+                        ->where('transaction_masters.id',$id)
+                        ->get();
+        $arrReturnData = array("sale_master" => $transactionMaster, "sale_details" => $saleDetails);
+        return response()->json(['success'=>1,'data'=>$arrReturnData], 200,[],JSON_NUMERIC_CHECK);
+    }
+
 }

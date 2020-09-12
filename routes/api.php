@@ -67,6 +67,7 @@ Route::group(array('prefix' => 'dev'), function()
 
     Route::post('/sales', 'SaleController@saveSale');
     Route::get('/sales', 'SaleController@getAllSales');
+    Route::get('/sales/{id}', 'SaleController@saleDetailsById');
 
     //unit
     Route::get('/units', 'UnitController@index');
@@ -150,6 +151,7 @@ Route::group(['middleware' => ['jwt.auth']], function() {
 
     Route::post('/sales', 'SaleController@saveSale');
     Route::get('/sales', 'SaleController@getAllSales');
+    Route::get('/sales/{id}', 'SaleController@saleDetailsById');
 
     //unit
     Route::get('/units', 'UnitController@index');
