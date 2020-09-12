@@ -148,6 +148,9 @@ Route::group(['middleware' => ['jwt.auth']], function() {
     Route::patch('/productCategories', 'ProductCategoryController@updateProductCategory');
     Route::patch('/productCategories/{id}', 'ProductCategoryController@updateProductCategoryBy');
 
+    Route::post('/sales', 'SaleController@saveSale');
+    Route::get('/sales', 'SaleController@getAllSales');
+
     //unit
     Route::get('/units', 'UnitController@index');
 
