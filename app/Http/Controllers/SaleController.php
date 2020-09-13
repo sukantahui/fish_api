@@ -133,7 +133,7 @@ class SaleController extends Controller
                             select('transaction_masters.transaction_date','transaction_masters.transaction_number'
                             ,DB::raw("get_sale_amount_by_transaction_master_id(transaction_masters.id) as bill_total"),
                             'ledgers.ledger_name','ledgers.billing_name','ledgers.email','ledgers.mobile1','ledgers.mobile2',
-                            'ledgers.address1','ledgers.address2','ledgers.po','ledgers.area', 'ledgers.city', 'ledgers.pin'
+							'ledgers.address1','ledgers.address2','ledgers.po','ledgers.area', 'ledgers.city','ledgers.state', 'ledgers.pin'
                             ,'sale_masters.discount', 'sale_masters.round_off', 'sale_masters.loading_n_unloading_expenditure')
                             ->join('sale_masters','transaction_masters.sale_master_id','sale_masters.id')
                             ->join('transaction_details','transaction_details.transaction_master_id','transaction_masters.id')
