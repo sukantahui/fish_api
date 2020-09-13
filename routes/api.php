@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('/register', 'AuthController@register');
 Route::post('/login', 'AuthController@login');
-Route::get('/me', 'AuthController@me');
+
 Route::delete('/customers/{id}', 'CustomerController@deleteCustomer');
 
 
@@ -111,6 +111,8 @@ Route::get('/vouchers', 'VoucherController@index');
 
 //secured links here
 Route::group(['middleware' => ['jwt.auth']], function() {
+    Route::get('/me', 'AuthController@me');
+    Route::get('/refresh', 'AuthController@refresh');
     Route::get('logout', 'AuthController@logout');
 
     Route::get('/purchases', 'PurchaseController@getAllPurchases');
