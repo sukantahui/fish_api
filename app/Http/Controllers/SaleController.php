@@ -102,7 +102,7 @@ class SaleController extends Controller
                     ,'ledgers.ledger_name'
                     , DB::raw('get_sale_amount_by_transaction_master_id(transaction_masters.id) as bill_amount')
                 )
-                ->get();
+                ->first();
 
 
 				return response()->json(['success'=>1,'data'=>$result], 200,[],JSON_NUMERIC_CHECK);
