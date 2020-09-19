@@ -163,6 +163,9 @@ Route::group(['middleware' => ['jwt.auth']], function() {
 
     //customer Categories
     Route::get('/customerCategories', 'CustomerCategoryController@index');
+    
+    // Ledger
+	Route::get('/cashLedgers', 'LedgerController@get_cash_ledgers');
 
     Route::get('test', function(){
         return response()->json(['foo'=>'bar']);
