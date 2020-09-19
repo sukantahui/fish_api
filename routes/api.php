@@ -68,6 +68,9 @@ Route::group(array('prefix' => 'dev'), function()
     Route::post('/sales', 'SaleController@saveSale');
     Route::get('/sales', 'SaleController@getAllSales');
     Route::get('/sales/{id}', 'SaleController@saleDetailsById');
+    
+    Route::post('/payment', 'PaymentController@savePayment');
+	Route::get('/cashLedgers', 'LedgerController@get_cash_ledgers');
 
     //unit
     Route::get('/units', 'UnitController@index');
