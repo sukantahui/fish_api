@@ -82,4 +82,9 @@ class LedgerController extends Controller
     {
         //
     }
+    
+    public function get_cash_ledgers(){
+		$ledgers=Ledger::whereIn('ledger_group_id',[7,13])->get();
+		return response()->json(['success'=>1,'data'=>$ledgers], 200,[],JSON_NUMERIC_CHECK);
+    }
 }

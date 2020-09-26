@@ -68,6 +68,9 @@ Route::group(array('prefix' => 'dev'), function()
     Route::post('/sales', 'SaleController@saveSale');
     Route::get('/sales', 'SaleController@getAllSales');
     Route::get('/sales/{id}', 'SaleController@saleDetailsById');
+    
+    Route::post('/payment', 'PaymentController@savePayment');
+	Route::get('/cashLedgers', 'LedgerController@get_cash_ledgers');
 
     //unit
     Route::get('/units', 'UnitController@index');
@@ -160,6 +163,9 @@ Route::group(['middleware' => ['jwt.auth']], function() {
 
     //customer Categories
     Route::get('/customerCategories', 'CustomerCategoryController@index');
+    
+    // Ledger
+	Route::get('/cashLedgers', 'LedgerController@get_cash_ledgers');
 
     Route::get('test', function(){
         return response()->json(['foo'=>'bar']);
